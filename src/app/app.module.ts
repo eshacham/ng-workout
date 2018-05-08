@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppWorkoutComponent } from './app-workout.component';
+import { ExercisesListComponent } from './exercises/exercises-list.component';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { AppWorkoutComponent } from './app-workout.component';
     BrowserModule
   ],
   declarations: [
-    AppWorkoutComponent
+    AppWorkoutComponent,
+    ExercisesListComponent
   ],
   bootstrap: [AppWorkoutComponent]
 })

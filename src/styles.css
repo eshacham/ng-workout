@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 .hoverwell:hover {
-    background-color: #485563;
+    background-color: #121213;
     cursor: pointer;
   }
   
@@ -32,4 +32,14 @@
   }
   .toast-warning {
     background-color: #f89406;
+  }
+
+/* my custom styles */
+
+  div.inline {
+    display: inline-block;
+  }
+
+  img.sml {
+    height: 100px;
   }
