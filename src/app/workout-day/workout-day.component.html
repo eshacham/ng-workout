@@ -1,0 +1,36 @@
+<div class="container-fluid">    
+    <div class="row">        
+        <div class="col-sm-8">
+            <h2 align="center">{{workoutDay.name}}</h2>
+        </div>
+        <div class="col-sm-4" [ngSwitch]="DisplayMode">
+            <div *ngSwitchCase="displayMode.Display">
+                <button class="btn btn-primary h1-margin pull-right" 
+                    (click)="setEditMode()">
+                    Edit
+                </button>
+            </div>
+            <div *ngSwitchCase="displayMode.Edit">
+                <button class="btn btn-success h1-margin pull-right" 
+                    (click)="saveChanges()">
+                    Save
+                </button>
+                <button class="btn btn-danger h1-margin pull-left" 
+                    (click)="cancelEditEditMode()">
+                    Cancel
+                </button>
+            </div>
+            <div *ngSwitchCase="displayMode.Workout"></div>
+            <div *ngSwitchDefault></div>
+        </div>
+    </div> 
+    <div class="row">
+        <app-exercise-thumbnail 
+            *ngFor="let exercise of workoutDay.exercises" 
+            [exerciseSet]=exercise.set
+            [parentSubject]="parentSubject"
+            #thumbnail (click)="thumbnail.exerciseSelected()"
+            (eventClick)="handleExerciseClick($event)">
+        </app-exercise-thumbnail>        
+    </div>    
+</div> 

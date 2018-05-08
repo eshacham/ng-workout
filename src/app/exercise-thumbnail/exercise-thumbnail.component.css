@@ -1,0 +1,31 @@
+.img-sml { 
+    height: 100px;
+    width: 100px;
+}
+.img-tiny { 
+    height: 32px;
+    width: 32px;
+}
+       
+.thumb {     
+    background: #17183b;
+    color: #aaabe7;
+    padding: 0px;
+    margin: 4px 4px 4px 4px;
+}
+.noTopMargin { 
+    margin-top: 0px;
+}
+.noBottomMargin { 
+    margin-bottom: 0px;
+}
+
+.imageWrap {
+    display:inline-block;position:relative;
+}
+.floatDelete {
+    position:absolute;left:25px;top:25px;
+    opacity: 0.75; 
+    /* background: #17183b;
+    color: #aaabe7; */
+}
