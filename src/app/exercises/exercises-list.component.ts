@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
     templateUrl: './exercises-list.component.html'
 })
 export class ExercisesListComponent {
-    exercise = {
+
+    exercise1 = {
         id: 1,
         name: 'Bench Press, Wide Grip',
         imageUrl: 'assets/images/CrossPressWideGrip.jpeg',
@@ -43,4 +44,10 @@ export class ExercisesListComponent {
         restBetweenSets: 20,
         restAfterExercise: 20
     };
+
+    handleExerciseClick(data) {
+        console.log('receieved: ', data);
+    }
+
 }
+

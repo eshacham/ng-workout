@@ -2,15 +2,6 @@
     <h1 align="center">ABC + Full Body Option 1 *</h1>
     <h2 align="center">Full Body</h2>
     <hr/>
-    <div class="well hoverwell thumbnail">
-        <div>
-            <img src={{exercise.imageUrl}} class="sml"/>
-            <div class="inline">
-                <h3>{{exercise.name}}</h3>
-                <div class="inline">Grip: {{exercise.grip.type}}</div>
-                <div class="inline">Grip: {{exercise.grip.width}}</div> 
-                <div class="inline">Grip: {{exercise.weightType}}</div>
-            </div>
-        </div>               
-    </div>
-</div>
+    <app-exercise-thumbnail (eventClick)="handleExerciseClick($event)"
+     [exercise]="exercise1"></app-exercise-thumbnail>
+</div> 
