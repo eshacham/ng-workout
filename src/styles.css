@@ -36,7 +36,9 @@
 
 /* my custom styles */
 
-
-  img.sml {
-    height: 100px;
-  }
+div.thumbnail{
+  background: #555
+}
+img.sml {
+  height: 100px;
+}
