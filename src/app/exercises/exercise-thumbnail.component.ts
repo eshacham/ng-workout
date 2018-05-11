@@ -7,9 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ExerciseThumbnailComponent {
     @Input() exercise: any;
     @Output() eventClick = new EventEmitter();
+    mode: any = 'edit';
 
     editExercise() {
-        //console.log('Edit Exercise');
         this.eventClick.emit({
             type: 'Edit',
             data: this.exercise
@@ -17,10 +17,13 @@ export class ExerciseThumbnailComponent {
     }
 
     deleteExercise() {
-        //console.log('Delete Exercise');
         this.eventClick.emit({
             type: 'Delete',
             data: this.exercise
         });
+    }
+
+    exerciseSelected() {
+        console.log('Exercise Selected');
     }
 }

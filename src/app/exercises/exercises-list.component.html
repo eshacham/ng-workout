@@ -1,7 +1,18 @@
-<div>
-    <h1 align="center">ABC + Full Body Option 1 *</h1>
-    <h2 align="center">Full Body</h2>
-    <hr/>
-    <app-exercise-thumbnail (eventClick)="handleExerciseClick($event)"
-     [exercise]="exercise1"></app-exercise-thumbnail>
+<div class="container-fluid">
+    <div class="row">
+        <h1 align="center">ABC + Full Body Option 1 *</h1> 
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h2 align="center">Full Body</h2>
+        </div>
+        <div class="col-sm-4">{{thumbnail.mode}}</div>
+    </div> 
+    <div class="row">
+        <app-exercise-thumbnail 
+            #thumbnail (click)="thumbnail.exerciseSelected()"
+            (eventClick)="handleExerciseClick($event)"
+            [exercise]="exercise1"></app-exercise-thumbnail>
+    </div>    
 </div> 

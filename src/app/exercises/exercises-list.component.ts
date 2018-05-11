@@ -49,5 +49,7 @@ export class ExercisesListComponent {
         console.log('receieved: ', data);
     }
 
+
+
 }
 
