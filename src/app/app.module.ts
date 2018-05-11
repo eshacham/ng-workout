@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { AppWorkoutComponent } from './app-workout.component';
-import { ExercisesListComponent } from './exercises/workout-day.component';
-import { ExerciseThumbnailComponent } from './exercises/exercise-thumbnail.component';
+import { ExercisesListComponent } from './workout-day/workout-day.component';
+import { ExerciseThumbnailComponent } from './workout-day/exercise-thumbnail.component';
 
 @NgModule({
   imports: [
