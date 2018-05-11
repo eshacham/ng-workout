@@ -2,7 +2,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-exercise-thumbnail',
-    templateUrl: './exercise-thumbnail.component.html'
+    templateUrl: './exercise-thumbnail.component.html',
+    styles: [`
+        .img-sml { height: 100px; }
+    `]
 })
 export class ExerciseThumbnailComponent {
     @Input() exercise: any;
