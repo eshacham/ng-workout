@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { NavBarComponent } from './nav/navbar.component' ;
-import { AppWorkoutComponent } from './app-workout.component';
-import { ExercisesListComponent } from './workout-day/workout-day.component';
+import { AppMainComponent } from './app-main.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { WorkoutDayComponent } from './workout-day/workout-day.component';
 import { ExerciseThumbnailComponent } from './exercise-thumbnail/exercise-thumbnail.component';
 
 @NgModule({
@@ -12,10 +13,11 @@ import { ExerciseThumbnailComponent } from './exercise-thumbnail/exercise-thumbn
   ],
   declarations: [
     NavBarComponent,
-    AppWorkoutComponent,
-    ExercisesListComponent,
+    AppMainComponent,
+    WorkoutComponent,
+    WorkoutDayComponent,
     ExerciseThumbnailComponent,
   ],
-  bootstrap: [AppWorkoutComponent]
+   bootstrap: [AppMainComponent]
 })
 export class AppModule { }

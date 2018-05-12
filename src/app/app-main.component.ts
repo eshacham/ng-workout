@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-workout',
+  selector: 'app-main',
   template: `
     <app-nav-bar></app-nav-bar>
-    <app-workout-day></app-workout-day>
+    <app-workout></app-workout>
   `
 })
-export class AppWorkoutComponent {
+export class AppMainComponent {
 }
