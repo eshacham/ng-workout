@@ -2,6 +2,8 @@
     height: 100px; 
 }
        
-.thumbnail div { 
-    background: #191a7481 
+.thumb { 
+    background: #17183b;
+    color: #aaabe7;
+    padding: 0,0,0,0;
 }
