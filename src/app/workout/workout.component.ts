@@ -1036,27 +1036,27 @@ export class WorkoutComponent {
     };
 }
 enum WeightType {
-    EzBar,
-    Barbell,
-    Dumbbell,
-    Kettleball,
-    Plate,
-    NoWeight
+    EzBar = 'Ez-Bar',
+    Barbell = 'Barbell',
+    Dumbbell = 'Dumbbell',
+    Kettleball = 'Kettleball',
+    Plate = 'Plate',
+    NoWeight = ''
 }
 enum GripType {
-    Underhand,
-    Overhand,
-    Neutral
+    Underhand = 'Underhand',
+    Overhand = 'Overhand',
+    Neutral = 'Neutral'
 }
 enum GripWidth {
-    Narrow,
-    Normal,
-    Wide
+    Narrow = 'Narrow',
+    Normal = 'Normal',
+    Wide = 'Wide'
 }
 enum RepetitionSpeed {
-    OneOne,
-    TwoTwo,
-    TwoFour
+    OneOne = '1:1',
+    TwoTwo = '2:2',
+    TwoFour = '2:4'
 }
 enum WeightUnit {
     Lbs,
