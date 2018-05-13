@@ -4,12 +4,12 @@
         <div class="col-sm-4">
             <h2 align="center">{{workoutDay.name}}</h2>
         </div>
-        <div class="col-sm-4">{{thumbnail.mode}}</div>
+        <!-- <div class="col-sm-4">{{thumbnail.mode}}</div> -->
     </div> 
     <div class="row">
-        <app-exercise-thumbnail 
+        <app-exercise-thumbnail *ngFor="let exercise of workoutDay.exercises" [exercise]=exercise
             #thumbnail (click)="thumbnail.exerciseSelected()"
-            (eventClick)="handleExerciseClick($event)"
-            [exercise]="workoutDay.exercises[0]"></app-exercise-thumbnail>
+            (eventClick)="handleExerciseClick($event)">
+        </app-exercise-thumbnail>
     </div>    
 </div> 

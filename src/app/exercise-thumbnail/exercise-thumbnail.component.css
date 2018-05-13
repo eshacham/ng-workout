@@ -1,9 +1,12 @@
 .img-sml { 
-    height: 100px; 
+    height: 100px;
+    width: 100px;
+
 }
        
 .thumb { 
     background: #17183b;
     color: #aaabe7;
-    padding: 0,0,0,0;
+    padding: 0px;
+    margin: 4px;
 }
