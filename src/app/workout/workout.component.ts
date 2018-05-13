@@ -8,6 +8,7 @@ export class WorkoutComponent {
     workout = {
         name: 'ABC + Full Body Option 1 *',
         days: [{
+            id: 1,
             name: 'Full Body',
             exercises: [{
                 id: 1,
@@ -46,7 +47,130 @@ export class WorkoutComponent {
                 ],
                 restBetweenSets: 20,
                 restAfterExercise: 20
-            }]
+            }],
+        }, {
+            id: 2,
+            name: 'Upper Body 1',
+            exercises: [{
+                id: 1,
+                name: 'Bench Press, Wide Grip',
+                imageUrl: 'assets/images/CrossPressWideGrip.jpeg',
+                grip: {
+                    type: 'Overhand',
+                    width: 'Wide',
+                },
+                repetition: {
+                    speed: '1:1'
+                },
+                weightType: 'Barbell',
+                isFavorite: false,
+                sets: [
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    }
+                ],
+                restBetweenSets: 20,
+                restAfterExercise: 20
+            }],
+        }, {
+            id: 3,
+            name: 'Upper Body 2',
+            exercises: [{
+                id: 1,
+                name: 'Bench Press, Wide Grip',
+                imageUrl: 'assets/images/CrossPressWideGrip.jpeg',
+                grip: {
+                    type: 'Overhand',
+                    width: 'Wide',
+                },
+                repetition: {
+                    speed: '1:1'
+                },
+                weightType: 'Barbell',
+                isFavorite: false,
+                sets: [
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    }
+                ],
+                restBetweenSets: 20,
+                restAfterExercise: 20
+            }],
+        }, {
+            id: 4,
+            name: 'Lower Body 2',
+            exercises: [{
+                id: 1,
+                name: 'Bench Press, Wide Grip',
+                imageUrl: 'assets/images/CrossPressWideGrip.jpeg',
+                grip: {
+                    type: 'Overhand',
+                    width: 'Wide',
+                },
+                repetition: {
+                    speed: '1:1'
+                },
+                weightType: 'Barbell',
+                isFavorite: false,
+                sets: [
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    },
+                    {
+                        weight: 95,
+                        unit: 'lbs',
+                        times: 12
+                    }
+                ],
+                restBetweenSets: 20,
+                restAfterExercise: 20
+            }],
         }]
     };
 }
