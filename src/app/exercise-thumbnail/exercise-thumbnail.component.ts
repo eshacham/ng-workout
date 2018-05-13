@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ExerciseThumbnailComponent {
     @Input() exercise: any;
     @Output() eventClick = new EventEmitter();
-    //mode: any = 'edit';
+    // mode: any = 'edit';
 
     editExercise() {
         this.eventClick.emit({
