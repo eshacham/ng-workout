@@ -1039,7 +1039,7 @@ enum WeightType {
     EzBar = 'Ez-Bar',
     Barbell = 'Barbell',
     Dumbbell = 'Dumbbell',
-    Kettleball = 'Kettleball',
+    Kettleball = 'Kettlebell',
     Plate = 'Plate',
     NoWeight = ''
 }

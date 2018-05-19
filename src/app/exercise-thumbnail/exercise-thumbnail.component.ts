@@ -27,4 +27,19 @@ export class ExerciseThumbnailComponent {
     exerciseSelected() {
         console.log('Exercise Selected');
     }
+
+    get exerciseDetails(): string {
+        const details = [];
+
+        if (this.exercise.grip && this.exercise.grip.type) {
+            details.push(this.exercise.grip.type);
+        }
+        if (this.exercise.grip && this.exercise.grip.width) {
+            details.push(this.exercise.grip.width);
+        }
+        if (this.exercise.weightType) {
+            details.push(this.exercise.weightType);
+        }
+        return details.join(' | ');
+    }
 }

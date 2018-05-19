@@ -1,7 +1,10 @@
 .img-sml { 
     height: 100px;
     width: 100px;
-
+}
+.img-tiny { 
+    height: 32px;
+    width: 32px;
 }
        
 .thumb { 
