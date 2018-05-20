@@ -53,9 +53,9 @@ export class ExerciseThumbnailComponent {
 
     getTopBottomMarginClass(exercise) {
         if (this.isFirstInSet(exercise)) {
-            return 'noBottomMargin';
+            return ['noBottomMargin'];
         } else {
-            return 'noTopMargin';
+            return ['noTopMargin'];
         }
     }
 }
