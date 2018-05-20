@@ -7,9 +7,15 @@
     width: 32px;
 }
        
-.thumb { 
+.thumb {     
     background: #17183b;
     color: #aaabe7;
     padding: 0px;
     margin: 4px;
+}
+.thumb-sec-set { 
+    background: #17183b;
+    color: #aaabe7;
+    padding: 0px;
+    margin: 0px, 4px, 4px, 4px ;
 }

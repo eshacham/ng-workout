@@ -1,14 +1,14 @@
- <div class="container-fluid thumb" 
+ <div id='exercise-thumb' class="container-fluid thumb" 
       *ngFor="let exercise of exerciseSet"> 
       <div class="row">
         <div class=col-sm-2>
             <img src={{exercise.imageUrl}} 
                  class="img-sml" (click)="deleteExercise()"/>
         </div>            
-        <div class="col-sm-6" (click)="editExercise()">            
-            <h3>{{exerciseSet[0].name}}</h3>
+        <div (click)="editExercise()">            
+            <h3>{{exercise.name}}</h3>
             <br/>
-            {{exerciseDetails()}}
+            {{exerciseDetails(exercise)}}
         </div>
     </div>          
 </div> 

@@ -29,17 +29,17 @@ export class ExerciseThumbnailComponent {
     }
 
     /// TODO: iterate thru the set!
-    exerciseDetails(): string {
+    exerciseDetails(exercise): string {
         const details = [];
 
-        if (this.exerciseSet[0].grip && this.exerciseSet[0].grip.type) {
-            details.push(this.exerciseSet[0].grip.type);
+        if (exercise.grip && exercise.grip.type) {
+            details.push(exercise.grip.type);
         }
-        if (this.exerciseSet[0].grip && this.exerciseSet[0].grip.width) {
-            details.push(this.exerciseSet[0].grip.width);
+        if (exercise.grip && exercise.grip.width) {
+            details.push(exercise.grip.width);
         }
-        if (this.exerciseSet[0].weightType) {
-            details.push(this.exerciseSet[0].weightType);
+        if (exercise.weightType) {
+            details.push(exercise.weightType);
         }
         return details.join(' | ');
     }
