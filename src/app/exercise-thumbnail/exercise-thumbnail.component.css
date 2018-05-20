@@ -13,9 +13,9 @@
     padding: 0px;
     margin: 4px 4px 4px 4px;
 }
-.no-top-margin { 
+.noTopMargin { 
     margin-top: 0px;
 }
-.no-bottom-margin { 
+.noBottomMargin { 
     margin-bottom: 0px;
 }

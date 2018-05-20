@@ -1,15 +1,13 @@
- <div id='exercise-thumb' class="container-fluid thumb" 
-    [class.no-top-margin]="!isFirstInSet(exercise)"
-    [class.no-bottom-margin]="isFirstInSet(exercise)"
-    *ngFor="let exercise of exerciseSet"> 
+ <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+    class="container-fluid thumb" 
+    [ngClass]="{noTopMargin : !isFirstInSet(exercise), noBottomMargin : isFirstInSet(exercise)}" > 
       <div class="row">
         <div class=col-sm-2>
             <img src={{exercise.imageUrl}} 
                  class="img-sml" (click)="deleteExercise()"/>
         </div>            
         <div (click)="editExercise()">            
-            <h3>{{exercise.name}}</h3>
-            <br/>
+            <h3>{{exercise.name}}</h3>            
             {{exerciseDetails(exercise)}}
         </div>
     </div>          

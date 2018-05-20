@@ -28,7 +28,6 @@ export class ExerciseThumbnailComponent {
         console.log('Exercise Set Selected');
     }
 
-    /// TODO: iterate thru the set!
     exerciseDetails(exercise): string {
         const details = [];
 
@@ -45,6 +44,10 @@ export class ExerciseThumbnailComponent {
     }
 
     isFirstInSet(exercise): boolean {
-        return this.exerciseSet.length > 1 && this.exerciseSet[0] === exercise;
+        return this.hasSet && this.exerciseSet[0] === exercise;
+    }
+
+    get hasSet(): boolean {
+        return this.exerciseSet.length > 1;
     }
 }
