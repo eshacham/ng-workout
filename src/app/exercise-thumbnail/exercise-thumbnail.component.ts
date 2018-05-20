@@ -6,39 +6,40 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./exercise-thumbnail.component.css']
 })
 export class ExerciseThumbnailComponent {
-    @Input() exercise: any;
+    @Input() exerciseSet: any[]; // this is an array of exercises
     @Output() eventClick = new EventEmitter();
     // mode: any = 'edit';
 
     editExercise() {
         this.eventClick.emit({
             type: 'Edit',
-            data: this.exercise
+            data: this.exerciseSet
         });
     }
 
     deleteExercise() {
         this.eventClick.emit({
             type: 'Delete',
-            data: this.exercise
+            data: this.exerciseSet
         });
     }
 
-    exerciseSelected() {
-        console.log('Exercise Selected');
+    exerciseSelected(exercise) {
+        console.log('Exercise Set Selected');
     }
 
-    get exerciseDetails(): string {
+    /// TODO: iterate thru the set!
+    exerciseDetails(): string {
         const details = [];
 
-        if (this.exercise.grip && this.exercise.grip.type) {
-            details.push(this.exercise.grip.type);
+        if (this.exerciseSet[0].grip && this.exerciseSet[0].grip.type) {
+            details.push(this.exerciseSet[0].grip.type);
         }
-        if (this.exercise.grip && this.exercise.grip.width) {
-            details.push(this.exercise.grip.width);
+        if (this.exerciseSet[0].grip && this.exerciseSet[0].grip.width) {
+            details.push(this.exerciseSet[0].grip.width);
         }
-        if (this.exercise.weightType) {
-            details.push(this.exercise.weightType);
+        if (this.exerciseSet[0].weightType) {
+            details.push(this.exerciseSet[0].weightType);
         }
         return details.join(' | ');
     }

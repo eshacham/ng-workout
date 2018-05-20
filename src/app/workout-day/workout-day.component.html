@@ -6,7 +6,8 @@
         </div>
     </div> 
     <div class="row">
-        <app-exercise-thumbnail *ngFor="let exercise of workoutDay.exercises" [exercise]=exercise
+        <app-exercise-thumbnail 
+            *ngFor="let exercise of workoutDay.exercises" [exerciseSet]=exercise.set
             #thumbnail (click)="thumbnail.exerciseSelected()"
             (eventClick)="handleExerciseClick($event)">
         </app-exercise-thumbnail>
