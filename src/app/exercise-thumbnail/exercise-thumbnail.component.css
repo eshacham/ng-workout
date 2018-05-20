@@ -11,11 +11,11 @@
     background: #17183b;
     color: #aaabe7;
     padding: 0px;
-    margin: 4px;
+    margin: 4px 4px 4px 4px;
 }
-.thumb-sec-set { 
-    background: #17183b;
-    color: #aaabe7;
-    padding: 0px;
-    margin: 0px, 4px, 4px, 4px ;
+.no-top-margin { 
+    margin-top: 0px;
+}
+.no-bottom-margin { 
+    margin-bottom: 0px;
 }

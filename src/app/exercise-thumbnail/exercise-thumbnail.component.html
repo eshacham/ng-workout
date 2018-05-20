@@ -1,5 +1,7 @@
  <div id='exercise-thumb' class="container-fluid thumb" 
-      *ngFor="let exercise of exerciseSet"> 
+    [class.no-top-margin]="!isFirstInSet(exercise)"
+    [class.no-bottom-margin]="isFirstInSet(exercise)"
+    *ngFor="let exercise of exerciseSet"> 
       <div class="row">
         <div class=col-sm-2>
             <img src={{exercise.imageUrl}} 

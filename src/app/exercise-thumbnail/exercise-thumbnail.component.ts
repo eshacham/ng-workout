@@ -43,4 +43,8 @@ export class ExerciseThumbnailComponent {
         }
         return details.join(' | ');
     }
+
+    isFirstInSet(exercise): boolean {
+        return this.exerciseSet.length > 1 && this.exerciseSet[0] === exercise;
+    }
 }
