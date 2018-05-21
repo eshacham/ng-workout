@@ -1,13 +1,15 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'app-exercise-thumbnail',
     templateUrl: './exercise-thumbnail.component.html',
     styleUrls: ['./exercise-thumbnail.component.css']
 })
-export class ExerciseThumbnailComponent {
+export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() exerciseSet: any[]; // this is an array of exercises
     @Output() eventClick = new EventEmitter();
+    @Input() parentSubject: Subject<any>;
 
     private _isEditMode = false;
     get isEditMode(): boolean {
@@ -18,6 +20,20 @@ export class ExerciseThumbnailComponent {
             this._isEditMode = val;
         }
     }
+
+    ngOnInit() {
+        this.parentSubject.subscribe(event => {
+          this.isEditMode = event && event.isEdit;
+        });
+      }
+
+    ngOnDestroy() {
+        // needed if child gets re-created (eg on some model changes)
+        // note that subsequent subscriptions on the same subject will fail
+        // so the parent has to re-create parentSubject on changes
+        this.parentSubject.unsubscribe();
+      }
+
 
     editExercise() {
         this.eventClick.emit({
