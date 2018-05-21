@@ -8,7 +8,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ExerciseThumbnailComponent {
     @Input() exerciseSet: any[]; // this is an array of exercises
     @Output() eventClick = new EventEmitter();
-    // mode: any = 'edit';
+
+    private _isEditMode = false;
+    get isEditMode(): boolean {
+        return this._isEditMode;
+    }
+    set isEditMode(val: boolean) {
+        if (this._isEditMode !== val) {
+            this._isEditMode = val;
+        }
+    }
 
     editExercise() {
         this.eventClick.emit({
@@ -22,6 +31,10 @@ export class ExerciseThumbnailComponent {
             type: 'Delete',
             data: this.exerciseSet
         });
+    }
+
+    get hasSet(): boolean {
+        return this.exerciseSet.length > 1;
     }
 
     exerciseSelected(exercise) {
@@ -45,10 +58,6 @@ export class ExerciseThumbnailComponent {
 
     isFirstInSet(exercise): boolean {
         return this.hasSet && this.exerciseSet[0] === exercise;
-    }
-
-    get hasSet(): boolean {
-        return this.exerciseSet.length > 1;
     }
 
     getTopBottomMarginClass(exercise) {

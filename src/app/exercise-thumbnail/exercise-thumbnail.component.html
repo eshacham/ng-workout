@@ -2,9 +2,14 @@
     class="container-fluid thumb" 
     [ngClass]="getTopBottomMarginClass(exercise)" > 
       <div class="row">
-        <div class=col-sm-2>
+        <div class="col-sm-2 imageWrap">
             <img src={{exercise.imageUrl}} 
-                 class="img-sml" (click)="deleteExercise()"/>
+                 class="img-sml" />
+            <button class="btn btn-default floatDelete" 
+                (click)="deleteExercise()"
+                *ngIf="isEditMode">
+                Delete
+            </button>
         </div>            
         <div (click)="editExercise()">            
             <h3>{{exercise.name}}</h3>            
