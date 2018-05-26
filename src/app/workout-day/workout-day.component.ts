@@ -21,18 +21,12 @@ export class WorkoutDayComponent {
         }
     }
 
-    private _editTogglerText = 'Edit';
-    get editTogglerText(): string {
-        return this._editTogglerText;
-    }
-
     handleExerciseClick(data) {
         console.log('receieved: ', data);
     }
 
     toggleEditMode() {
         this.isEditMode = !this.isEditMode;
-        this._editTogglerText = this.isEditMode ? 'Exit Edit' : 'Edit';
         this.parentSubject.next({isEdit: this.isEditMode});
     }
 

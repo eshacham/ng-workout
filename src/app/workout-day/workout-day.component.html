@@ -1,13 +1,25 @@
 <div class="container-fluid">    
     <div class="row">        
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <h2 align="center">{{workoutDay.name}}</h2>
         </div>
-        <div class="col-sm-2">
-            <button class="btn btn-default h1-margin pull-right" 
-                (click)="toggleEditMode()">
-                {{editTogglerText}}
-            </button>
+        <div class="col-sm-4">
+            <div *ngIf="!isEditMode">
+                <button class="btn btn-primary h1-margin pull-right" 
+                    (click)="toggleEditMode()">
+                    Edit
+                </button>
+            </div>
+            <div *ngIf="isEditMode">
+                <button class="btn btn-success h1-margin pull-right" 
+                    (click)="toggleEditMode()">
+                    Save
+                </button>
+                <button class="btn btn-danger h1-margin pull-left" 
+                    (click)="toggleEditMode()">
+                    Cancel
+                </button>
+            </div>
         </div>
     </div> 
     <div class="row">
