@@ -5,6 +5,7 @@ import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumb
 @Component({
     selector: 'app-workout-day',
     templateUrl: './workout-day.component.html',
+    styleUrls: ['./workout-day.component.css']
 })
 export class WorkoutDayComponent {
     @Input() workoutDay: any;
