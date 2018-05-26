@@ -4,13 +4,13 @@
             <h2 align="center">{{workoutDay.name}}</h2>
         </div>
         <div class="col-sm-4">
-            <div *ngIf="!isEditMode">
+            <div [hidden]="isEditMode">
                 <button class="btn btn-primary h1-margin pull-right" 
                     (click)="toggleEditMode()">
                     Edit
                 </button>
             </div>
-            <div *ngIf="isEditMode">
+            <div [hidden]="!isEditMode">
                 <button class="btn btn-success h1-margin pull-right" 
                     (click)="toggleEditMode()">
                     Save
