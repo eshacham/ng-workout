@@ -3,23 +3,25 @@
         <div class="col-sm-8">
             <h2 align="center">{{workoutDay.name}}</h2>
         </div>
-        <div class="col-sm-4">
-            <div [hidden]="isEditMode">
+        <div class="col-sm-4" [ngSwitch]="DisplayMode">
+            <div *ngSwitchCase="displayMode.Display">
                 <button class="btn btn-primary h1-margin pull-right" 
-                    (click)="toggleEditMode()">
+                    (click)="setEditMode()">
                     Edit
                 </button>
             </div>
-            <div [hidden]="!isEditMode">
+            <div *ngSwitchCase="displayMode.Edit">
                 <button class="btn btn-success h1-margin pull-right" 
-                    (click)="toggleEditMode()">
+                    (click)="saveChanges()">
                     Save
                 </button>
                 <button class="btn btn-danger h1-margin pull-left" 
-                    (click)="toggleEditMode()">
+                    (click)="cancelEditEditMode()">
                     Cancel
                 </button>
             </div>
+            <div *ngSwitchCase="displayMode.Workout"></div>
+            <div *ngSwitchDefault></div>
         </div>
     </div> 
     <div class="row">

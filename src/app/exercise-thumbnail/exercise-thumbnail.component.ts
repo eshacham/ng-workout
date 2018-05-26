@@ -11,19 +11,22 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Output() eventClick = new EventEmitter();
     @Input() parentSubject: Subject<any>;
 
-    private _isEditMode = false;
-    get isEditMode(): boolean {
-        return this._isEditMode;
+    displayMode = DisplayMode;
+    private _displayMode: DisplayMode = DisplayMode.Display;
+    get DisplayMode(): DisplayMode {
+        return this._displayMode;
     }
-    set isEditMode(val: boolean) {
-        if (this._isEditMode !== val) {
-            this._isEditMode = val;
+    set DisplayMode(val: DisplayMode) {
+        if (this._displayMode !== val) {
+            this._displayMode = val;
         }
     }
-
+    get isEditMode(): boolean {
+        return this._displayMode === DisplayMode.Edit;
+    }
     ngOnInit() {
         this.parentSubject.subscribe(event => {
-          this.isEditMode = event && event.isEdit;
+          this.DisplayMode = event.displayMode;
         });
       }
 
@@ -37,14 +40,14 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
 
     editExercise() {
         this.eventClick.emit({
-            type: 'Edit',
+            action: 'Edit',
             data: this.exerciseSet
         });
     }
 
     deleteExercise() {
         this.eventClick.emit({
-            type: 'Delete',
+            action: 'Delete',
             data: this.exerciseSet
         });
     }
@@ -83,4 +86,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             return ['noTopMargin'];
         }
     }
+}
+
+export enum DisplayMode {
+    Display,
+    Edit,
+    Workout
 }

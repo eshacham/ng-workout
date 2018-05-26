@@ -26,6 +26,6 @@
 .floatDelete {
     position:absolute;left:25px;top:25px;
     opacity: 0.75; 
-    background: #17183b;
-    color: #aaabe7;
+    /* background: #17183b;
+    color: #aaabe7; */
 }

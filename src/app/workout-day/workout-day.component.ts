@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseThumbnailComponent, DisplayMode } from '../exercise-thumbnail/exercise-thumbnail.component';
 
 @Component({
     selector: 'app-workout-day',
@@ -11,13 +11,15 @@ export class WorkoutDayComponent {
     @Input() workoutDay: any;
     parentSubject: Subject<any> = new Subject();
 
-    private _isEditMode = false;
-    get isEditMode(): boolean {
-        return this._isEditMode;
+    displayMode = DisplayMode;
+    private _displayMode: DisplayMode = DisplayMode.Display;
+    get DisplayMode(): DisplayMode {
+        return this._displayMode;
     }
-    set isEditMode(val: boolean) {
-        if (this._isEditMode !== val) {
-            this._isEditMode = val;
+    set DisplayMode(val: DisplayMode) {
+        if (this._displayMode !== val) {
+            this._displayMode = val;
+            this.publishDisplayMode();
         }
     }
 
@@ -25,9 +27,22 @@ export class WorkoutDayComponent {
         console.log('receieved: ', data);
     }
 
-    toggleEditMode() {
-        this.isEditMode = !this.isEditMode;
-        this.parentSubject.next({isEdit: this.isEditMode});
+    setEditMode() {
+        this.DisplayMode = DisplayMode.Edit;
+    }
+
+    cancelEditEditMode() {
+        this.DisplayMode = DisplayMode.Display;
+    }
+
+    saveChanges() {
+        this.DisplayMode = DisplayMode.Display;
+    }
+
+    publishDisplayMode() {
+        this.parentSubject.next({
+            displayMode: this._displayMode
+        });
     }
 
 }
