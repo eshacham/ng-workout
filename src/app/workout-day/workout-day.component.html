@@ -1,7 +1,7 @@
 <div class="container-fluid">    
     <div class="row">        
         <div class="col-sm-8">
-            <h2 align="center">{{workoutDay.name}}</h2>
+            <h2 class="text-center">{{workoutDay.name}}</h2>
         </div>
         <div class="col-sm-4" [ngSwitch]="DisplayMode">
             <div *ngSwitchCase="displayMode.Display">
@@ -26,11 +26,47 @@
     </div> 
     <div class="row">
         <app-exercise-thumbnail 
-            *ngFor="let exercise of workoutDay.exercises" 
+            *ngFor="let exercise of workoutDay.exercises; let i = index" 
             [exerciseSet]=exercise.set
+            [exerciseSetIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
-            (eventClick)="handleExerciseClick($event)">
+            (eventEmitter)="handleExerciseEvents($event)">
         </app-exercise-thumbnail>        
-    </div>    
+    </div> 
+    <div class="row" [ngSwitch]="DisplayMode">
+        <div *ngSwitchCase="displayMode.Display">
+            <button class="btn btn-success h1-margin" 
+                    (click)="startWorkout()">
+                    Start Workout
+            </button>
+        </div>
+        <div *ngSwitchCase="displayMode.Workout">
+            <button class="btn btn-success h1-margin" 
+                    (click)="finishWorkout()">
+                    Finish
+            </button>
+        </div>
+        <div *ngSwitchCase="displayMode.Edit">
+            <div class="col-sm-2">
+                    <button class="btn btn-success h1-margin" 
+                    (click)="finishWorkout()">
+                    + Exercise
+            </button>
+            </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-success h1-margin" 
+                    (click)="finishWorkout()">
+                    + Superset
+            </button>
+            </div>
+            <div class="col-sm-2">
+                    <button class="btn btn-success h1-margin" 
+                    (click)="finishWorkout()">
+                    + Day
+            </button>
+            </div>
+            
+        </div>
+    </div> 
 </div> 

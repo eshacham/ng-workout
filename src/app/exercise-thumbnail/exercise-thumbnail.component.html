@@ -1,19 +1,111 @@
- <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
-    class="container-fluid thumb" 
-    [ngClass]="getTopBottomMarginClass(exercise)" > 
-      <div class="row">
-        <div class="col-sm-2 imageWrap">
-            <img src={{exercise.imageUrl}} 
-                 class="img-sml" />
-            <button class="btn btn-warning floatDelete" 
-                (click)="deleteExercise()"
-                *ngIf="isEditMode">
-                Delete
-            </button>
-        </div>            
-        <div (click)="editExercise()">            
-            <h3>{{exercise.name}}</h3>            
-            {{exerciseDetails(exercise)}}
+ <div [ngSwitch]="DisplayMode">
+    <div *ngSwitchCase="displayMode.Workout">
+        <div [hidden]="IsRunning">
+            <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+                class="container-fluid thumb" 
+                [ngClass]="getTopBottomMarginClass(exercise)" > 
+                <div class="row">
+                    <div class="col-sm-2 imageWrap">
+                        <img src={{exercise.imageUrl}} 
+                            class="img-sml" />
+                        <button class="btn btn-warning floatDelete" 
+                            (click)="deleteExercise()"
+                            *ngIf="isEditMode">
+                            Delete
+                        </button>
+                    </div>            
+                    <div class=col-sm-10>                                    
+                        <button class="btn btn-warning pull-right margin-20" 
+                            (click)="runExercise()"
+                            *ngIf="!isEditMode">
+                            Start
+                        </button>
+                         <h3>{{exercise.name}}</h3>
+                        {{exerciseDetails(exercise)}}
+                    </div>                    
+                </div>          
+            </div> 
         </div>
-    </div>          
-</div> 
+        <div [hidden]="!IsRunning">
+            <div class="row margin-bottom">                    
+                <div *ngFor="let exercise of exerciseSet"                   
+                    [ngClass]="getRunningExerciseSetCellClass()" >
+                    <div (click)="editExercise()">            
+                        <h3 class="text-center">{{exercise.name}}</h3> 
+                        <h5 class="text-center">{{exerciseDetails(exercise)}}</h5>     
+                        <img src={{exercise.imageUrl}} 
+                            class="img-sml img-responsive center-block" />
+                    </div>                   
+                </div>
+            </div>
+            <div class='margin-bottom'>
+                <div *ngFor="let exercise of exerciseSet" >
+                    <div class='row'>
+                        <div *ngFor="let rep of exercise.reps; let i = index"  
+                            class="rep"
+                            [ngClass]="getRunningExerciseSetRepCellClass(i)">                                                
+                            <div class='row' *ngIf='rep.weight'>
+                                <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.WeightUnit]}}</small></h4>
+                            </div>
+                            <div class='row' *ngIf='rep.times'>
+                                <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small>
+                                    <span *ngIf='isRepCompleted(i)' 
+                                        class='glyphicon glyphicon-ok'></span>
+                                </h4>                                
+                            </div>                            
+                            <div class='row' *ngIf='rep.time'>
+                                <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small>
+                                    <span *ngIf='isRepCompleted(i)'
+                                    class='glyphicon glyphicon-ok'></span>
+                                </h4>
+                            </div>
+                            <div *ngIf="isInTimerLoop(i)">{{timedRepLoopRemaining}}                                
+                            </div>                            
+                        </div>
+                    </div>
+                </div> 
+                <div class='row margin-top'> 
+                    <div *ngIf="isInRestLoop">                        
+                        <button class="btn btn-warning btn-lg col-sm-4 col-sm-offset-4 activeRep" 
+                            (click)="skipRest()">
+                            Rest {{timedRestLoopRemaining}} Seconds or Skip
+                        </button>
+                    </div>
+                    <div *ngIf="!isInRestLoop">
+                        <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
+                                (click)="prevRep()">                            
+                        </button> 
+                        <button class="btn btn-success btn-lg col-sm-2 activeRep" 
+                                (click)="nextRep(true)">
+                                Done!
+                        </button>                    
+                        <button class="btn btn-info btn-sm col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
+                                (click)="nextRep(false)">                        
+                        </button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchDefault>
+        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+            class="container-fluid thumb" 
+            [ngClass]="getTopBottomMarginClass(exercise)" > 
+            <div class="row">
+                <div class="col-sm-2 imageWrap">
+                    <img src={{exercise.imageUrl}} 
+                        class="img-sml" />
+                    <button class="btn btn-warning floatDelete" 
+                        (click)="deleteExercise()"
+                        *ngIf="isEditMode">
+                        Delete
+                    </button>
+                </div>            
+                <div (click)="editExercise()">            
+                    <h3>{{exercise.name}}</h3>            
+                    {{exerciseDetails(exercise)}}
+                </div>
+            </div>          
+        </div> 
+    </div>
+</div>

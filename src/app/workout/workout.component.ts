@@ -23,7 +23,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.Barbell,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 95,
                             WeightUnit: WeightUnit.Lbs,
@@ -45,7 +45,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -54,7 +54,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/SeatedRopeCableRow.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 95,
                             WeightUnit: WeightUnit.Lbs,
@@ -71,7 +71,7 @@ export class WorkoutComponent {
                             times: 12
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -85,7 +85,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.Dumbbell,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 15,
                             WeightUnit: WeightUnit.Lbs,
@@ -102,7 +102,7 @@ export class WorkoutComponent {
                             times: 15
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -114,7 +114,7 @@ export class WorkoutComponent {
                     },
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 70,
                             WeightUnit: WeightUnit.Lbs,
@@ -136,7 +136,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -148,7 +148,7 @@ export class WorkoutComponent {
                     },
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 50,
                             WeightUnit: WeightUnit.Lbs,
@@ -170,7 +170,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                  }]}, {
                 set: [{
@@ -179,7 +179,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/LegRaiseMachine.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 80,
                             WeightUnit: WeightUnit.Lbs,
@@ -201,7 +201,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -210,7 +210,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CableLegCurl.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 60,
                             WeightUnit: WeightUnit.Lbs,
@@ -232,7 +232,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -241,7 +241,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CrossfitSitup.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 12
                         },
@@ -252,7 +252,7 @@ export class WorkoutComponent {
                             times: 12
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -262,7 +262,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.NoWeight,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 15
                         },
@@ -273,7 +273,7 @@ export class WorkoutComponent {
                             times: 15
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                  }]}],
             }, {
@@ -288,10 +288,10 @@ export class WorkoutComponent {
                             type: GripType.Overhand,
                             width: GripWidth.Narrow,
                         },
-                        repetitionSpeed: RepetitionSpeed.OneOne,
+                        repetition: RepetitionSpeed.OneOne,
                         weightType: WeightType.Barbell,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 85,
                                 WeightUnit: WeightUnit.Lbs,
@@ -308,7 +308,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }, {
                         id: 2,
@@ -318,10 +318,10 @@ export class WorkoutComponent {
                             type: GripType.Neutral,
                             width: GripWidth.Normal,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 85,
                                 WeightUnit: WeightUnit.Lbs,
@@ -338,7 +338,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -348,9 +348,9 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Underhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 60,
                                 WeightUnit: WeightUnit.Lbs,
@@ -372,7 +372,7 @@ export class WorkoutComponent {
                                 times: 12
                             }
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -382,10 +382,10 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Neutral,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 15,
                                 WeightUnit: WeightUnit.Lbs,
@@ -402,7 +402,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -412,10 +412,10 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Overhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 10,
                                 WeightUnit: WeightUnit.Lbs,
@@ -432,17 +432,17 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
                         id: 6,
                         name: 'Dumbbell Tricpes Extensions, Seated',
                         imageUrl: 'assets/images/DumbbellTricepsExtensionSeated.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 25,
                                 WeightUnit: WeightUnit.Lbs,
@@ -459,17 +459,19 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
                         id: 7,
                         name: 'Inclined Pushup, Narrow Grip',
                         imageUrl: 'assets/images/InclinePushupNarrowGrip.jpg',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
-                        gripWidth: GripWidth.Narrow,
+                        repetition:  RepetitionSpeed.OneOne,
+                        grip: {
+                            width: GripWidth.Narrow,
+                        },
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 times: 10
                             },
@@ -480,7 +482,7 @@ export class WorkoutComponent {
                                 times: 10
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -490,9 +492,9 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Overhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 55,
                                 WeightUnit: WeightUnit.Lbs,
@@ -509,16 +511,16 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
                         id: 9,
                         name: 'Situps',
                         imageUrl: 'assets/images/Situps.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 times: 12
                             },
@@ -529,16 +531,16 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
                         id: 10,
                         name: 'Situps with Weight Above Head',
                         imageUrl: 'assets/images/SitupsWithWeightAboveHead.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 weight: 15,
                                 WeightUnit: WeightUnit.Lbs,
@@ -555,16 +557,16 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
                         id: 11,
                         name: 'Russian Twist',
                         imageUrl: 'assets/images/RussianTwist.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
-                        sets: [
+                        reps: [
                             {
                                 times: 12
                             },
@@ -575,7 +577,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]
                 }],
@@ -593,7 +595,7 @@ export class WorkoutComponent {
                     },
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 90,
                             WeightUnit: WeightUnit.Lbs,
@@ -615,7 +617,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }, {
                     id: 2,
@@ -628,7 +630,7 @@ export class WorkoutComponent {
                     weightType: WeightType.Dumbbell,
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 25,
                             WeightUnit: WeightUnit.Lbs,
@@ -650,7 +652,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -663,7 +665,7 @@ export class WorkoutComponent {
                     weightType: WeightType.Dumbbell,
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 10,
                             WeightUnit: WeightUnit.Lbs,
@@ -680,7 +682,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -689,7 +691,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/MachineRowMediumGrip.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 85,
                             WeightUnit: WeightUnit.Lbs,
@@ -706,7 +708,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -719,7 +721,7 @@ export class WorkoutComponent {
                     weightType: WeightType.Dumbbell,
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 15,
                             WeightUnit: WeightUnit.Lbs,
@@ -736,7 +738,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -749,7 +751,7 @@ export class WorkoutComponent {
                     weightType: WeightType.Dumbbell,
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 95,
                             WeightUnit: WeightUnit.Lbs,
@@ -766,7 +768,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -775,7 +777,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/DragonFlags.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 12
                         },
@@ -786,7 +788,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -796,7 +798,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.NoWeight,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 12
                         },
@@ -807,7 +809,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -817,7 +819,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.NoWeight,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 15
                         },
@@ -828,7 +830,7 @@ export class WorkoutComponent {
                             times: 15
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -838,7 +840,7 @@ export class WorkoutComponent {
                     repetition: RepetitionSpeed.OneOne,
                     weightType: WeightType.NoWeight,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 15
                         },
@@ -849,7 +851,7 @@ export class WorkoutComponent {
                             times: 15
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }],
                 }]
@@ -861,10 +863,10 @@ export class WorkoutComponent {
                     id: 1,
                     name: 'Walking Lunge with Side Weights',
                     imageUrl: 'assets/images/WalkingLungeWithSideWeights.png',
-                    repetitionSpeed:  RepetitionSpeed.OneOne,
+                    repetition:  RepetitionSpeed.OneOne,
                     weightType: WeightType.Dumbbell,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 25,
                             WeightUnit: WeightUnit.Lbs,
@@ -881,7 +883,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -890,7 +892,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CableAbduction.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 50,
                             WeightUnit: WeightUnit.Lbs,
@@ -907,7 +909,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }, {
                     id: 3,
@@ -915,7 +917,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CableAdduction.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 50,
                             WeightUnit: WeightUnit.Lbs,
@@ -932,7 +934,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -941,7 +943,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CableLegCurl.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 50,
                             WeightUnit: WeightUnit.Lbs,
@@ -958,7 +960,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -967,7 +969,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/CableCalfRaise.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 70,
                             WeightUnit: WeightUnit.Lbs,
@@ -984,7 +986,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -993,7 +995,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/BodyweightFlutterKicks.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 12
                         },
@@ -1004,7 +1006,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1013,7 +1015,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/WeightedSitups.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             weight: 25,
                             WeightUnit: WeightUnit.Lbs,
@@ -1030,7 +1032,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1038,16 +1040,19 @@ export class WorkoutComponent {
                     name: 'Plank',
                     imageUrl: 'assets/images/Plank.png',
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
-                            time: 60
+                            time: 10
                         },
                         {
-                            time: 60
-                        }
+                            time: 10
+                        },
+                        {
+                            time: 10
+                        },
                     ],
-                    restBetweenSets: 20,
-                    restAfterExercise: 20
+                    restBetweenReps: 5,
+                    restAfterExercise: 10
                     }]}, {
                 set: [{
                     id: 9,
@@ -1055,7 +1060,7 @@ export class WorkoutComponent {
                     imageUrl: 'assets/images/Twist.png',
                     repetition: RepetitionSpeed.OneOne,
                     isFavorite: false,
-                    sets: [
+                    reps: [
                         {
                             times: 12
                         },
@@ -1066,14 +1071,14 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                 }]
             }],
         }]
     };
 }
-enum WeightType {
+export enum WeightType {
     EzBar = 'Ez-Bar',
     Barbell = 'Barbell',
     Dumbbell = 'Dumbbell',
@@ -1081,22 +1086,22 @@ enum WeightType {
     Plate = 'Plate',
     NoWeight = ''
 }
-enum GripType {
+export enum GripType {
     Underhand = 'Underhand',
     Overhand = 'Overhand',
     Neutral = 'Neutral'
 }
-enum GripWidth {
+export enum GripWidth {
     Narrow = 'Narrow',
     Normal = 'Normal',
     Wide = 'Wide'
 }
-enum RepetitionSpeed {
+export enum RepetitionSpeed {
     OneOne = '1:1',
     TwoTwo = '2:2',
     TwoFour = '2:4'
 }
-enum WeightUnit {
+export enum WeightUnit {
     Lbs,
     Kg
 }
