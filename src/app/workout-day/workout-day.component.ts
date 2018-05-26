@@ -39,6 +39,15 @@ export class WorkoutDayComponent {
         this.DisplayMode = DisplayMode.Display;
     }
 
+    startWorkout() {
+        this.DisplayMode = DisplayMode.Workout;
+    }
+
+    finishWorkout() {
+        this.DisplayMode = DisplayMode.Display;
+    }
+
+
     publishDisplayMode() {
         this.parentSubject.next({
             displayMode: this._displayMode
