@@ -31,3 +31,8 @@
 .centerText {
     text-align: center;
 }
+
+.rep {
+    height: 100px;
+    background: rgb(15, 31, 31);
+}
