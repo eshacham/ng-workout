@@ -21,14 +21,24 @@
                 </div>          
             </div> 
         </div>
-
-        <div class="row" [hidden]="!IsRunning">                    
-            <div *ngFor="let exercise of exerciseSet" 
-                  
-                  [ngClass]="getRunningExerciseSetImageCellClass(exercise)" >
-                <img src={{exercise.imageUrl}} 
-                    class="img-sml" />                   
+        <div [hidden]="!IsRunning">
+            <div class="row" >                    
+                <div *ngFor="let exercise of exerciseSet"                   
+                    [ngClass]="getRunningExerciseSetCellClass(exercise)" >
+                    <div (click)="editExercise()">            
+                        <h3 class="centerText">{{exercise.name}}</h3>                    
+                        <img src={{exercise.imageUrl}} 
+                            class="img-sml img-responsive center-block" />
+                    </div>                   
+                </div>
             </div>
+            <div *ngFor="let exercise of exerciseSet" >
+                <div class=row>
+                    <div *ngFor="let set of exercise.sets" > 
+                        <div class="col-sm-3">{{set.weight}}</div>
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
     <div *ngSwitchDefault>
