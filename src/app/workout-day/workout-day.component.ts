@@ -10,6 +10,7 @@ import { ExerciseThumbnailComponent, DisplayMode } from '../exercise-thumbnail/e
 export class WorkoutDayComponent {
     @Input() workoutDay: any;
     parentSubject: Subject<any> = new Subject();
+    runningExerciseSetIndex = 0;
 
     displayMode = DisplayMode;
     private _displayMode: DisplayMode = DisplayMode.Display;
@@ -19,6 +20,11 @@ export class WorkoutDayComponent {
     set DisplayMode(val: DisplayMode) {
         if (this._displayMode !== val) {
             this._displayMode = val;
+            if (this._displayMode === DisplayMode.Workout) {
+                if (this.runningExerciseSetIndex === 0) {
+                    this.runningExerciseSetIndex = 1;
+                }
+            }
             this.publishDisplayMode();
         }
     }
@@ -47,11 +53,12 @@ export class WorkoutDayComponent {
         this.DisplayMode = DisplayMode.Display;
     }
 
-
     publishDisplayMode() {
-        this.parentSubject.next({
-            displayMode: this._displayMode
-        });
+        const event: any = {
+            displayMode: this._displayMode,
+            runningExerciseSetIndex: this.runningExerciseSetIndex
+        };
+        this.parentSubject.next(event);
     }
 
 }

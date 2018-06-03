@@ -1,19 +1,44 @@
- <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
-    class="container-fluid thumb" 
-    [ngClass]="getTopBottomMarginClass(exercise)" > 
-      <div class="row">
-        <div class="col-sm-2 imageWrap">
-            <img src={{exercise.imageUrl}} 
-                 class="img-sml" />
-            <button class="btn btn-warning floatDelete" 
-                (click)="deleteExercise()"
-                *ngIf="isEditMode">
-                Delete
-            </button>
-        </div>            
-        <div (click)="editExercise()">            
-            <h3>{{exercise.name}}</h3>            
-            {{exerciseDetails(exercise)}}
+ <div [ngSwitch]="DisplayMode">
+    <div *ngSwitchCase="displayMode.Workout">
+        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+            class="container-fluid thumb" 
+            [ngClass]="getTopBottomMarginClass(exercise)" > 
+            <div class="row">
+                <div class="col-sm-2 imageWrap">
+                    <img src={{exercise.imageUrl}} 
+                        class="img-sml" />
+                    <button class="btn btn-warning floatDelete" 
+                        (click)="deleteExercise()"
+                        *ngIf="isEditMode">
+                        Delete
+                    </button>
+                </div>            
+                <div (click)="setRunExercise()">            
+                    <h3>Running {{exercise.name}}</h3>            
+                    {{exerciseDetails(exercise)}}
+                </div>
+            </div>          
         </div>
-    </div>          
-</div> 
+    </div>
+    <div *ngSwitchDefault>
+        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+            class="container-fluid thumb" 
+            [ngClass]="getTopBottomMarginClass(exercise)" > 
+            <div class="row">
+                <div class="col-sm-2 imageWrap">
+                    <img src={{exercise.imageUrl}} 
+                        class="img-sml" />
+                    <button class="btn btn-warning floatDelete" 
+                        (click)="deleteExercise()"
+                        *ngIf="isEditMode">
+                        Delete
+                    </button>
+                </div>            
+                <div (click)="editExercise()">            
+                    <h3>{{exercise.name}}</h3>            
+                    {{exerciseDetails(exercise)}}
+                </div>
+            </div>          
+        </div> 
+    </div>
+</div>

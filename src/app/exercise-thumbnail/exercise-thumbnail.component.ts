@@ -8,10 +8,18 @@ import { Subject } from 'rxjs/Subject';
 })
 export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() exerciseSet: any[]; // this is an array of exercises
-    @Output() eventClick = new EventEmitter();
+    @Input() exerciseSetIndex: number;
     @Input() parentSubject: Subject<any>;
+    @Output() eventClick = new EventEmitter();
 
     displayMode = DisplayMode;
+
+    private _isRunning = false;
+    get IsRunning(): boolean { return this._isRunning; }
+    set IsRunning (val: boolean) {
+        this._isRunning = val;
+    }
+
     private _displayMode: DisplayMode = DisplayMode.Display;
     get DisplayMode(): DisplayMode {
         return this._displayMode;
@@ -19,16 +27,22 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     set DisplayMode(val: DisplayMode) {
         if (this._displayMode !== val) {
             this._displayMode = val;
+            if (this._displayMode === DisplayMode.Workout) {
+                this.startWorkout();
+            }
         }
     }
     get isEditMode(): boolean {
         return this._displayMode === DisplayMode.Edit;
     }
     ngOnInit() {
-        this.parentSubject.subscribe(event => {
-          this.DisplayMode = event.displayMode;
-        });
+        this.parentSubject.subscribe(event => this.handleEventchange(event));
       }
+
+    handleEventchange(event) {
+        this.IsRunning = (event.runningExerciseSetIndex === this.exerciseSetIndex);
+        this.DisplayMode = event.displayMode;
+    }
 
     ngOnDestroy() {
         // needed if child gets re-created (eg on some model changes)
@@ -37,10 +51,16 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.parentSubject.unsubscribe();
       }
 
-
     editExercise() {
         this.eventClick.emit({
             action: 'Edit',
+            data: this.exerciseSet
+        });
+    }
+
+    setRunExercise() {
+        this.eventClick.emit({
+            action: 'SetRun',
             data: this.exerciseSet
         });
     }
@@ -85,6 +105,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         } else {
             return ['noTopMargin'];
         }
+    }
+
+    startWorkout() {
+
     }
 }
 

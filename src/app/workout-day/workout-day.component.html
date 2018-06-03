@@ -26,8 +26,9 @@
     </div> 
     <div class="row">
         <app-exercise-thumbnail 
-            *ngFor="let exercise of workoutDay.exercises" 
+            *ngFor="let exercise of workoutDay.exercises; let i = index" 
             [exerciseSet]=exercise.set
+            [exerciseSetIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
             (eventClick)="handleExerciseClick($event)">
