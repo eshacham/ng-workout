@@ -107,6 +107,22 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         }
     }
 
+    getRunningExerciseSetImageCellClass(exercise) {
+        let returnClass = 'col-sm-2';
+        if (this.isFirstInSet(exercise)) {
+            const offset = this.getImageOffsetFromExerciseSet();
+            returnClass += ' col-sm-offset-' + offset.toString();
+        } else if (!this.hasSet) {
+            returnClass += ' col-sm-offset-5';
+        }
+
+        return [returnClass];
+    }
+
+    getImageOffsetFromExerciseSet() {
+        return (12 / this.exerciseSet.length) - this.exerciseSet.length;
+    }
+
     startWorkout() {
 
     }
