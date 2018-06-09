@@ -57,21 +57,21 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
 
     editExercise() {
         this.eventEmitter.emit({
-            action: 'Edit',
+            action: ExerciseAction.Edit,
             data: this.exerciseSet
         });
     }
 
-    setRunExercise() {
+    runExercise() {
         this.eventEmitter.emit({
-            action: 'SetRun',
-            data: this.exerciseSet
+            action: ExerciseAction.Run,
+            data: this.exerciseSetIndex
         });
     }
 
     deleteExercise() {
         this.eventEmitter.emit({
-            action: 'Delete',
+            action: ExerciseAction.Delete,
             data: this.exerciseSet
         });
     }
@@ -155,9 +155,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
             this.activeRepIndex++;
          } else {
-             // TODO emit event that the exercise is complete
              this.eventEmitter.emit({
-                action: 'exercise-done',
+                action: ExerciseAction.Completed,
                 data: this.exerciseSetIndex
             });
          }
@@ -168,4 +167,12 @@ export enum DisplayMode {
     Display,
     Edit,
     Workout
+}
+
+export enum ExerciseAction {
+    Completed,
+    Delete,
+    Selected,
+    Edit,
+    Run
 }

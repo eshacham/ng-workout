@@ -6,10 +6,7 @@
     height: 32px;
     width: 32px;
 }
-.btn-tall {
-    height: 60px;
-}   
-
+ 
 .thumb {     
     background: #17183b;
     color: #aaabe7;
@@ -60,6 +57,9 @@
 .margin-half_top {
     margin-top: 10px;
 }
+.margin-20 {
+     margin: 20px;
+ }
 
 .fadeOutAndIn {
     -webkit-animation: fadeinout 4s linear infinite;

@@ -14,10 +14,15 @@
                             Delete
                         </button>
                     </div>            
-                    <div (click)="editExercise()">            
-                        <h3>{{exercise.name}}</h3>            
+                    <div class=col-sm-10>                                    
+                        <button class="btn btn-warning pull-right margin-20" 
+                            (click)="runExercise()"
+                            *ngIf="!isEditMode">
+                            Start
+                        </button>
+                         <h3>{{exercise.name}}</h3>
                         {{exerciseDetails(exercise)}}
-                    </div>
+                    </div>                    
                 </div>          
             </div> 
         </div>
@@ -26,7 +31,7 @@
                 <div *ngFor="let exercise of exerciseSet"                   
                     [ngClass]="getRunningExerciseSetCellClass()" >
                     <div (click)="editExercise()">            
-                        <h4 class="text-center">{{exercise.name}}</h4> 
+                        <h3 class="text-center">{{exercise.name}}</h3> 
                         <h5 class="text-center">{{exerciseDetails(exercise)}}</h5>     
                         <img src={{exercise.imageUrl}} 
                             class="img-sml img-responsive center-block" />
@@ -53,14 +58,14 @@
                     </div>
                 </div> 
                 <div class='row margin-top'> 
-                    <button class="btn btn-info col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
+                    <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
                             (click)="prevRep()">                            
                     </button> 
-                    <button class="btn btn-success col-sm-2 btn-tall activeRep" 
+                    <button class="btn btn-success btn-lg col-sm-2 btn-lg activeRep" 
                             (click)="doneRep()">
                             Done!
                     </button>                    
-                    <button class="btn btn-info col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
+                    <button class="btn btn-info btn-sm col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
                             (click)="nextRep()">                        
                     </button> 
                 </div>
