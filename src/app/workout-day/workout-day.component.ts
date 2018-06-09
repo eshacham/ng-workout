@@ -29,8 +29,12 @@ export class WorkoutDayComponent {
         }
     }
 
-    handleExerciseEvents(data) {
-        console.log('receieved: ', data);
+    handleExerciseEvents(event) {
+        console.log('receieved: ', event);
+
+        if (event.action === 'exercise-done') {
+            this.handleExersiceSetComletion(event.data);
+        }
     }
 
     setEditMode() {
@@ -59,6 +63,17 @@ export class WorkoutDayComponent {
             runningExerciseSetIndex: this.runningExerciseSetIndex
         };
         this.parentSubject.next(event);
+    }
+    handleExersiceSetComletion(exerciseSetIndex) {
+        if (this.workoutDay.exercises.length > exerciseSetIndex) {
+            const event: any = {
+                displayMode: this._displayMode,
+                runningExerciseSetIndex: exerciseSetIndex + 1
+            };
+            this.parentSubject.next(event);
+        } else {
+            this.finishWorkout();
+        }
     }
 
 }
