@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { WeightUnit } from '../workout/workout.component';
 
 @Component({
     selector: 'app-exercise-thumbnail',
@@ -13,6 +14,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Output() eventClick = new EventEmitter();
 
     displayMode = DisplayMode;
+    weightUnit = WeightUnit;
 
     private _isRunning = false;
     get IsRunning(): boolean { return this._isRunning; }
@@ -128,6 +130,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     startWorkout() {
 
     }
+
 }
 
 export enum DisplayMode {

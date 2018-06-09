@@ -35,4 +35,9 @@
 .rep {
     height: 100px;
     background: rgb(15, 31, 31);
+    margin: 2px 0px 2px 0px ;
+}
+.rep-small {
+    font-size: smaller;
+    padding-top: 3px;
 }

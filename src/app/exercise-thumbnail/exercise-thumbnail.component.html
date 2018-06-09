@@ -36,8 +36,17 @@
                 <div class=row>
                     <div *ngFor="let rep of exercise.reps"  
                          class="rep"
-                        [ngClass]="getRunningExerciseSetRepCellClass(exercise)">
-                        {{rep.weight}}                       
+                        [ngClass]="getRunningExerciseSetRepCellClass(exercise)">                                                
+                        <div class='row' *ngIf='rep.weight'>
+                            <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.WeightUnit]}}</small></h4>
+                        </div>
+                        <div class='row' *ngIf='rep.times'>
+                            <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small></h4>
+                        </div>
+                        <div class='row' *ngIf='rep.time'>
+                            <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small></h4>
+                        </div>
+
                     </div>
                 </div>
             </div>            

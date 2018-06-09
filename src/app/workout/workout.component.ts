@@ -288,7 +288,7 @@ export class WorkoutComponent {
                             type: GripType.Overhand,
                             width: GripWidth.Narrow,
                         },
-                        repetitionSpeed: RepetitionSpeed.OneOne,
+                        repetition: RepetitionSpeed.OneOne,
                         weightType: WeightType.Barbell,
                         isFavorite: false,
                         reps: [
@@ -318,7 +318,7 @@ export class WorkoutComponent {
                             type: GripType.Neutral,
                             width: GripWidth.Normal,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
                         reps: [
@@ -348,7 +348,7 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Underhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
                         reps: [
                             {
@@ -382,7 +382,7 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Neutral,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
                         reps: [
@@ -412,7 +412,7 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Overhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
                         reps: [
@@ -439,7 +439,7 @@ export class WorkoutComponent {
                         id: 6,
                         name: 'Dumbbell Tricpes Extensions, Seated',
                         imageUrl: 'assets/images/DumbbellTricepsExtensionSeated.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         weightType: WeightType.Dumbbell,
                         isFavorite: false,
                         reps: [
@@ -466,8 +466,10 @@ export class WorkoutComponent {
                         id: 7,
                         name: 'Inclined Pushup, Narrow Grip',
                         imageUrl: 'assets/images/InclinePushupNarrowGrip.jpg',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
-                        gripWidth: GripWidth.Narrow,
+                        repetition:  RepetitionSpeed.OneOne,
+                        grip: {
+                            width: GripWidth.Narrow,
+                        },
                         isFavorite: false,
                         reps: [
                             {
@@ -490,7 +492,7 @@ export class WorkoutComponent {
                         grip: {
                             type: GripType.Overhand,
                         },
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
                         reps: [
                             {
@@ -516,7 +518,7 @@ export class WorkoutComponent {
                         id: 9,
                         name: 'Situps',
                         imageUrl: 'assets/images/Situps.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
                         reps: [
                             {
@@ -536,7 +538,7 @@ export class WorkoutComponent {
                         id: 10,
                         name: 'Situps with Weight Above Head',
                         imageUrl: 'assets/images/SitupsWithWeightAboveHead.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
                         reps: [
                             {
@@ -562,7 +564,7 @@ export class WorkoutComponent {
                         id: 11,
                         name: 'Russian Twist',
                         imageUrl: 'assets/images/RussianTwist.png',
-                        repetitionSpeed:  RepetitionSpeed.OneOne,
+                        repetition:  RepetitionSpeed.OneOne,
                         isFavorite: false,
                         reps: [
                             {
@@ -861,7 +863,7 @@ export class WorkoutComponent {
                     id: 1,
                     name: 'Walking Lunge with Side Weights',
                     imageUrl: 'assets/images/WalkingLungeWithSideWeights.png',
-                    repetitionSpeed:  RepetitionSpeed.OneOne,
+                    repetition:  RepetitionSpeed.OneOne,
                     weightType: WeightType.Dumbbell,
                     isFavorite: false,
                     reps: [
@@ -1073,7 +1075,7 @@ export class WorkoutComponent {
         }]
     };
 }
-enum WeightType {
+export enum WeightType {
     EzBar = 'Ez-Bar',
     Barbell = 'Barbell',
     Dumbbell = 'Dumbbell',
@@ -1081,22 +1083,22 @@ enum WeightType {
     Plate = 'Plate',
     NoWeight = ''
 }
-enum GripType {
+export enum GripType {
     Underhand = 'Underhand',
     Overhand = 'Overhand',
     Neutral = 'Neutral'
 }
-enum GripWidth {
+export enum GripWidth {
     Narrow = 'Narrow',
     Normal = 'Normal',
     Wide = 'Wide'
 }
-enum RepetitionSpeed {
+export enum RepetitionSpeed {
     OneOne = '1:1',
     TwoTwo = '2:2',
     TwoFour = '2:4'
 }
-enum WeightUnit {
+export enum WeightUnit {
     Lbs,
     Kg
 }
