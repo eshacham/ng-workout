@@ -29,7 +29,7 @@ export class WorkoutDayComponent {
         }
     }
 
-    handleExerciseClick(data) {
+    handleExerciseEvents(data) {
         console.log('receieved: ', data);
     }
 

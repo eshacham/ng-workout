@@ -31,7 +31,7 @@
             [exerciseSetIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
-            (eventClick)="handleExerciseClick($event)">
+            (eventEmitter)="handleExerciseEvents($event)">
         </app-exercise-thumbnail>        
     </div> 
     <div class="row" [ngSwitch]="DisplayMode">

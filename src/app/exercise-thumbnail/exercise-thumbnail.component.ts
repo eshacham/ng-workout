@@ -11,7 +11,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() exerciseSet: any[]; // this is an array of exercises
     @Input() exerciseSetIndex: number;
     @Input() parentSubject: Subject<any>;
-    @Output() eventClick = new EventEmitter();
+    @Output() eventEmitter = new EventEmitter();
 
     activeRepIndex = 0;
 
@@ -56,21 +56,21 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
       }
 
     editExercise() {
-        this.eventClick.emit({
+        this.eventEmitter.emit({
             action: 'Edit',
             data: this.exerciseSet
         });
     }
 
     setRunExercise() {
-        this.eventClick.emit({
+        this.eventEmitter.emit({
             action: 'SetRun',
             data: this.exerciseSet
         });
     }
 
     deleteExercise() {
-        this.eventClick.emit({
+        this.eventEmitter.emit({
             action: 'Delete',
             data: this.exerciseSet
         });
@@ -156,6 +156,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             this.activeRepIndex++;
          } else {
              // TODO emit event that the exercise is complete
+             this.eventEmitter.emit({
+                action: 'exercise-done',
+                data: this.exerciseSetIndex
+            });
          }
     }
 }
