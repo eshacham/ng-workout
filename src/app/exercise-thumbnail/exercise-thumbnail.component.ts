@@ -13,6 +13,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() parentSubject: Subject<any>;
     @Output() eventClick = new EventEmitter();
 
+    activeRepIndex = 0;
+
     displayMode = DisplayMode;
     weightUnit = WeightUnit;
 
@@ -111,16 +113,19 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
 
     getRunningExerciseSetCellClass() {
         let returnClass = 'col-sm-';
-        const offset = this.getCellSizeFromExerciseSet();
-        returnClass += offset.toString();
+        const size = this.getCellSizeFromExerciseSet();
+        returnClass += size.toString();
         return [returnClass];
     }
 
-    getRunningExerciseSetRepCellClass(exercise) {
+    getRunningExerciseSetRepCellClass(repIndex) {
+        const classes = [];
         let returnClass = 'col-sm-';
-        const size = 12 / exercise.reps.length;
+        const size = 12 / this.exerciseSet[0].reps.length;
         returnClass += size.toString();
-        return [returnClass];
+        classes.push(returnClass);
+        classes.push(this.activeRepIndex === repIndex ? 'activeRep' : 'nonActiveRep');
+        return classes;
     }
 
     getCellSizeFromExerciseSet() {
@@ -128,9 +133,27 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     startWorkout() {
-
+        if (!this.IsRunning) {
+            return;
+        }
+        this.activeRepIndex = 0;
     }
 
+    doneRep () {
+        this.nextRep();
+    }
+    prevRep () {
+        if (this.activeRepIndex > 0) {
+            this.activeRepIndex--;
+         }
+    }
+    nextRep () {
+        if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
+            this.activeRepIndex++;
+         } else {
+             // TODO emit event that the exercise is complete
+         }
+    }
 }
 
 export enum DisplayMode {

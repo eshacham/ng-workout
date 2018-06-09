@@ -6,7 +6,10 @@
     height: 32px;
     width: 32px;
 }
-       
+.btn-tall {
+    height: 60px;
+}   
+
 .thumb {     
     background: #17183b;
     color: #aaabe7;
@@ -28,16 +31,36 @@
     opacity: 0.75; 
 }
 
-.centerText {
+/* .centerText {
     text-align: center;
-}
+} */
 
 .rep {
-    height: 100px;
-    background: rgb(15, 31, 31);
+    height: 100px;    
     margin: 2px 0px 2px 0px ;
 }
+
+.nonActiveRep {
+    background: rgb(15, 31, 31);
+    color: whitesmoke;
+}
+
+.activeRep {
+    background: rgb(233, 185, 55);
+    color: #17183b
+}
+
 .rep-small {
     font-size: smaller;
     padding-top: 3px;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}
+.margin-top {
+    margin-top: 20px;
+}
+.margin-half_top {
+    margin-top: 10px;
 }

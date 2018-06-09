@@ -22,34 +22,49 @@
             </div> 
         </div>
         <div [hidden]="!IsRunning">
-            <div class="row" >                    
+            <div class="row margin-bottom">                    
                 <div *ngFor="let exercise of exerciseSet"                   
                     [ngClass]="getRunningExerciseSetCellClass()" >
                     <div (click)="editExercise()">            
-                        <h4 class="centerText">{{exercise.name}}</h4>                    
+                        <h4 class="text-center">{{exercise.name}}</h4> 
+                        <h5 class="text-center">{{exerciseDetails(exercise)}}</h5>     
                         <img src={{exercise.imageUrl}} 
                             class="img-sml img-responsive center-block" />
                     </div>                   
                 </div>
             </div>
-            <div *ngFor="let exercise of exerciseSet" >
-                <div class=row>
-                    <div *ngFor="let rep of exercise.reps"  
-                         class="rep"
-                        [ngClass]="getRunningExerciseSetRepCellClass(exercise)">                                                
-                        <div class='row' *ngIf='rep.weight'>
-                            <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.WeightUnit]}}</small></h4>
-                        </div>
-                        <div class='row' *ngIf='rep.times'>
-                            <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small></h4>
-                        </div>
-                        <div class='row' *ngIf='rep.time'>
-                            <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small></h4>
-                        </div>
+            <div class='margin-bottom'>
+                <div *ngFor="let exercise of exerciseSet" >
+                    <div class='row'>
+                        <div *ngFor="let rep of exercise.reps; let i = index"  
+                            class="rep"
+                            [ngClass]="getRunningExerciseSetRepCellClass(i)">                                                
+                            <div class='row' *ngIf='rep.weight'>
+                                <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.WeightUnit]}}</small></h4>
+                            </div>
+                            <div class='row' *ngIf='rep.times'>
+                                <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small></h4>
+                            </div>
+                            <div class='row' *ngIf='rep.time'>
+                                <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small></h4>
+                            </div>
 
+                        </div>
                     </div>
+                </div> 
+                <div class='row margin-top'> 
+                    <button class="btn btn-info col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
+                            (click)="prevRep()">                            
+                    </button> 
+                    <button class="btn btn-success col-sm-2 btn-tall activeRep" 
+                            (click)="doneRep()">
+                            Done!
+                    </button>                    
+                    <button class="btn btn-info col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
+                            (click)="nextRep()">                        
+                    </button> 
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     <div *ngSwitchDefault>
