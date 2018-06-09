@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent, DisplayMode } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
 
 @Component({
     selector: 'app-workout-day',
@@ -13,6 +13,7 @@ export class WorkoutDayComponent {
     runningExerciseSetIndex = 0;
 
     displayMode = DisplayMode;
+
     private _displayMode: DisplayMode = DisplayMode.Display;
     get DisplayMode(): DisplayMode {
         return this._displayMode;
@@ -30,10 +31,25 @@ export class WorkoutDayComponent {
     }
 
     handleExerciseEvents(event) {
-        console.log('receieved: ', event);
-
-        if (event.action === 'exercise-done') {
-            this.handleExersiceSetComletion(event.data);
+        const exerciseAction: ExerciseAction = event.action;
+        switch (exerciseAction) {
+            case ExerciseAction.Completed:
+                console.log('receieved completed event: ', event.data);
+                this.handleExersiceSetComletion(event.data);
+                break;
+            case ExerciseAction.Delete:
+                console.log('receieved delete event: ', event.data);
+                break;
+            case ExerciseAction.Selected:
+                console.log('receieved selected event: ', event.data);
+                break;
+                case ExerciseAction.Edit:
+                console.log('receieved edit event: ', event.data);
+                break;
+            case ExerciseAction.Run:
+                console.log('receieved run event: ', event.data);
+                this.startExercise(event.data);
+                break;
         }
     }
 
@@ -66,14 +82,18 @@ export class WorkoutDayComponent {
     }
     handleExersiceSetComletion(exerciseSetIndex) {
         if (this.workoutDay.exercises.length > exerciseSetIndex) {
-            const event: any = {
-                displayMode: this._displayMode,
-                runningExerciseSetIndex: exerciseSetIndex + 1
-            };
-            this.parentSubject.next(event);
+            this.startExercise(exerciseSetIndex + 1);
         } else {
             this.finishWorkout();
         }
+    }
+
+    startExercise(exerciseIndex) {
+        const event: any = {
+            displayMode: DisplayMode.Workout,
+            runningExerciseSetIndex: exerciseIndex
+        };
+        this.parentSubject.next(event);
     }
 
 }
