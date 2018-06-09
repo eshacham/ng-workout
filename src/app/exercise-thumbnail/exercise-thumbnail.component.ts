@@ -124,7 +124,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         const size = 12 / this.exerciseSet[0].reps.length;
         returnClass += size.toString();
         classes.push(returnClass);
-        classes.push(this.activeRepIndex === repIndex ? 'activeRep' : 'nonActiveRep');
+        if (this.activeRepIndex === repIndex) {
+            classes.push('activeRep', 'fadeOutAndIn');
+        } else {
+            classes.push('nonActiveRep');
+        }
         return classes;
     }
 
