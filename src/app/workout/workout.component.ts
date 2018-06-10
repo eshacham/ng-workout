@@ -1042,11 +1042,14 @@ export class WorkoutComponent {
                     isFavorite: false,
                     reps: [
                         {
-                            time: 60
+                            time: 10
                         },
                         {
-                            time: 60
-                        }
+                            time: 10
+                        },
+                        {
+                            time: 10
+                        },
                     ],
                     restBetweenSets: 20,
                     restAfterExercise: 20

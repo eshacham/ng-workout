@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { WeightUnit } from '../workout/workout.component';
+// import { setInterval } from 'timers';
 
 @Component({
     selector: 'app-exercise-thumbnail',
@@ -14,6 +15,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Output() eventEmitter = new EventEmitter();
 
     activeRepIndex = 0;
+
+    _timedRepLoopRemaining = 0;
+    timedRepLoopinterval = null;
+
+    get timedRepLoopRemaining(): number { return this._timedRepLoopRemaining; }
 
     displayMode = DisplayMode;
     weightUnit = WeightUnit;
@@ -31,9 +37,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     set DisplayMode(val: DisplayMode) {
         if (this._displayMode !== val) {
             this._displayMode = val;
-            if (this._displayMode === DisplayMode.Workout) {
-                this.startWorkout();
-            }
+        }
+        if (this._displayMode === DisplayMode.Workout) {
+            this.startWorkout();
+        } else {
+            this.stopTimerLoop();
         }
     }
     get isEditMode(): boolean {
@@ -74,6 +82,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             action: ExerciseAction.Delete,
             data: this.exerciseSet
         });
+    }
+
+    isInTimerLoop(repIndex): boolean {
+        return this.activeRepIndex === repIndex &&
+        this._timedRepLoopRemaining > 0 && this.IsRunning ;
     }
 
     get hasSet(): boolean {
@@ -124,6 +137,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         const size = 12 / this.exerciseSet[0].reps.length;
         returnClass += size.toString();
         classes.push(returnClass);
+
         if (this.activeRepIndex === repIndex) {
             classes.push('activeRep', 'fadeOutAndIn');
         } else {
@@ -141,6 +155,26 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             return;
         }
         this.activeRepIndex = 0;
+        this.startTimedRep();
+    }
+
+    private startTimedRep() {
+        this.stopTimerLoop();
+        this._timedRepLoopRemaining = this.exerciseSet[0].reps[this.activeRepIndex].time;
+        if (this._timedRepLoopRemaining) {
+            this.timedRepLoopinterval = setInterval(() => {
+                this._timedRepLoopRemaining --;
+                if (this._timedRepLoopRemaining === 0) {
+                    this.stopTimerLoop();
+                }
+            }, 1000);
+        }
+    }
+
+    stopTimerLoop() {
+        if (this.timedRepLoopinterval) {
+            clearInterval(this.timedRepLoopinterval);
+        }
     }
 
     doneRep () {
@@ -149,17 +183,22 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     prevRep () {
         if (this.activeRepIndex > 0) {
             this.activeRepIndex--;
+            this.startTimedRep();
+         } else {
+            this.stopTimerLoop();
          }
     }
     nextRep () {
         if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
             this.activeRepIndex++;
-         } else {
+            this.startTimedRep();
+        } else {
+            this.stopTimerLoop();
              this.eventEmitter.emit({
                 action: ExerciseAction.Completed,
                 data: this.exerciseSetIndex
             });
-         }
+        }
     }
 }
 

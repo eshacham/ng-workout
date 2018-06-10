@@ -53,7 +53,7 @@
                             <div class='row' *ngIf='rep.time'>
                                 <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small></h4>
                             </div>
-
+                            <div *ngIf="isInTimerLoop(i)">{{timedRepLoopRemaining}}</div>
                         </div>
                     </div>
                 </div> 
