@@ -58,16 +58,25 @@
                     </div>
                 </div> 
                 <div class='row margin-top'> 
-                    <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
-                            (click)="prevRep()">                            
-                    </button> 
-                    <button class="btn btn-success btn-lg col-sm-2 btn-lg activeRep" 
-                            (click)="doneRep()">
-                            Done!
-                    </button>                    
-                    <button class="btn btn-info btn-sm col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
-                            (click)="nextRep()">                        
-                    </button> 
+                    <div *ngIf="isInRestLoop">
+                        Rest {{timedToRestAfterCurrentRep}} Seconds
+                        <button class="btn btn-success btn-md col-sm-2 col-sm-offset-5 activeRep" 
+                            (click)="nextRep(false)">
+                            Skip!
+                        </button>
+                    </div>
+                    <div *ngIf="!isInRestLoop">
+                        <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
+                                (click)="prevRep()">                            
+                        </button> 
+                        <button class="btn btn-success btn-lg col-sm-2 activeRep" 
+                                (click)="nextRep(true)">
+                                Done!
+                        </button>                    
+                        <button class="btn btn-info btn-sm col-sm-1 glyphicon glyphicon-triangle-right margin-half_top" 
+                                (click)="nextRep(false)">                        
+                        </button> 
+                    </div>
                 </div>
             </div>
         </div>

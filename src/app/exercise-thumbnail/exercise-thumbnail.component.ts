@@ -18,8 +18,14 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
 
     _timedRepLoopRemaining = 0;
     timedRepLoopinterval = null;
-
     get timedRepLoopRemaining(): number { return this._timedRepLoopRemaining; }
+
+    _timedToRestAfterCurrentRep = 0;
+    get timedToRestAfterCurrentRep(): number { return this._timedToRestAfterCurrentRep; }
+    _timedRestLoopRemaining = 0;
+    timedRestLoopinterval = null;
+    get timedRestLoopRemaining(): number { return this._timedRestLoopRemaining; }
+
 
     displayMode = DisplayMode;
     weightUnit = WeightUnit;
@@ -41,7 +47,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         if (this._displayMode === DisplayMode.Workout) {
             this.startWorkout();
         } else {
-            this.stopTimerLoop();
+            this.stopRepTimerLoop();
         }
     }
     get isEditMode(): boolean {
@@ -87,6 +93,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     isInTimerLoop(repIndex): boolean {
         return this.activeRepIndex === repIndex &&
         this._timedRepLoopRemaining > 0 && this.IsRunning ;
+    }
+
+    get isInRestLoop(): boolean {
+        return this._timedRestLoopRemaining > 0 && this.IsRunning ;
     }
 
     get hasSet(): boolean {
@@ -159,46 +169,82 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     private startTimedRep() {
-        this.stopTimerLoop();
+        this.stopRepTimerLoop();
         this._timedRepLoopRemaining = this.exerciseSet[0].reps[this.activeRepIndex].time;
         if (this._timedRepLoopRemaining) {
             this.timedRepLoopinterval = setInterval(() => {
                 this._timedRepLoopRemaining --;
                 if (this._timedRepLoopRemaining === 0) {
-                    this.stopTimerLoop();
+                    this.stopRepTimerLoop();
+                    this.nextRep(false);
                 }
             }, 1000);
         }
     }
 
-    stopTimerLoop() {
+    stopRepTimerLoop() {
         if (this.timedRepLoopinterval) {
             clearInterval(this.timedRepLoopinterval);
         }
     }
 
-    doneRep () {
-        this.nextRep();
+    private startTimedRest(action) {
+        this.stopRestTimerLoop();
+        this._timedRestLoopRemaining = this._timedToRestAfterCurrentRep;
+        if (this._timedRestLoopRemaining) {
+            this.timedRestLoopinterval = setInterval(() => {
+                this._timedRestLoopRemaining --;
+                if (this._timedRestLoopRemaining === 0) {
+                    this.stopRestTimerLoop();
+                    action();
+                }
+            }, 1000);
+        }
     }
+
+    stopRestTimerLoop() {
+        if (this.timedRestLoopinterval) {
+            clearInterval(this.timedRestLoopinterval);
+        }
+    }
+
     prevRep () {
         if (this.activeRepIndex > 0) {
             this.activeRepIndex--;
             this.startTimedRep();
          } else {
-            this.stopTimerLoop();
+            this.stopRepTimerLoop();
+            this.stopRestTimerLoop();
          }
     }
-    nextRep () {
+
+    nextRep (shouldRest) {
         if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
-            this.activeRepIndex++;
-            this.startTimedRep();
+            if (shouldRest) {
+                this._timedToRestAfterCurrentRep = this.exerciseSet[0].restBetweenReps;
+                this.startTimedRest(() => {
+                    this.activeRepIndex++;
+                    this.startTimedRep();
+                });
+            } else {
+                this.activeRepIndex++;
+            }
         } else {
-            this.stopTimerLoop();
-             this.eventEmitter.emit({
-                action: ExerciseAction.Completed,
-                data: this.exerciseSetIndex
-            });
+            this.stopRepTimerLoop();
+            if (shouldRest) {
+                this._timedToRestAfterCurrentRep = this.exerciseSet[0].restAfterExercise;
+                this.startTimedRest(() => this.completeExercise());
+            } else {
+                this.completeExercise();
+            }
         }
+    }
+
+    completeExercise () {
+        this.eventEmitter.emit({
+            action: ExerciseAction.Completed,
+            data: this.exerciseSetIndex
+        });
     }
 }
 

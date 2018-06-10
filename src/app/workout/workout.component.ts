@@ -45,7 +45,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -71,7 +71,7 @@ export class WorkoutComponent {
                             times: 12
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -102,7 +102,7 @@ export class WorkoutComponent {
                             times: 15
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -136,7 +136,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -170,7 +170,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                  }]}, {
                 set: [{
@@ -201,7 +201,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -232,7 +232,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -252,7 +252,7 @@ export class WorkoutComponent {
                             times: 12
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -273,7 +273,7 @@ export class WorkoutComponent {
                             times: 15
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                  }]}],
             }, {
@@ -308,7 +308,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }, {
                         id: 2,
@@ -338,7 +338,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -372,7 +372,7 @@ export class WorkoutComponent {
                                 times: 12
                             }
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -402,7 +402,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -432,7 +432,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -459,7 +459,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -482,7 +482,7 @@ export class WorkoutComponent {
                                 times: 10
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -511,7 +511,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -531,7 +531,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -557,7 +557,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -577,7 +577,7 @@ export class WorkoutComponent {
                                 times: 12
                             },
                         ],
-                        restBetweenSets: 20,
+                        restBetweenReps: 20,
                         restAfterExercise: 20
                     }]
                 }],
@@ -617,7 +617,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }, {
                     id: 2,
@@ -652,7 +652,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -682,7 +682,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -708,7 +708,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -738,7 +738,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -768,7 +768,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -788,7 +788,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -809,7 +809,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -830,7 +830,7 @@ export class WorkoutComponent {
                             times: 15
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -851,7 +851,7 @@ export class WorkoutComponent {
                             times: 15
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }],
                 }]
@@ -883,7 +883,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -909,7 +909,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }, {
                     id: 3,
@@ -934,7 +934,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -960,7 +960,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -986,7 +986,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1006,7 +1006,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1032,7 +1032,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1051,7 +1051,7 @@ export class WorkoutComponent {
                             time: 10
                         },
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
                 set: [{
@@ -1071,7 +1071,7 @@ export class WorkoutComponent {
                             times: 12
                         }
                     ],
-                    restBetweenSets: 20,
+                    restBetweenReps: 20,
                     restAfterExercise: 20
                 }]
             }],
