@@ -194,7 +194,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         if (this._timedRestLoopRemaining) {
             this.timedRestLoopinterval = setInterval(() => {
                 this._timedRestLoopRemaining --;
-                if (this._timedRestLoopRemaining === 0) {
+                if (this._timedRestLoopRemaining <= 0) {
                     this.stopRestTimerLoop();
                     action();
                 }
@@ -216,6 +216,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             this.stopRepTimerLoop();
             this.stopRestTimerLoop();
          }
+    }
+
+    skipRest() {
+        this._timedRestLoopRemaining = 0;
     }
 
     nextRep (shouldRest) {
