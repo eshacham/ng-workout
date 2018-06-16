@@ -174,9 +174,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         if (this._timedRepLoopRemaining) {
             this.timedRepLoopinterval = setInterval(() => {
                 this._timedRepLoopRemaining --;
-                if (this._timedRepLoopRemaining === 0) {
+                if (this._timedRepLoopRemaining <= 0) {
                     this.stopRepTimerLoop();
-                    this.nextRep(false);
+                    this.nextRep(true);
                 }
             }, 1000);
         }
@@ -223,6 +223,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     nextRep (shouldRest) {
+        this.stopRepTimerLoop();
+        this._timedRepLoopRemaining = 0;
         if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
             if (shouldRest) {
                 this._timedToRestAfterCurrentRep = this.exerciseSet[0].restBetweenReps;
@@ -231,7 +233,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
                     this.startTimedRep();
                 });
             } else {
+                this._timedRestLoopRemaining = 0;
                 this.activeRepIndex++;
+                this.startTimedRep();
             }
         } else {
             this.stopRepTimerLoop();

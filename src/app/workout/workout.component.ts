@@ -1051,8 +1051,8 @@ export class WorkoutComponent {
                             time: 10
                         },
                     ],
-                    restBetweenReps: 20,
-                    restAfterExercise: 20
+                    restBetweenReps: 5,
+                    restAfterExercise: 10
                     }]}, {
                 set: [{
                     id: 9,
