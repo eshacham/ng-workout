@@ -48,12 +48,19 @@
                                 <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.WeightUnit]}}</small></h4>
                             </div>
                             <div class='row' *ngIf='rep.times'>
-                                <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small></h4>
-                            </div>
+                                <h4 class='text-center'>{{rep.times}}<small>{{' Times'}}</small>
+                                    <span *ngIf='isRepCompleted(i)' 
+                                        class='glyphicon glyphicon-ok'></span>
+                                </h4>                                
+                            </div>                            
                             <div class='row' *ngIf='rep.time'>
-                                <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small></h4>
+                                <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small>
+                                    <span *ngIf='isRepCompleted(i)'
+                                    class='glyphicon glyphicon-ok'></span>
+                                </h4>
                             </div>
-                            <div *ngIf="isInTimerLoop(i)">{{timedRepLoopRemaining}}</div>
+                            <div *ngIf="isInTimerLoop(i)">{{timedRepLoopRemaining}}                                
+                            </div>                            
                         </div>
                     </div>
                 </div> 

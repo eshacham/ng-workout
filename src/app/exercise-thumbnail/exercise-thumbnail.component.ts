@@ -26,7 +26,6 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     timedRestLoopinterval = null;
     get timedRestLoopRemaining(): number { return this._timedRestLoopRemaining; }
 
-
     displayMode = DisplayMode;
     weightUnit = WeightUnit;
 
@@ -53,6 +52,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     get isEditMode(): boolean {
         return this._displayMode === DisplayMode.Edit;
     }
+
+    completedReps = [];
+
     ngOnInit() {
         this.parentSubject.subscribe(event => this.handleEventchange(event));
       }
@@ -165,6 +167,15 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             return;
         }
         this.activeRepIndex = 0;
+        if (this.completedReps.length === 0) {
+            this.exerciseSet[0].reps.forEach(element => {
+                this.completedReps.push(false);
+            });
+        } else {
+            this.completedReps.forEach((rep, i) => {
+                this.completedReps[i] = false;
+            });
+        }
         this.startTimedRep();
     }
 
@@ -211,6 +222,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     prevRep () {
         if (this.activeRepIndex > 0) {
             this.activeRepIndex--;
+            this.completedReps[this.activeRepIndex] = false;
             this.startTimedRep();
          } else {
             this.stopRepTimerLoop();
@@ -223,6 +235,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     nextRep (shouldRest) {
+        this.completedReps[this.activeRepIndex] = true;
         this.stopRepTimerLoop();
         this._timedRepLoopRemaining = 0;
         if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
@@ -253,6 +266,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
             action: ExerciseAction.Completed,
             data: this.exerciseSetIndex
         });
+    }
+
+    isRepCompleted (i) {
+        return this.completedReps[i];
     }
 }
 
