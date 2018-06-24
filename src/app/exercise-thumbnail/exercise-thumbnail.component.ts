@@ -71,7 +71,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.parentSubject.unsubscribe();
       }
 
-    editExercise() {
+
+      editExercise() {
         this.eventEmitter.emit({
             action: ExerciseAction.Edit,
             data: this.exerciseSet

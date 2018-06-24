@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from '../shared/workout.service';
 
 @Component({
@@ -6,11 +6,13 @@ import { WorkoutService } from '../shared/workout.service';
     templateUrl: './workout.component.html',
     styleUrls:  ['./workout.component.css']
 })
-export class WorkoutComponent {
+export class WorkoutComponent implements OnInit {
     workout;
     constructor (private workoutService: WorkoutService) {
         this.workout = workoutService.getWorkout();
     }
+
+    ngOnInit() {
+        this.workout = this.workoutService.getWorkout();
+    }
 }
-
-
