@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { WeightUnit } from '../workout/workout.component';
+import { WeightUnit } from '../shared/enums';
 // import { setInterval } from 'timers';
 
 @Component({
@@ -9,7 +9,8 @@ import { WeightUnit } from '../workout/workout.component';
     styleUrls: ['./exercise-thumbnail.component.css']
 })
 export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
-    @Input() exerciseSet: any[]; // this is an array of exercises
+    @Input() workoutDayName;
+    @Input() exerciseSet;
     @Input() exerciseSetIndex: number;
     @Input() parentSubject: Subject<any>;
     @Output() eventEmitter = new EventEmitter();
@@ -71,7 +72,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.parentSubject.unsubscribe();
       }
 
-    editExercise() {
+
+      editExercise() {
         this.eventEmitter.emit({
             action: ExerciseAction.Edit,
             data: this.exerciseSet
@@ -88,7 +90,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     deleteExercise() {
         this.eventEmitter.emit({
             action: ExerciseAction.Delete,
-            data: this.exerciseSet
+            data: { set: this.exerciseSet,
+                    day: this.workoutDayName
+                }
         });
     }
 
@@ -102,7 +106,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     get hasSet(): boolean {
-        return this.exerciseSet.length > 1;
+        return this.exerciseSet.set.length > 1;
     }
 
     exerciseSelected(exercise) {
@@ -125,7 +129,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     isFirstInSet(exercise): boolean {
-        return this.hasSet && this.exerciseSet[0] === exercise;
+        return this.hasSet && this.exerciseSet.set[0] === exercise;
     }
 
     getTopBottomMarginClass(exercise) {
@@ -146,7 +150,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     getRunningExerciseSetRepCellClass(repIndex) {
         const classes = [];
         let returnClass = 'col-sm-';
-        const size = 12 / this.exerciseSet[0].reps.length;
+        const size = 12 / this.exerciseSet.set[0].reps.length;
         returnClass += size.toString();
         classes.push(returnClass);
 
@@ -159,7 +163,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     getCellSizeFromExerciseSet() {
-        return (12 / this.exerciseSet.length);
+        return (12 / this.exerciseSet.set.length);
     }
 
     startWorkout() {
@@ -168,7 +172,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         }
         this.activeRepIndex = 0;
         if (this.completedReps.length === 0) {
-            this.exerciseSet[0].reps.forEach(element => {
+            this.exerciseSet.set[0].reps.forEach(element => {
                 this.completedReps.push(false);
             });
         } else {
@@ -181,7 +185,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
 
     private startTimedRep() {
         this.stopRepTimerLoop();
-        this._timedRepLoopRemaining = this.exerciseSet[0].reps[this.activeRepIndex].time;
+        this._timedRepLoopRemaining = this.exerciseSet.set[0].reps[this.activeRepIndex].time;
         if (this._timedRepLoopRemaining) {
             this.timedRepLoopinterval = setInterval(() => {
                 this._timedRepLoopRemaining --;
@@ -238,9 +242,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.completedReps[this.activeRepIndex] = true;
         this.stopRepTimerLoop();
         this._timedRepLoopRemaining = 0;
-        if (this.exerciseSet[0].reps.length - 1 > this.activeRepIndex) {
+        if (this.exerciseSet.set[0].reps.length - 1 > this.activeRepIndex) {
             if (shouldRest) {
-                this._timedToRestAfterCurrentRep = this.exerciseSet[0].restBetweenReps;
+                this._timedToRestAfterCurrentRep = this.exerciseSet.set[0].restBetweenReps;
                 this.startTimedRest(() => {
                     this.activeRepIndex++;
                     this.startTimedRep();
@@ -253,7 +257,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         } else {
             this.stopRepTimerLoop();
             if (shouldRest) {
-                this._timedToRestAfterCurrentRep = this.exerciseSet[0].restAfterExercise;
+                this._timedToRestAfterCurrentRep = this.exerciseSet.set[0].restAfterExercise;
                 this.startTimedRest(() => this.completeExercise());
             } else {
                 this.completeExercise();

@@ -1,7 +1,7 @@
  <div [ngSwitch]="DisplayMode">
     <div *ngSwitchCase="displayMode.Workout">
         <div [hidden]="IsRunning">
-            <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+            <div id='exercise-thumb' *ngFor="let exercise of exerciseSet.set"
                 class="container-fluid thumb" 
                 [ngClass]="getTopBottomMarginClass(exercise)" > 
                 <div class="row">
@@ -28,7 +28,7 @@
         </div>
         <div [hidden]="!IsRunning">
             <div class="row margin-bottom">                    
-                <div *ngFor="let exercise of exerciseSet"                   
+                <div *ngFor="let exercise of exerciseSet.set"                   
                     [ngClass]="getRunningExerciseSetCellClass()" >
                     <div (click)="editExercise()">            
                         <h3 class="text-center">{{exercise.name}}</h3> 
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class='margin-bottom'>
-                <div *ngFor="let exercise of exerciseSet" >
+                <div *ngFor="let exercise of exerciseSet.set" >
                     <div class='row'>
                         <div *ngFor="let rep of exercise.reps; let i = index"  
                             class="rep"
@@ -88,7 +88,7 @@
         </div>
     </div>
     <div *ngSwitchDefault>
-        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet"
+        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet.set"
             class="container-fluid thumb" 
             [ngClass]="getTopBottomMarginClass(exercise)" > 
             <div class="row">

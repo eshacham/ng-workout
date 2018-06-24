@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { WorkoutService } from '../shared/workout.service';
+import { ToastrService } from '../shared/toastr.service';
 
 @Component({
     selector: 'app-workout-day',
@@ -8,6 +10,9 @@ import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exer
     styleUrls: ['./workout-day.component.css']
 })
 export class WorkoutDayComponent {
+    constructor(private toastr: ToastrService,
+    private workoutService: WorkoutService) { }
+    constructor(private toastr: ToastrService) { }
     @Input() workoutDay: any;
     parentSubject: Subject<any> = new Subject();
     runningExerciseSetIndex = 0;
@@ -38,6 +43,7 @@ export class WorkoutDayComponent {
                 this.handleExersiceSetComletion(event.data);
                 break;
             case ExerciseAction.Delete:
+                this.deleteExercise(event.data.set, event.data.day);
                 console.log('receieved delete event: ', event.data);
                 break;
             case ExerciseAction.Selected:
@@ -53,16 +59,26 @@ export class WorkoutDayComponent {
         }
     }
 
+    deleteExercise(set, day) {
+        this.workoutService.deleteExercise(set, day);
+    }
+
     setEditMode() {
         this.DisplayMode = DisplayMode.Edit;
     }
 
     cancelEditEditMode() {
         this.DisplayMode = DisplayMode.Display;
+        this.toastr.warning('Cancelled!');
     }
-
+    addExercise() {
+        const newExercise = this.workoutService.geNewtWorkoutSet();
+        this.workoutDay.exercises.push(newExercise);
+        this.saveChanges() ;
+    }
     saveChanges() {
         this.DisplayMode = DisplayMode.Display;
+        this.toastr.info('Saved!');
     }
 
     startWorkout() {
@@ -71,6 +87,7 @@ export class WorkoutDayComponent {
 
     finishWorkout() {
         this.DisplayMode = DisplayMode.Display;
+        this.toastr.success('Good Job!');
     }
 
     publishDisplayMode() {

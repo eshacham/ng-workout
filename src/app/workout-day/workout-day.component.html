@@ -1,21 +1,21 @@
-<div class="container-fluid">    
-    <div class="row">        
+<div class="container-fluid">
+    <div class="row">
         <div class="col-sm-8">
             <h2 class="text-center">{{workoutDay.name}}</h2>
         </div>
         <div class="col-sm-4" [ngSwitch]="DisplayMode">
             <div *ngSwitchCase="displayMode.Display">
-                <button class="btn btn-primary h1-margin pull-right" 
+                <button class="btn btn-primary h1-margin pull-right"
                     (click)="setEditMode()">
                     Edit
                 </button>
             </div>
             <div *ngSwitchCase="displayMode.Edit">
-                <button class="btn btn-success h1-margin pull-right" 
+                <button class="btn btn-success h1-margin pull-right"
                     (click)="saveChanges()">
                     Save
                 </button>
-                <button class="btn btn-danger h1-margin pull-left" 
+                <button class="btn btn-danger h1-margin pull-left"
                     (click)="cancelEditEditMode()">
                     Cancel
                 </button>
@@ -23,50 +23,51 @@
             <div *ngSwitchCase="displayMode.Workout"></div>
             <div *ngSwitchDefault></div>
         </div>
-    </div> 
+    </div>
     <div class="row">
-        <app-exercise-thumbnail 
-            *ngFor="let exercise of workoutDay.exercises; let i = index" 
-            [exerciseSet]=exercise.set
+        <app-exercise-thumbnail
+            *ngFor="let exercise of workoutDay.exercises; let i = index"
+            [workoutDayName]=workoutDay.name
+            [exerciseSet]=exercise
             [exerciseSetIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
             (eventEmitter)="handleExerciseEvents($event)">
-        </app-exercise-thumbnail>        
-    </div> 
+        </app-exercise-thumbnail>
+    </div>
     <div class="row" [ngSwitch]="DisplayMode">
         <div *ngSwitchCase="displayMode.Display">
-            <button class="btn btn-success h1-margin" 
+            <button class="btn btn-success h1-margin"
                     (click)="startWorkout()">
                     Start Workout
             </button>
         </div>
         <div *ngSwitchCase="displayMode.Workout">
-            <button class="btn btn-success h1-margin" 
+            <button class="btn btn-success h1-margin"
                     (click)="finishWorkout()">
                     Finish
             </button>
         </div>
         <div *ngSwitchCase="displayMode.Edit">
             <div class="col-sm-2">
-                    <button class="btn btn-success h1-margin" 
-                    (click)="finishWorkout()">
+                    <button class="btn btn-success h1-margin"
+                    (click)="addExercise()">
                     + Exercise
             </button>
             </div>
             <div class="col-sm-2">
-                    <button class="btn btn-success h1-margin" 
-                    (click)="finishWorkout()">
+                    <button class="btn btn-success h1-margin"
+                    (click)="saveChanges()">
                     + Superset
             </button>
             </div>
             <div class="col-sm-2">
-                    <button class="btn btn-success h1-margin" 
-                    (click)="finishWorkout()">
+                    <button class="btn btn-success h1-margin"
+                    (click)="saveChanges()">
                     + Day
             </button>
             </div>
-            
+
         </div>
-    </div> 
-</div> 
+    </div>
+</div>
