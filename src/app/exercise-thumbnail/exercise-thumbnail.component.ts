@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { WeightUnit } from '../workout/workout.component';
+import { WeightUnit } from '../shared/enums';
 // import { setInterval } from 'timers';
 
 @Component({
