@@ -27,7 +27,8 @@
     <div class="row">
         <app-exercise-thumbnail 
             *ngFor="let exercise of workoutDay.exercises; let i = index" 
-            [exerciseSet]=exercise.set
+            [workoutDayName]=workoutDay.name
+            [exerciseSet]=exercise
             [exerciseSetIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
@@ -50,7 +51,7 @@
         <div *ngSwitchCase="displayMode.Edit">
             <div class="col-sm-2">
                     <button class="btn btn-success h1-margin" 
-                    (click)="saveChanges()">
+                    (click)="addExercise()">
                     + Exercise
             </button>
             </div>

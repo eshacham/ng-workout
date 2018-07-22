@@ -7,15 +7,35 @@ export class WorkoutService {
     getWorkout() {
         return workout;
     }
- }
+    geNewtWorkoutSet() {
+        return workout.days[0].exercises[0];
+    }
+    deleteExercise(exercise: any, dayName: string) {
+        const day = workout.days.find((d) => {
+            return d.name === dayName;
+        });
+        if (day) {
+            const exercises: any[] = day.exercises;
+            const index = exercises.findIndex((e) => {
+                return e.id === exercise.id;
+            });
+            if (index > -1) {
+                day.exercises.splice(index, 1);
+            }
+        }
+    }
+
+}
+
  const workout = {
         name: 'ABC + Full Body Option 1 *',
         days: [{
             id: 4,
             name: 'Full Body',
             exercises: [{
+                id: 1,
                 set: [{
-                    id: 1,
+                    // id: 1,
                     name: 'Bench Press, Wide Grip',
                     imageUrl: 'assets/images/CrossPressWideGrip.jpeg',
                     grip: {
@@ -50,8 +70,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 2,
                 set: [{
-                    id: 2,
+                    // id: 2,
                     name: 'Seated Rope Cable Row',
                     imageUrl: 'assets/images/SeatedRopeCableRow.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -76,8 +97,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 3,
                 set: [{
-                    id: 3,
+                   // id: 3,
                     name: 'Dumbbell Wrist Curl',
                     imageUrl: 'assets/images/DumbbellWristCurl.png',
                     grip: {
@@ -107,8 +129,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 4,
                 set: [{
-                    id: 4,
+                // id: 4,
                     name: 'Cable Triceps Pushdown, Overhand Grip',
                     imageUrl: 'assets/images/CableTricepsPushdownOverheadGrip.png',
                     grip: {
@@ -141,8 +164,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 5,
                 set: [{
-                    id: 5,
+                   // id: 5,
                     name: 'Cable Biceps Curl, Underhand Grip',
                     imageUrl: 'assets/images/CableBicepsCurlUnderhandGrip.png',
                     grip: {
@@ -175,8 +199,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                  }]}, {
+                id: 6,
                 set: [{
-                    id: 6,
+                    // id: 6,
                     name: 'Leg Raise Machine',
                     imageUrl: 'assets/images/LegRaiseMachine.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -206,8 +231,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 7,
                 set: [{
-                    id: 7,
+                    // id: 7,
                     name: 'Cable Leg Curl',
                     imageUrl: 'assets/images/CableLegCurl.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -237,8 +263,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 8,
                 set: [{
-                    id: 8,
+                    // id: 8,
                     name: 'Crossfit Situps',
                     imageUrl: 'assets/images/CrossfitSitup.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -257,8 +284,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 9,
                 set: [{
-                    id: 9,
+                    // id: 9,
                     name: 'Cross Body Crunch',
                     imageUrl: 'assets/images/CrossBodyCrunch.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -282,8 +310,9 @@ export class WorkoutService {
             id: 2,
             name: 'Upper Body 1',
             exercises: [{
+                id: 1,
                 set: [{
-                        id: 1,
+                       // id: 1,
                         name: 'Bench Press, Narrow Grip',
                         imageUrl: 'assets/images/BenchPressNarrowGrip.png',
                         grip: {
@@ -343,8 +372,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
-                set: [{
                         id: 3,
+                        set: [{
+                        // id: 3,
                         name: 'Cable Fly',
                         imageUrl: 'assets/images/CableFly.png',
                         grip: {
@@ -377,8 +407,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 4,
                 set: [{
-                        id: 4,
+                        // id: 4,
                         name: 'Dumbbell Fly',
                         imageUrl: 'assets/images/DumbbellFly.png',
                         grip: {
@@ -407,8 +438,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 5,
                 set: [{
-                        id: 5,
+                        // id: 5,
                         name: 'Dumbbell Horizontal Row, Inclined Prone',
                         imageUrl: 'assets/images/DumbbellHorizontalRowInclineProne.png',
                         grip: {
@@ -437,8 +469,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 6,
                 set: [{
-                        id: 6,
+                       //  id: 6,
                         name: 'Dumbbell Tricpes Extensions, Seated',
                         imageUrl: 'assets/images/DumbbellTricepsExtensionSeated.png',
                         repetition:  RepetitionSpeed.OneOne,
@@ -464,8 +497,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 7,
                 set: [{
-                        id: 7,
+                        // id: 7,
                         name: 'Inclined Pushup, Narrow Grip',
                         imageUrl: 'assets/images/InclinePushupNarrowGrip.jpg',
                         repetition:  RepetitionSpeed.OneOne,
@@ -487,8 +521,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 8,
                 set: [{
-                        id: 8,
+                       // id: 8,
                         name: 'Reverse Cable Fly, On Flat Bench',
                         imageUrl: 'assets/images/ReverseCableFlyOnFlatBench.png',
                         grip: {
@@ -516,8 +551,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 9,
                 set: [{
-                        id: 9,
+                       //  id: 9,
                         name: 'Situps',
                         imageUrl: 'assets/images/Situps.png',
                         repetition:  RepetitionSpeed.OneOne,
@@ -536,8 +572,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 10,
                 set: [{
-                        id: 10,
+                        // id: 10,
                         name: 'Situps with Weight Above Head',
                         imageUrl: 'assets/images/SitupsWithWeightAboveHead.png',
                         repetition:  RepetitionSpeed.OneOne,
@@ -562,8 +599,9 @@ export class WorkoutService {
                         restBetweenReps: 20,
                         restAfterExercise: 20
                     }]}, {
+                id: 11,
                 set: [{
-                        id: 11,
+                        // id: 11,
                         name: 'Russian Twist',
                         imageUrl: 'assets/images/RussianTwist.png',
                         repetition:  RepetitionSpeed.OneOne,
@@ -587,8 +625,9 @@ export class WorkoutService {
             id: 3,
             name: 'Upper Body 2',
             exercises: [{
+                id: 1,
                 set: [{
-                    id: 1,
+                    // id: 1,
                     name: 'Cabel Lat Pulldown, Behind Neck Wide Grip',
                     imageUrl: 'assets/images/CabelLatPulldownBehindNeckWideGrip.png',
                     grip: {
@@ -657,8 +696,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 3,
                 set: [{
-                    id: 3,
+                   // id: 3,
                     name: 'Dumbbell Arm Circles',
                     imageUrl: 'assets/images/DumbbellArmCircles.png',
                     grip: {
@@ -687,8 +727,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 4,
                 set: [{
-                    id: 4,
+                    // id: 4,
                     name: 'Machine Row Medium Grip',
                     imageUrl: 'assets/images/MachineRowMediumGrip.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -713,8 +754,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 5,
                 set: [{
-                    id: 5,
+                    // id: 5,
                     name: 'Dummbell Biceps Curl Standing Underhand Grip',
                     imageUrl: 'assets/images/DummbellBicepsCurlStandingUnderhandGrip.png',
                     grip: {
@@ -743,8 +785,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 6,
                 set: [{
-                    id: 6,
+                    // id: 6,
                     name: 'Cable Shrug',
                     imageUrl: 'assets/images/CableShrug.png',
                     grip: {
@@ -773,8 +816,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 7,
                 set: [{
-                    id: 6,
+                    // id: 6,
                     name: 'Dragon Flags',
                     imageUrl: 'assets/images/DragonFlags.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -793,8 +837,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 8,
                 set: [{
-                    id: 7,
+                   // id: 7,
                     name: 'Decline Situps',
                     imageUrl: 'assets/images/DeclineSitups.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -814,8 +859,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 9,
                 set: [{
-                    id: 8,
+                   // id: 8,
                     name: 'Cross Body Crunch',
                     imageUrl: 'assets/images/CrossBodyCrunch.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -835,8 +881,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 10,
                 set: [{
-                    id: 9,
+                    // id: 9,
                     name: 'Lying Scissors Kicks',
                     imageUrl: 'assets/images/LyingScissorsKicks.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -861,8 +908,9 @@ export class WorkoutService {
             id: 1,
             name: 'Lower Body',
             exercises: [{
+                id: 1,
                 set: [{
-                    id: 1,
+                    // id: 1,
                     name: 'Walking Lunge with Side Weights',
                     imageUrl: 'assets/images/WalkingLungeWithSideWeights.png',
                     repetition:  RepetitionSpeed.OneOne,
@@ -888,8 +936,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 2,
                 set: [{
-                    id: 2,
+                    // id: 2,
                     name: 'Cable Abduction',
                     imageUrl: 'assets/images/CableAbduction.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -939,8 +988,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 4,
                 set: [{
-                    id: 4,
+                    // id: 4,
                     name: 'Cable Leg Curl',
                     imageUrl: 'assets/images/CableLegCurl.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -965,8 +1015,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 5,
                 set: [{
-                    id: 5,
+                    // id: 5,
                     name: 'Cable Calf Raise',
                     imageUrl: 'assets/images/CableCalfRaise.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -991,8 +1042,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 6,
                 set: [{
-                    id: 6,
+                    // id: 6,
                     name: 'Bodyweight Flutter Kicks',
                     imageUrl: 'assets/images/BodyweightFlutterKicks.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -1011,8 +1063,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 7,
                 set: [{
-                    id: 7,
+                    // id: 7,
                     name: 'Weighted Situps',
                     imageUrl: 'assets/images/WeightedSitups.png',
                     repetition: RepetitionSpeed.OneOne,
@@ -1037,8 +1090,9 @@ export class WorkoutService {
                     restBetweenReps: 20,
                     restAfterExercise: 20
                     }]}, {
+                id: 8,
                 set: [{
-                    id: 8,
+                    // id: 8,
                     name: 'Plank',
                     imageUrl: 'assets/images/Plank.png',
                     isFavorite: false,
@@ -1056,8 +1110,9 @@ export class WorkoutService {
                     restBetweenReps: 5,
                     restAfterExercise: 10
                     }]}, {
+                id: 9,
                 set: [{
-                    id: 9,
+                   // id: 9,
                     name: 'Twist',
                     imageUrl: 'assets/images/Twist.png',
                     repetition: RepetitionSpeed.OneOne,

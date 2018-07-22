@@ -9,7 +9,7 @@ import { WorkoutService } from '../shared/workout.service';
 export class WorkoutComponent implements OnInit {
     workout;
     constructor (private workoutService: WorkoutService) {
-        this.workout = workoutService.getWorkout();
+       // this.workout = workoutService.getWorkout();
     }
 
     ngOnInit() {
