@@ -1,18 +1,13 @@
  <div [ngSwitch]="DisplayMode">
     <div *ngSwitchCase="displayMode.Workout">
         <div [hidden]="IsRunning">
-            <div id='exercise-thumb' *ngFor="let exercise of exerciseSet.set"
+            <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"
                 class="container-fluid thumb" 
-                [ngClass]="getTopBottomMarginClass(exercise)" > 
+                [ngClass]="getTopBottomMarginClass(exerciseSet)" > 
                 <div class="row">
                     <div class="col-sm-2 imageWrap">
-                        <img src={{exercise.imageUrl}} 
+                        <img src={{exerciseSet.imageUrl}} 
                             class="img-sml" />
-                        <button class="btn btn-warning floatDelete" 
-                            (click)="deleteExercise()"
-                            *ngIf="isEditMode">
-                            Delete
-                        </button>
                     </div>            
                     <div class=col-sm-10>                                    
                         <button class="btn btn-warning pull-right margin-20" 
@@ -20,7 +15,7 @@
                             *ngIf="!isEditMode">
                             Start
                         </button>
-                         <h3>{{exercise.name}}</h3>
+                         <h3>{{exerciseSet.name}}</h3>
                         {{exerciseDetails(exercise)}}
                     </div>                    
                 </div>          
@@ -28,20 +23,20 @@
         </div>
         <div [hidden]="!IsRunning">
             <div class="row margin-bottom">                    
-                <div *ngFor="let exercise of exerciseSet.set"                   
+                <div *ngFor="let exerciseSet of exercise.sets"                   
                     [ngClass]="getRunningExerciseSetCellClass()" >
                     <div (click)="editExercise()">            
-                        <h3 class="text-center">{{exercise.name}}</h3> 
+                        <h3 class="text-center">{{exerciseSet.name}}</h3> 
                         <h5 class="text-center">{{exerciseDetails(exercise)}}</h5>     
-                        <img src={{exercise.imageUrl}} 
+                        <img src={{exerciseSet.imageUrl}} 
                             class="img-sml img-responsive center-block" />
                     </div>                   
                 </div>
             </div>
             <div class='margin-bottom'>
-                <div *ngFor="let exercise of exerciseSet.set" >
+                <div *ngFor="let exerciseSet of exercise.sets" >
                     <div class='row'>
-                        <div *ngFor="let rep of exercise.reps; let i = index"  
+                        <div *ngFor="let rep of exerciseSet.reps; let i = index"  
                             class="rep"
                             [ngClass]="getRunningExerciseSetRepCellClass(i)">                                                
                             <div class='row' *ngIf='rep.weight'>
@@ -53,8 +48,8 @@
                                         class='glyphicon glyphicon-ok'></span>
                                 </h4>                                
                             </div>                            
-                            <div class='row' *ngIf='rep.time'>
-                                <h4 class='text-center'>{{rep.time}}<small>{{' Seconds'}}</small>
+                            <div class='row' *ngIf='rep.seconds'>
+                                <h4 class='text-center'>{{rep.seconds}}<small>{{' Seconds'}}</small>
                                     <span *ngIf='isRepCompleted(i)'
                                     class='glyphicon glyphicon-ok'></span>
                                 </h4>
@@ -88,12 +83,12 @@
         </div>
     </div>
     <div *ngSwitchDefault>
-        <div id='exercise-thumb' *ngFor="let exercise of exerciseSet.set"
+        <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"
             class="container-fluid thumb" 
-            [ngClass]="getTopBottomMarginClass(exercise)" > 
+            [ngClass]="getTopBottomMarginClass(exerciseSet)" > 
             <div class="row">
                 <div class="col-sm-2 imageWrap">
-                    <img src={{exercise.imageUrl}} 
+                    <img src={{exerciseSet.imageUrl}} 
                         class="img-sml" />
                     <button class="btn btn-warning floatDelete" 
                         (click)="deleteExercise()"
@@ -102,8 +97,8 @@
                     </button>
                 </div>            
                 <div (click)="editExercise()">            
-                    <h3>{{exercise.name}}</h3>            
-                    {{exerciseDetails(exercise)}}
+                    <h3>{{exerciseSet.name}}</h3>            
+                    {{exerciseDetails(exerciseSet)}}
                 </div>
             </div>          
         </div> 

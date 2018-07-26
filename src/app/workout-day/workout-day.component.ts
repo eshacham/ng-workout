@@ -1,8 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ToastrService } from '../shared/toastr.service';
 import { WorkoutService } from '../shared/workout.service';
 import { ToastrService } from '../shared/toastr.service';
+import { WorkoutDay } from '../shared/model/WorkoutDay';
+import { Exercise } from '../shared/model/Exercise';
+import { DisplayMode, ExerciseAction  } from '../shared/enums';
+import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
 
 @Component({
     selector: 'app-workout-day',
@@ -13,9 +19,10 @@ export class WorkoutDayComponent {
     constructor(private toastr: ToastrService,
     private workoutService: WorkoutService) { }
     constructor(private toastr: ToastrService) { }
-    @Input() workoutDay: any;
-    parentSubject: Subject<any> = new Subject();
-    runningExerciseSetIndex = 0;
+    @Input() workoutDay: WorkoutDay;
+
+    componentPublisher: Subject<ExerciseSwitchModeEvent> = new Subject();
+    runningExerciseIndex = 0;
 
     displayMode = DisplayMode;
 
@@ -27,39 +34,36 @@ export class WorkoutDayComponent {
         if (this._displayMode !== val) {
             this._displayMode = val;
             if (this._displayMode === DisplayMode.Workout) {
-                if (this.runningExerciseSetIndex === 0) {
-                    this.runningExerciseSetIndex = 1;
+                if (this.runningExerciseIndex === 0) {
+                    this.runningExerciseIndex = 1;
                 }
             }
-            this.publishDisplayMode();
+            this.publishWorkoutEvent(this._displayMode, this.runningExerciseIndex);
         }
     }
 
-    handleExerciseEvents(event) {
+    handleExerciseActionEvent(event: ExerciseActionEvent) {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
             case ExerciseAction.Completed:
-                console.log('receieved completed event: ', event.data);
-                this.handleExersiceSetComletion(event.data);
+                console.log('receieved completed event: ', event.exerciseIndex);
+                this.handleExersiceSetComletion(event.exerciseIndex);
                 break;
             case ExerciseAction.Delete:
-                this.deleteExercise(event.data.set, event.data.day);
-                console.log('receieved delete event: ', event.data);
+                console.log('receieved delete event: ', event.exercise);
+                this.deleteExercise(event.exercise, event.workoutDayName);
                 break;
-            case ExerciseAction.Selected:
-                console.log('receieved selected event: ', event.data);
-                break;
-                case ExerciseAction.Edit:
-                console.log('receieved edit event: ', event.data);
+            case ExerciseAction.Edit:
+                console.log('receieved edit event: ', event.exercise);
                 break;
             case ExerciseAction.Run:
-                console.log('receieved run event: ', event.data);
-                this.startExercise(event.data);
+                console.log('receieved run event: ', event.exerciseIndex);
+                this.startExercise(event.exerciseIndex);
                 break;
         }
     }
 
-    deleteExercise(set, day) {
+    deleteExercise(set: Exercise, day: string) {
         this.workoutService.deleteExercise(set, day);
     }
 
@@ -72,7 +76,7 @@ export class WorkoutDayComponent {
         this.toastr.warning('Cancelled!');
     }
     addExercise() {
-        const newExercise = this.workoutService.geNewtWorkoutSet();
+        const newExercise: Exercise = this.workoutService.getNewtWorkoutSet();
         this.workoutDay.exercises.push(newExercise);
         this.saveChanges() ;
     }
@@ -90,14 +94,7 @@ export class WorkoutDayComponent {
         this.toastr.success('Good Job!');
     }
 
-    publishDisplayMode() {
-        const event: any = {
-            displayMode: this._displayMode,
-            runningExerciseSetIndex: this.runningExerciseSetIndex
-        };
-        this.parentSubject.next(event);
-    }
-    handleExersiceSetComletion(exerciseSetIndex) {
+    handleExersiceSetComletion(exerciseSetIndex: number) {
         if (this.workoutDay.exercises.length > exerciseSetIndex) {
             this.startExercise(exerciseSetIndex + 1);
         } else {
@@ -105,12 +102,13 @@ export class WorkoutDayComponent {
         }
     }
 
-    startExercise(exerciseIndex) {
-        const event: any = {
-            displayMode: DisplayMode.Workout,
-            runningExerciseSetIndex: exerciseIndex
-        };
-        this.parentSubject.next(event);
+    startExercise(exerciseIndex: number) {
+        this.publishWorkoutEvent(DisplayMode.Workout, exerciseIndex);
+    }
+
+    publishWorkoutEvent(displayMode: DisplayMode, runningExerciseIndex: number)  {
+        const workoutEvent =  new ExerciseSwitchModeEvent (displayMode, runningExerciseIndex);
+        this.componentPublisher.next(workoutEvent);
     }
 
 }
