@@ -25,3 +25,9 @@ export enum WeightUnit {
     Lbs,
     Kg
 }
+
+export enum DisplayMode {
+    Display,
+    Edit,
+    Workout
+}

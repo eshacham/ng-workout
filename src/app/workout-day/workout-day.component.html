@@ -31,7 +31,7 @@
             [exercise]=exercise
             [exerciseIndex]="i+1"
             [parentSubject]="parentSubject"
-            #thumbnail (click)="thumbnail.exerciseSelected()"
+            #thumbnailComponent (click)="thumbnailComponent.exerciseSelected()"
             (eventEmitter)="handleExerciseEvents($event)">
         </app-exercise-thumbnail>        
     </div> 

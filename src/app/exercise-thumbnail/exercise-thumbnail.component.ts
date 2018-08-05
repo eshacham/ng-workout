@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { WeightUnit } from '../shared/enums';
+import { WeightUnit, DisplayMode } from '../shared/enums';
 import { Exercise } from '../shared/model/Exercise';
 import { ExerciseSet } from '../shared/model/ExerciseSet';
 import { Rep } from '../shared/model/Rep';
+import { WorkoutEvent } from '../shared/model/WorkoutEvent';
 
 @Component({
     selector: 'app-exercise-thumbnail',
@@ -62,7 +63,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.parentSubject.subscribe(event => this.handleEventchange(event));
       }
 
-    handleEventchange(event) {
+    handleEventchange(event: WorkoutEvent) {
         this.IsRunning = (event.runningExerciseIndex === this.exerciseIndex);
         this.DisplayMode = event.displayMode;
     }
@@ -112,7 +113,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     exerciseSelected() {
-        console.log(`Exercise Selected`);
+        console.log(`Exercise Selected ${this.exercise.sets[0].name}`);
     }
 
     exerciseDetails(exerciseSet: ExerciseSet): string {
@@ -279,11 +280,6 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 }
 
-export enum DisplayMode {
-    Display,
-    Edit,
-    Workout
-}
 
 export enum ExerciseAction {
     Completed,

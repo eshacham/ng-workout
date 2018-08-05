@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseThumbnailComponent, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
 import { ToastrService } from '../shared/toastr.service';
 import { WorkoutService } from '../shared/workout.service';
 import { WorkoutDay } from '../shared/model/WorkoutDay';
 import { Exercise } from '../shared/model/Exercise';
+import { DisplayMode  } from '../shared/enums';
+import { WorkoutEvent } from '../shared/model/WorkoutEvent';
 
 
 @Component({
@@ -33,7 +35,7 @@ export class WorkoutDayComponent {
                     this.runningExerciseIndex = 1;
                 }
             }
-            this.publishDisplayMode();
+            this.publishWorkoutEvent(this._displayMode, this.runningExerciseIndex);
         }
     }
 
@@ -92,14 +94,6 @@ export class WorkoutDayComponent {
         this.toastr.success('Good Job!');
     }
 
-    publishDisplayMode() {
-        const event: any = {
-            displayMode: this._displayMode,
-            runningExerciseIndex: this.runningExerciseIndex
-        };
-        this.parentSubject.next(event);
-    }
-
     handleExersiceSetComletion(exerciseSetIndex: number) {
         if (this.workoutDay.exercises.length > exerciseSetIndex) {
             this.startExercise(exerciseSetIndex + 1);
@@ -109,11 +103,12 @@ export class WorkoutDayComponent {
     }
 
     startExercise(exerciseIndex: number) {
-        const event: any = {
-            displayMode: DisplayMode.Workout,
-            runningExerciseIndex: exerciseIndex
-        };
-        this.parentSubject.next(event);
+        this.publishWorkoutEvent(DisplayMode.Workout, exerciseIndex);
+    }
+
+    publishWorkoutEvent(displayMode: DisplayMode, runningExerciseIndex: number)  {
+        const workoutEvent =  new WorkoutEvent (displayMode, runningExerciseIndex);
+        this.parentSubject.next(workoutEvent);
     }
 
 }
