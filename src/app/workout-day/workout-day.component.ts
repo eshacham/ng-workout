@@ -18,7 +18,8 @@ export class WorkoutDayComponent {
     constructor(private toastr: ToastrService,
     private workoutService: WorkoutService) { }
     @Input() workoutDay: WorkoutDay;
-    parentSubject: Subject<any> = new Subject();
+
+    componentPublisher: Subject<any> = new Subject();
     runningExerciseIndex = 0;
 
     displayMode = DisplayMode;
@@ -108,7 +109,7 @@ export class WorkoutDayComponent {
 
     publishWorkoutEvent(displayMode: DisplayMode, runningExerciseIndex: number)  {
         const workoutEvent =  new WorkoutEvent (displayMode, runningExerciseIndex);
-        this.parentSubject.next(workoutEvent);
+        this.componentPublisher.next(workoutEvent);
     }
 
 }

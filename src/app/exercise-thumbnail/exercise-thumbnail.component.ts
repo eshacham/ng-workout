@@ -15,7 +15,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() workoutDayName: string;
     @Input() exercise: Exercise;
     @Input() exerciseIndex: number;
-    @Input() parentSubject: Subject<any>;
+    @Input() workoutDayComponentPublisher: Subject<any>;
     @Output() eventEmitter = new EventEmitter();
 
     activeRepIndex = 0;
@@ -60,7 +60,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     completedReps: boolean[] = [];
 
     ngOnInit() {
-        this.parentSubject.subscribe(event => this.handleEventchange(event));
+        this.workoutDayComponentPublisher.subscribe(event => this.handleEventchange(event));
       }
 
     handleEventchange(event: WorkoutEvent) {
@@ -72,7 +72,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         // needed if child gets re-created (eg on some model changes)
         // note that subsequent subscriptions on the same subject will fail
         // so the parent has to re-create parentSubject on changes
-        this.parentSubject.unsubscribe();
+        this.workoutDayComponentPublisher.unsubscribe();
       }
 
 

@@ -30,7 +30,7 @@
             [workoutDayName]=workoutDay.name
             [exercise]=exercise
             [exerciseIndex]="i+1"
-            [parentSubject]="parentSubject"
+            [workoutDayComponentPublisher]="componentPublisher"
             #thumbnailComponent (click)="thumbnailComponent.exerciseSelected()"
             (eventEmitter)="handleExerciseEvents($event)">
         </app-exercise-thumbnail>        
