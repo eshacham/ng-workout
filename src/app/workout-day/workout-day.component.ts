@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
 import { ToastrService } from '../shared/toastr.service';
 import { WorkoutService } from '../shared/workout.service';
 import { WorkoutDay } from '../shared/model/WorkoutDay';
 import { Exercise } from '../shared/model/Exercise';
-import { DisplayMode  } from '../shared/enums';
-import { WorkoutEvent } from '../shared/model/WorkoutEvent';
+import { DisplayMode, ExerciseAction  } from '../shared/enums';
+import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class WorkoutDayComponent {
     private workoutService: WorkoutService) { }
     @Input() workoutDay: WorkoutDay;
 
-    componentPublisher: Subject<any> = new Subject();
+    componentPublisher: Subject<ExerciseSwitchModeEvent> = new Subject();
     runningExerciseIndex = 0;
 
     displayMode = DisplayMode;
@@ -40,26 +41,23 @@ export class WorkoutDayComponent {
         }
     }
 
-    handleExerciseEvents(event) {
+    handleExerciseActionEvent(event: ExerciseActionEvent) {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
             case ExerciseAction.Completed:
-                console.log('receieved completed event: ', event.data);
-                this.handleExersiceSetComletion(event.data);
+                console.log('receieved completed event: ', event.exerciseIndex);
+                this.handleExersiceSetComletion(event.exerciseIndex);
                 break;
             case ExerciseAction.Delete:
-                this.deleteExercise(event.data.set, event.data.day);
-                console.log('receieved delete event: ', event.data);
+                console.log('receieved delete event: ', event.exercise);
+                this.deleteExercise(event.exercise, event.workoutDayName);
                 break;
-            case ExerciseAction.Selected:
-                console.log('receieved selected event: ', event.data);
-                break;
-                case ExerciseAction.Edit:
-                console.log('receieved edit event: ', event.data);
+            case ExerciseAction.Edit:
+                console.log('receieved edit event: ', event.exercise);
                 break;
             case ExerciseAction.Run:
-                console.log('receieved run event: ', event.data);
-                this.startExercise(event.data);
+                console.log('receieved run event: ', event.exerciseIndex);
+                this.startExercise(event.exerciseIndex);
                 break;
         }
     }
@@ -108,7 +106,7 @@ export class WorkoutDayComponent {
     }
 
     publishWorkoutEvent(displayMode: DisplayMode, runningExerciseIndex: number)  {
-        const workoutEvent =  new WorkoutEvent (displayMode, runningExerciseIndex);
+        const workoutEvent =  new ExerciseSwitchModeEvent (displayMode, runningExerciseIndex);
         this.componentPublisher.next(workoutEvent);
     }
 

@@ -31,3 +31,10 @@ export enum DisplayMode {
     Edit,
     Workout
 }
+
+export enum ExerciseAction {
+    Completed,
+    Delete,
+    Edit,
+    Run
+}

@@ -1,6 +1,6 @@
 import { DisplayMode  } from '../enums';
 
-export class WorkoutEvent {
+export class ExerciseSwitchModeEvent {
 
    displayMode: DisplayMode;
    runningExerciseIndex: number;

@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { WeightUnit, DisplayMode } from '../shared/enums';
+import { WeightUnit, DisplayMode, ExerciseAction } from '../shared/enums';
 import { Exercise } from '../shared/model/Exercise';
 import { ExerciseSet } from '../shared/model/ExerciseSet';
 import { Rep } from '../shared/model/Rep';
-import { WorkoutEvent } from '../shared/model/WorkoutEvent';
+import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
 
 @Component({
     selector: 'app-exercise-thumbnail',
@@ -16,7 +17,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() exercise: Exercise;
     @Input() exerciseIndex: number;
     @Input() workoutDayComponentPublisher: Subject<any>;
-    @Output() eventEmitter = new EventEmitter();
+    @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
     activeRepIndex = 0;
 
@@ -60,10 +61,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     completedReps: boolean[] = [];
 
     ngOnInit() {
-        this.workoutDayComponentPublisher.subscribe(event => this.handleEventchange(event));
+        this.workoutDayComponentPublisher.subscribe(event => this.handleWorkoutEventchange(event));
       }
 
-    handleEventchange(event: WorkoutEvent) {
+    handleWorkoutEventchange(event: ExerciseSwitchModeEvent) {
         this.IsRunning = (event.runningExerciseIndex === this.exerciseIndex);
         this.DisplayMode = event.displayMode;
     }
@@ -75,28 +76,28 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         this.workoutDayComponentPublisher.unsubscribe();
       }
 
-
-      editExercise() {
-        this.eventEmitter.emit({
-            action: ExerciseAction.Edit,
-            data: this.exercise
-        });
+    editExercise() {
+        this.emitExerciseActionEvent(ExerciseAction.Edit);
     }
 
     runExercise() {
-        this.eventEmitter.emit({
-            action: ExerciseAction.Run,
-            data: this.exerciseIndex
-        });
+        this.emitExerciseActionEvent(ExerciseAction.Run);
     }
 
     deleteExercise() {
-        this.eventEmitter.emit({
-            action: ExerciseAction.Delete,
-            data: { set: this.exercise,
-                    day: this.workoutDayName
-                }
-        });
+        this.emitExerciseActionEvent(ExerciseAction.Delete);
+    }
+
+    completeExercise () {
+        this.emitExerciseActionEvent(ExerciseAction.Completed);
+    }
+
+    emitExerciseActionEvent(action: ExerciseAction) {
+        this.eventEmitter.emit(new ExerciseActionEvent(
+            action,
+            this.exercise,
+            this.exerciseIndex,
+            this.workoutDayName));
     }
 
     isInTimerLoop(repIndex): boolean {
@@ -268,23 +269,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
         }
     }
 
-    completeExercise () {
-        this.eventEmitter.emit({
-            action: ExerciseAction.Completed,
-            data: this.exerciseIndex
-        });
-    }
-
     isRepCompleted (i) {
         return this.completedReps[i];
     }
 }
 
-
-export enum ExerciseAction {
-    Completed,
-    Delete,
-    Selected,
-    Edit,
-    Run
-}

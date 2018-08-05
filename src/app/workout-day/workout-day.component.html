@@ -32,7 +32,7 @@
             [exerciseIndex]="i+1"
             [workoutDayComponentPublisher]="componentPublisher"
             #thumbnailComponent (click)="thumbnailComponent.exerciseSelected()"
-            (eventEmitter)="handleExerciseEvents($event)">
+            (eventEmitter)="handleExerciseActionEvent($event)">
         </app-exercise-thumbnail>        
     </div> 
     <div class="row" [ngSwitch]="DisplayMode">
