@@ -9,7 +9,7 @@ import { deserialize } from 'json-typescript-mapper';
 export class WorkoutService {
 
     getWorkout(): Workout {
-        const convWorkout: any = deserialize(Workout, _workout);
+        const convWorkout: Workout = deserialize(Workout, _workout);
         return convWorkout;
     }
     getNewtWorkoutSet(): Exercise {

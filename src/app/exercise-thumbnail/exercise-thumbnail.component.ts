@@ -16,7 +16,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     @Input() workoutDayName: string;
     @Input() exercise: Exercise;
     @Input() exerciseIndex: number;
-    @Input() workoutDayComponentPublisher: Subject<any>;
+    @Input() workoutDayComponentPublisher: Subject<ExerciseSwitchModeEvent>;
+
     @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
     activeRepIndex = 0;
