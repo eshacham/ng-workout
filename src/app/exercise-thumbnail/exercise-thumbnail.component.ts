@@ -63,7 +63,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
       }
 
     handleEventchange(event) {
-        this.IsRunning = (event.runningExerciseSetIndex === this.exerciseIndex);
+        this.IsRunning = (event.runningExerciseIndex === this.exerciseIndex);
         this.DisplayMode = event.displayMode;
     }
 

@@ -17,7 +17,7 @@ export class WorkoutDayComponent {
     private workoutService: WorkoutService) { }
     @Input() workoutDay: WorkoutDay;
     parentSubject: Subject<any> = new Subject();
-    runningExerciseSetIndex = 0;
+    runningExerciseIndex = 0;
 
     displayMode = DisplayMode;
 
@@ -29,8 +29,8 @@ export class WorkoutDayComponent {
         if (this._displayMode !== val) {
             this._displayMode = val;
             if (this._displayMode === DisplayMode.Workout) {
-                if (this.runningExerciseSetIndex === 0) {
-                    this.runningExerciseSetIndex = 1;
+                if (this.runningExerciseIndex === 0) {
+                    this.runningExerciseIndex = 1;
                 }
             }
             this.publishDisplayMode();
@@ -95,7 +95,7 @@ export class WorkoutDayComponent {
     publishDisplayMode() {
         const event: any = {
             displayMode: this._displayMode,
-            runningExerciseSetIndex: this.runningExerciseSetIndex
+            runningExerciseIndex: this.runningExerciseIndex
         };
         this.parentSubject.next(event);
     }
@@ -111,7 +111,7 @@ export class WorkoutDayComponent {
     startExercise(exerciseIndex: number) {
         const event: any = {
             displayMode: DisplayMode.Workout,
-            runningExerciseSetIndex: exerciseIndex
+            runningExerciseIndex: exerciseIndex
         };
         this.parentSubject.next(event);
     }
