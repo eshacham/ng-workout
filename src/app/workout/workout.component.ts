@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkoutService } from '../shared/workout.service';
+import { Workout } from '../shared/model/Workout';
 
 @Component({
     selector: 'app-workout',
@@ -7,9 +8,8 @@ import { WorkoutService } from '../shared/workout.service';
     styleUrls:  ['./workout.component.css']
 })
 export class WorkoutComponent implements OnInit {
-    workout;
+    workout: Workout;
     constructor (private workoutService: WorkoutService) {
-       // this.workout = workoutService.getWorkout();
     }
 
     ngOnInit() {

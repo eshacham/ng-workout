@@ -28,8 +28,8 @@
         <app-exercise-thumbnail 
             *ngFor="let exercise of workoutDay.exercises; let i = index" 
             [workoutDayName]=workoutDay.name
-            [exerciseSet]=exercise
-            [exerciseSetIndex]="i+1"
+            [exercise]=exercise
+            [exerciseIndex]="i+1"
             [parentSubject]="parentSubject"
             #thumbnail (click)="thumbnail.exerciseSelected()"
             (eventEmitter)="handleExerciseEvents($event)">

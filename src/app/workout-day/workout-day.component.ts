@@ -3,6 +3,8 @@ import { Subject } from 'rxjs/Subject';
 import { ExerciseThumbnailComponent, DisplayMode, ExerciseAction } from '../exercise-thumbnail/exercise-thumbnail.component';
 import { ToastrService } from '../shared/toastr.service';
 import { WorkoutService } from '../shared/workout.service';
+import { WorkoutDay } from '../shared/model/WorkoutDay';
+import { Exercise } from '../shared/model/Exercise';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { WorkoutService } from '../shared/workout.service';
 export class WorkoutDayComponent {
     constructor(private toastr: ToastrService,
     private workoutService: WorkoutService) { }
-    @Input() workoutDay: any;
+    @Input() workoutDay: WorkoutDay;
     parentSubject: Subject<any> = new Subject();
     runningExerciseSetIndex = 0;
 
@@ -59,7 +61,7 @@ export class WorkoutDayComponent {
         }
     }
 
-    deleteExercise(set, day) {
+    deleteExercise(set: Exercise, day: string) {
         this.workoutService.deleteExercise(set, day);
     }
 
@@ -72,7 +74,7 @@ export class WorkoutDayComponent {
         this.toastr.warning('Cancelled!');
     }
     addExercise() {
-        const newExercise = this.workoutService.geNewtWorkoutSet();
+        const newExercise: Exercise = this.workoutService.getNewtWorkoutSet();
         this.workoutDay.exercises.push(newExercise);
         this.saveChanges() ;
     }
@@ -97,7 +99,8 @@ export class WorkoutDayComponent {
         };
         this.parentSubject.next(event);
     }
-    handleExersiceSetComletion(exerciseSetIndex) {
+
+    handleExersiceSetComletion(exerciseSetIndex: number) {
         if (this.workoutDay.exercises.length > exerciseSetIndex) {
             this.startExercise(exerciseSetIndex + 1);
         } else {
@@ -105,7 +108,7 @@ export class WorkoutDayComponent {
         }
     }
 
-    startExercise(exerciseIndex) {
+    startExercise(exerciseIndex: number) {
         const event: any = {
             displayMode: DisplayMode.Workout,
             runningExerciseSetIndex: exerciseIndex
