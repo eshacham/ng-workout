@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
 import { ToastrService } from '../shared/toastr.service';
@@ -15,10 +15,14 @@ import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
     templateUrl: './workout-day.component.html',
     styleUrls: ['./workout-day.component.css']
 })
-export class WorkoutDayComponent {
-    constructor(private toastr: ToastrService,
-    private workoutService: WorkoutService) { }
+export class WorkoutDayComponent implements OnInit, OnDestroy {
+    constructor (private toastr: ToastrService,
+                 private workoutService: WorkoutService) {}
+
     @Input() workoutDay: WorkoutDay;
+    @Input() workoutComponentPublisher: Subject<ExerciseSwitchModeEvent>;
+
+    @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
     componentPublisher: Subject<ExerciseSwitchModeEvent> = new Subject();
     runningExerciseIndex = 0;
@@ -41,6 +45,22 @@ export class WorkoutDayComponent {
         }
     }
 
+    ngOnInit() {
+        this.workoutComponentPublisher.subscribe(event => this.handleWorkoutEventchange(event));
+    }
+
+    handleWorkoutEventchange(event: ExerciseSwitchModeEvent) {
+        if (event.runningExerciseDayName !== this.workoutDay.name) {
+            this.finishWorkout(false);
+        }
+    }
+
+    ngOnDestroy() {
+        // needed if child gets re-created (eg on some model changes)
+        // note that subsequent subscriptions on the same subject will fail
+        // so the parent has to re-create parentSubject on changes
+        this.workoutComponentPublisher.unsubscribe();
+      }
     handleExerciseActionEvent(event: ExerciseActionEvent) {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
@@ -86,11 +106,14 @@ export class WorkoutDayComponent {
 
     startWorkout() {
         this.DisplayMode = DisplayMode.Workout;
+        this.emitExerciseActionEvent(ExerciseAction.Run);
     }
 
-    finishWorkout() {
+    finishWorkout (notify: boolean = true) {
         this.DisplayMode = DisplayMode.Display;
-        this.toastr.success('Good Job!');
+        if (notify) {
+            this.toastr.success('Good Job!');
+        }
     }
 
     handleExersiceSetComletion(exerciseSetIndex: number) {
@@ -105,9 +128,19 @@ export class WorkoutDayComponent {
         this.publishWorkoutEvent(DisplayMode.Workout, exerciseIndex);
     }
 
-    publishWorkoutEvent(displayMode: DisplayMode, runningExerciseIndex: number)  {
-        const workoutEvent =  new ExerciseSwitchModeEvent (displayMode, runningExerciseIndex);
+    publishWorkoutEvent(displayMode: DisplayMode,
+        runningExerciseIndex: number)  {
+        const workoutEvent =
+            new ExerciseSwitchModeEvent (displayMode, runningExerciseIndex, this.workoutDay.name);
         this.componentPublisher.next(workoutEvent);
+    }
+
+    emitExerciseActionEvent(action: ExerciseAction) {
+        this.eventEmitter.emit(new ExerciseActionEvent(
+            action,
+            null,
+            null,
+            this.workoutDay.name));
     }
 
 }

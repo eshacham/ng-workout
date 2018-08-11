@@ -3,7 +3,10 @@
         <h1 class="text-center">{{workout.name}}</h1> 
     </div>
     <div class="row">
-        <app-workout-day *ngFor="let workoutDay of workout.days" [workoutDay]="workoutDay">            
+        <app-workout-day *ngFor="let workoutDay of workout.days" 
+            [workoutDay]="workoutDay"
+            [workoutComponentPublisher]="componentPublisher"
+            (eventEmitter)="handleExerciseActionEvent($event)">            
         </app-workout-day>
     </div>
 </div>
