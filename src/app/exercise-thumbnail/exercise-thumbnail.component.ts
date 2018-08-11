@@ -8,8 +8,6 @@ import { Rep } from '../shared/model/Rep';
 import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
 import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
 
-
-
 @Component({
     selector: 'app-exercise-thumbnail',
     templateUrl: './exercise-thumbnail.component.html',
@@ -58,6 +56,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
             this.startWorkout();
         } else {
             this.stopRepTimerLoop();
+            this.stopRestTimerLoop();
         }
     }
     get isEditMode(): boolean {
@@ -71,7 +70,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
       }
 
     handleWorkoutEventchange(event: ExerciseSwitchModeEvent) {
-        this.IsRunning = (event.runningExerciseIndex === this.exerciseIndex);
+        this.IsRunning =
+            (event.runningExerciseIndex === this.exerciseIndex &&
+            event.runningExerciseDayName === this.workoutDayName);
         this.DisplayMode = event.displayMode;
     }
 
@@ -250,6 +251,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         this._timedRestLoopRemaining = 0;
     }
 
+    activateNextRep() {
+        this.activeRepIndex++;
+    }
+
     nextRep (shouldRest) {
         this.completedReps[this.activeRepIndex] = true;
         this.stopRepTimerLoop();
@@ -258,12 +263,12 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
             if (shouldRest) {
                 this._timedToRestAfterCurrentRep = this.exercise.sets[0].restBetweenReps;
                 this.startTimedRest(() => {
-                    this.activeRepIndex++;
+                    this.activateNextRep();
                     this.startTimedRep();
                 });
             } else {
-                this._timedRestLoopRemaining = 0;
-                this.activeRepIndex++;
+                this.skipRest();
+                this.activateNextRep();
                 this.startTimedRep();
             }
         } else {
