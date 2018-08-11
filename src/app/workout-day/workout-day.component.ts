@@ -16,8 +16,8 @@ import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
     styleUrls: ['./workout-day.component.css']
 })
 export class WorkoutDayComponent {
-    constructor(private toastr: ToastrService,
-    private workoutService: WorkoutService) { }
+    constructor (private toastr: ToastrService,
+                 private workoutService: WorkoutService) {}
     @Input() workoutDay: WorkoutDay;
 
     componentPublisher: Subject<ExerciseSwitchModeEvent> = new Subject();
