@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { AudioService } from '../shared/audio.service';
 import { WeightUnit, DisplayMode, ExerciseAction } from '../shared/enums';
 import { Exercise } from '../shared/model/Exercise';
 import { ExerciseSet } from '../shared/model/ExerciseSet';
@@ -7,12 +8,16 @@ import { Rep } from '../shared/model/Rep';
 import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
 import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
 
+
+
 @Component({
     selector: 'app-exercise-thumbnail',
     templateUrl: './exercise-thumbnail.component.html',
     styleUrls: ['./exercise-thumbnail.component.css']
 })
-export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
+export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
+    constructor (private audioService: AudioService) {}
+
     @Input() workoutDayName: string;
     @Input() exercise: Exercise;
     @Input() exerciseIndex: number;
@@ -189,6 +194,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     private startTimedRep() {
+        this.audioService.playStartWorkout();
         this.stopRepTimerLoop();
         this._timedRepLoopRemaining = this.exercise.sets[0].reps[this.activeRepIndex].seconds;
         if (this._timedRepLoopRemaining) {
@@ -209,6 +215,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy   {
     }
 
     private startTimedRest(action) {
+        this.audioService.playStartWorkout();
         this.stopRestTimerLoop();
         this._timedRestLoopRemaining = this._timedToRestAfterCurrentRep;
         if (this._timedRestLoopRemaining) {

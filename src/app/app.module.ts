@@ -8,6 +8,7 @@ import { WorkoutDayComponent } from './workout-day/workout-day.component';
 import { ExerciseThumbnailComponent } from './exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutService } from './shared/workout.service' ;
 import { ToastrService } from './shared/toastr.service';
+import { AudioService } from './shared/audio.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { ToastrService } from './shared/toastr.service';
     WorkoutDayComponent,
     ExerciseThumbnailComponent,
   ],
-  providers: [WorkoutService, ToastrService],
+  providers: [WorkoutService, ToastrService, AudioService],
   bootstrap: [AppMainComponent]
 })
 export class AppModule { }
