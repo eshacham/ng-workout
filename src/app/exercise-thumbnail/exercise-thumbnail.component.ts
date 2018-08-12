@@ -24,6 +24,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
     activeRepIndex = 0;
+    get isPrevRepAvailable(): boolean { return this.activeRepIndex > 0; }
 
     _timedRepLoopRemaining = 0;
     timedRepLoopinterval = null;
