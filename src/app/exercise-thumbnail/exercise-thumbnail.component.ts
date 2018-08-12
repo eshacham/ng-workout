@@ -26,19 +26,19 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     activeRepIndex = 0;
     get isPrevRepAvailable(): boolean {
         return this.activeRepIndex > 0 ||
-        this.timedRepLoopRemaining > 0 ||
-        this.timedRestLoopRemaining > 0;
+        this.timedRepRemaining > 0 ||
+        this.timedRestRemaining > 0;
     }
 
-    _timedRepLoopRemaining = 0;
-    timedRepLoopinterval = null;
-    get timedRepLoopRemaining(): number { return this._timedRepLoopRemaining; }
+    _timedRepRemaining = 0;
+    timedRepTimer = null;
+    get timedRepRemaining(): number { return this._timedRepRemaining; }
 
     _timedToRestAfterCurrentRep = 0;
     get timedToRestAfterCurrentRep(): number { return this._timedToRestAfterCurrentRep; }
-    _timedRestLoopRemaining = 0;
-    timedRestLoopinterval = null;
-    get timedRestLoopRemaining(): number { return this._timedRestLoopRemaining; }
+    _timedRestRemaining = 0;
+    timedRestTimer = null;
+    get timedRestRemaining(): number { return this._timedRestRemaining; }
 
     displayMode = DisplayMode;
     weightUnit = WeightUnit;
@@ -60,8 +60,8 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         if (this._displayMode === DisplayMode.Workout && this.IsRunning) {
             this.startWorkout();
         } else {
-            this.stopRepTimerLoop();
-            this.stopRestTimerLoop();
+            this.stopRepTimer();
+            this.stopRestTimer();
         }
     }
     get isEditMode(): boolean {
@@ -112,13 +112,13 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
             this.workoutDayName));
     }
 
-    isInTimerLoop(repIndex): boolean {
+    isTimedRepRemaining(repIndex): boolean {
         return this.activeRepIndex === repIndex &&
-                this._timedRepLoopRemaining > 0 && this.IsRunning ;
+                this._timedRepRemaining > 0 && this.IsRunning ;
     }
 
-    get isInRestLoop(): boolean {
-        return this._timedRestLoopRemaining > 0 && this.IsRunning ;
+    get isResting(): boolean {
+        return this._timedRestRemaining > 0 && this.IsRunning ;
     }
 
     get hasSet(): boolean {
@@ -194,43 +194,43 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
 
     private startTimedRep() {
         this.audioService.playStartWorkout();
-        this.stopRepTimerLoop();
-        this._timedRepLoopRemaining = this.exercise.sets[0].reps[this.activeRepIndex].seconds;
-        if (this._timedRepLoopRemaining) {
-            this.timedRepLoopinterval = setInterval(() => {
-                this._timedRepLoopRemaining --;
-                if (this._timedRepLoopRemaining <= 0) {
-                    this.stopRepTimerLoop();
+        this.stopRepTimer();
+        this._timedRepRemaining = this.exercise.sets[0].reps[this.activeRepIndex].seconds;
+        if (this._timedRepRemaining) {
+            this.timedRepTimer = setInterval(() => {
+                this._timedRepRemaining --;
+                if (this._timedRepRemaining <= 0) {
+                    this.stopRepTimer();
                     this.nextRep(true);
                 }
             }, 1000);
         }
     }
 
-    stopRepTimerLoop() {
-        if (this.timedRepLoopinterval) {
-            clearInterval(this.timedRepLoopinterval);
+    private stopRepTimer() {
+        if (this.timedRepTimer) {
+            clearInterval(this.timedRepTimer);
         }
     }
 
-    private startTimedRest(action) {
+    private startTimedRest(callbackAction) {
         this.audioService.playStartWorkout();
-        this.stopRestTimerLoop();
-        this._timedRestLoopRemaining = this._timedToRestAfterCurrentRep;
-        if (this._timedRestLoopRemaining) {
-            this.timedRestLoopinterval = setInterval(() => {
-                this._timedRestLoopRemaining --;
-                if (this._timedRestLoopRemaining <= 0) {
-                    this.stopRestTimerLoop();
-                    action();
+        this.stopRestTimer();
+        this._timedRestRemaining = this._timedToRestAfterCurrentRep;
+        if (this._timedRestRemaining) {
+            this.timedRestTimer = setInterval(() => {
+                this._timedRestRemaining --;
+                if (this._timedRestRemaining <= 0) {
+                    this.stopRestTimer();
+                    callbackAction();
                 }
             }, 1000);
         }
     }
 
-    stopRestTimerLoop() {
-        if (this.timedRestLoopinterval) {
-            clearInterval(this.timedRestLoopinterval);
+    private stopRestTimer() {
+        if (this.timedRestTimer) {
+            clearInterval(this.timedRestTimer);
         }
     }
 
@@ -239,39 +239,36 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
             this.completedReps.pop();
             this.activeRepIndex--;
         }
-        this.stopRepTimerLoop();
-        this.stopRestTimerLoop();
+        this.stopRepTimer();
+        this.stopRestTimer();
         this.startTimedRep();
     }
 
     skipRest() {
-        this._timedRestLoopRemaining = 0;
+        this._timedRestRemaining = 0;
     }
 
-    activateNextRep() {
+    private activateNextRep() {
         this.activeRepIndex++;
+        this.startTimedRep();
     }
 
     nextRep (shouldRest) {
         if (!this.isRepCompleted (this.activeRepIndex)) {
             this.completedReps.push(this.activeRepIndex);
         }
-        this.stopRepTimerLoop();
-        this._timedRepLoopRemaining = 0;
+        this.stopRepTimer();
+        this._timedRepRemaining = 0;
         if (this.exercise.sets[0].reps.length - 1 > this.activeRepIndex) {
             if (shouldRest) {
                 this._timedToRestAfterCurrentRep = this.exercise.sets[0].restBetweenReps;
-                this.startTimedRest(() => {
-                    this.activateNextRep();
-                    this.startTimedRep();
-                });
+                this.startTimedRest(() => this.activateNextRep());
             } else {
                 this.skipRest();
                 this.activateNextRep();
-                this.startTimedRep();
             }
         } else {
-            this.stopRepTimerLoop();
+            this.stopRepTimer();
             if (shouldRest) {
                 this._timedToRestAfterCurrentRep = this.exercise.sets[0].restAfterExercise;
                 this.startTimedRest(() => this.completeExercise());

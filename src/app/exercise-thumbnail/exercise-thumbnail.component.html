@@ -54,19 +54,19 @@
                                     class='glyphicon glyphicon-ok'></span>
                                 </h4>
                             </div>
-                            <div *ngIf="isInTimerLoop(i)">{{timedRepLoopRemaining}}                                
+                            <div class='text-center' *ngIf="isTimedRepRemaining(i)">{{timedRepRemaining}} Seconds                              
                             </div>                            
                         </div>
                     </div>
                 </div> 
                 <div class='row margin-top'> 
-                    <div *ngIf="isInRestLoop">                        
+                    <div *ngIf="isResting">                        
                         <button class="btn btn-warning btn-lg col-sm-4 col-sm-offset-4 activeRep" 
                             (click)="skipRest()">
-                            Rest {{timedRestLoopRemaining}} Seconds or Skip
+                            Rest {{timedRestRemaining}} Seconds or Skip
                         </button>
                     </div>
-                    <div *ngIf="!isInRestLoop">
+                    <div *ngIf="!isResting">
                         <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
                             [disabled]= "!isPrevRepAvailable"   
                             (click)="prevRep()">                            
