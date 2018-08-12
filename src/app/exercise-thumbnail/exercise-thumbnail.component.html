@@ -68,7 +68,8 @@
                     </div>
                     <div *ngIf="!isInRestLoop">
                         <button class="btn btn-info btn-sm col-sm-1 col-sm-offset-4 glyphicon glyphicon-triangle-left margin-half_top" 
-                                (click)="prevRep()">                            
+                            [disabled]= "!isPrevRepAvailable"   
+                            (click)="prevRep()">                            
                         </button> 
                         <button class="btn btn-success btn-lg col-sm-2 activeRep" 
                                 (click)="nextRep(true)">
