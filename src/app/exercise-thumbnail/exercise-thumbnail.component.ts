@@ -24,7 +24,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
     activeRepIndex = 0;
-    get isPrevRepAvailable(): boolean { return this.activeRepIndex > 0; }
+    get isPrevRepAvailable(): boolean {
+        return this.activeRepIndex > 0 ||
+        this.timedRepLoopRemaining > 0 ||
+        this.timedRestLoopRemaining > 0;
+    }
 
     _timedRepLoopRemaining = 0;
     timedRepLoopinterval = null;
@@ -64,7 +68,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         return this._displayMode === DisplayMode.Edit;
     }
 
-    completedReps: boolean[] = [];
+    completedReps: number[] = [];
 
     ngOnInit() {
         this.workoutDayComponentPublisher.subscribe(event => this.handleWorkoutEventchange(event));
@@ -184,15 +188,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     private resetCompletedReps() {
-        if (this.completedReps.length === 0) {
-            this.exercise.sets[0].reps.forEach(element => {
-                this.completedReps.push(false);
-            });
-        } else {
-            this.completedReps.forEach((rep, i) => {
-                this.completedReps[i] = false;
-            });
-        }
+        this.completedReps.length = 0;
         this.activeRepIndex = 0;
     }
 
@@ -240,13 +236,12 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
 
     prevRep () {
         if (this.activeRepIndex > 0) {
+            this.completedReps.pop();
             this.activeRepIndex--;
-            this.completedReps[this.activeRepIndex] = false;
-            this.startTimedRep();
-         } else {
-            this.stopRepTimerLoop();
-            this.stopRestTimerLoop();
-         }
+        }
+        this.stopRepTimerLoop();
+        this.stopRestTimerLoop();
+        this.startTimedRep();
     }
 
     skipRest() {
@@ -258,7 +253,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     nextRep (shouldRest) {
-        this.completedReps[this.activeRepIndex] = true;
+        if (!this.isRepCompleted (this.activeRepIndex)) {
+            this.completedReps.push(this.activeRepIndex);
+        }
         this.stopRepTimerLoop();
         this._timedRepLoopRemaining = 0;
         if (this.exercise.sets[0].reps.length - 1 > this.activeRepIndex) {
@@ -285,7 +282,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     isRepCompleted (i) {
-        return this.completedReps[i];
+        return this.completedReps.includes(i);
     }
 }
 
