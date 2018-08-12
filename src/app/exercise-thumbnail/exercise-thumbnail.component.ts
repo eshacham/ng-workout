@@ -52,7 +52,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         if (this._displayMode !== val) {
             this._displayMode = val;
         }
-        if (this._displayMode === DisplayMode.Workout) {
+        if (this._displayMode === DisplayMode.Workout && this.IsRunning) {
             this.startWorkout();
         } else {
             this.stopRepTimerLoop();
@@ -109,7 +109,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
 
     isInTimerLoop(repIndex): boolean {
         return this.activeRepIndex === repIndex &&
-        this._timedRepLoopRemaining > 0 && this.IsRunning ;
+                this._timedRepLoopRemaining > 0 && this.IsRunning ;
     }
 
     get isInRestLoop(): boolean {
@@ -178,10 +178,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     startWorkout() {
-        if (!this.IsRunning) {
-            return;
-        }
-        this.activeRepIndex = 0;
+        this.resetCompletedReps();
+        this.startTimedRep();
+    }
+
+    private resetCompletedReps() {
         if (this.completedReps.length === 0) {
             this.exercise.sets[0].reps.forEach(element => {
                 this.completedReps.push(false);
@@ -191,7 +192,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
                 this.completedReps[i] = false;
             });
         }
-        this.startTimedRep();
+        this.activeRepIndex = 0;
     }
 
     private startTimedRep() {
