@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
-import { ToastrService } from '../shared/toastr.service';
+// import { ExerciseThumbnailComponent } from '../exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutService } from '../shared/workout.service';
 import { ToastrService } from '../shared/toastr.service';
 import { WorkoutDay } from '../shared/model/WorkoutDay';
