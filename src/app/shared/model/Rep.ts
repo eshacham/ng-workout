@@ -2,11 +2,11 @@ import { WeightUnit } from '../enums';
 import { JsonProperty } from 'json-typescript-mapper';
 
 export class Rep {
-    @JsonProperty('Weight')
+    @JsonProperty('weight')
     weight: number;
 
-    @JsonProperty('WeightUnit')
-    theWeightUnit: WeightUnit;
+    @JsonProperty('weightUnit')
+    weightUnit: WeightUnit;
 
     @JsonProperty('times')
     times: number;
@@ -16,7 +16,7 @@ export class Rep {
 
     constructor () {
         this.weight = undefined;
-        this.theWeightUnit = undefined;
+        this.weightUnit = undefined;
         this.times = undefined;
         this.seconds = undefined;
     }

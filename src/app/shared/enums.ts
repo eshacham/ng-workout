@@ -36,5 +36,6 @@ export enum ExerciseAction {
     Completed,
     Delete,
     Edit,
-    Run
+    Run,
+    Unfreeze
 }

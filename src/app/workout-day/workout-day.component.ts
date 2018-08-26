@@ -61,23 +61,29 @@ export class WorkoutDayComponent implements OnInit, OnDestroy {
         // so the parent has to re-create parentSubject on changes
         this.workoutComponentPublisher.unsubscribe();
       }
-    handleExerciseActionEvent(event: ExerciseActionEvent) {
+
+      handleExerciseActionEvent(event: ExerciseActionEvent) {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
             case ExerciseAction.Completed:
-                console.log('receieved completed event: ', event.exerciseIndex);
+                console.log('receieved workout-day completed event: ', event.exerciseIndex);
                 this.handleExersiceSetComletion(event.exerciseIndex);
                 break;
             case ExerciseAction.Delete:
-                console.log('receieved delete event: ', event.exercise);
+                console.log('receieved workout-day delete event: ', event.exercise);
                 this.deleteExercise(event.exercise, event.workoutDayName);
                 break;
             case ExerciseAction.Edit:
-                console.log('receieved edit event: ', event.exercise);
+                console.log('receieved workout-day edit event: ', event.exercise);
                 break;
             case ExerciseAction.Run:
-                console.log('receieved run event: ', event.exerciseIndex);
+                console.log('receieved workout-day run event: ', event.exerciseIndex);
                 this.startExercise(event.exerciseIndex);
+                break;
+            case ExerciseAction.Unfreeze:
+                console.log('receieved workout-day unfreeze event: ', event.exerciseIndex);
+                // this.publishWorkoutEvent(DisplayMode.Workout, event.workoutDayName);
+                // this.emitExerciseActionEvent(ExerciseAction.Unfreeze);
                 break;
         }
     }

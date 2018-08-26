@@ -57,12 +57,12 @@ export class WorkoutService {
                             'reps': [
                                 {
                                     'weight': 95,
-                                    'WeightUnit': WeightUnit.Lbs,
+                                    'weightUnit': WeightUnit.Lbs,
                                     'times': 12
                                 },
                                 {
                                     'weight': 95,
-                                    'WeightUnit': WeightUnit.Lbs,
+                                    'weightUnit': WeightUnit.Lbs,
                                     'times': 12
                                 },
                                 {
@@ -393,19 +393,19 @@ export class WorkoutService {
                             'isFavorite': false,
                             'reps': [
                                 {
-                                    'weight': 85,
+                                    'weight': 90,
                                     'weightUnit': WeightUnit.Lbs,
-                                    'times': 12
+                                    'times': 10
                                 },
                                 {
-                                    'weight': 85,
+                                    'weight': 90,
                                     'weightUnit': WeightUnit.Lbs,
-                                    'times': 12
+                                    'times': 10
                                 },
                                 {
-                                    'weight': 85,
+                                    'weight': 90,
                                     'weightUnit': WeightUnit.Lbs,
-                                    'times': 12
+                                    'times': 10
                                 },
                             ],
                             'restBetweenReps': 20,

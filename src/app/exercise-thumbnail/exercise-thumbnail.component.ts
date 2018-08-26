@@ -68,6 +68,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         return this._displayMode === DisplayMode.Edit;
     }
 
+    private _isFrozen: boolean;
+    get IsFrozen(): boolean { return this._isFrozen; }
+    set IsFrozen(val: boolean) {this._isFrozen = val; }
+
     completedReps: number[] = [];
 
     ngOnInit() {
@@ -95,6 +99,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     runExercise() {
         this.emitExerciseActionEvent(ExerciseAction.Run);
     }
+
+    // unfreezeAllOtherExercises() {
+    //     this.emitExerciseActionEvent(ExerciseAction.Unfreeze);
+    // }
 
     deleteExercise() {
         this.emitExerciseActionEvent(ExerciseAction.Delete);
@@ -126,7 +134,16 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     exerciseSelected() {
-        console.log(`Exercise Selected ${this.exercise.sets[0].name}`);
+        if (this.DisplayMode === DisplayMode.Workout) {
+            if (!this.IsRunning && !this.IsFrozen) {
+                console.log(`Display Exercise ${this.exercise.sets[0].name} and freezing`);
+                this.IsFrozen = true;
+                // this.unfreezeAllOtherExercises();
+            } else {
+               console.log(`Collapse Exercise ${this.exercise.sets[0].name} and unfreezing`);
+                this.IsFrozen = false;
+            }
+        }
     }
 
     exerciseDetails(exerciseSet: ExerciseSet): string {
@@ -164,12 +181,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     }
 
     getRunningExerciseSetRepCellClass(repIndex) {
-        const classes = [];
-        let returnClass = 'col-sm-';
-        const size = 12 / this.exercise.sets[0].reps.length;
-        returnClass += size.toString();
-        classes.push(returnClass);
-
+        const classes = this.getExerciseSetRepCellClass();
         if (this.activeRepIndex === repIndex) {
             classes.push('activeRep', 'fadeOutAndIn');
         } else {
@@ -178,11 +190,28 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         return classes;
     }
 
+    private getExerciseSetRepCellClass() {
+        const classes = [];
+        let returnClass = 'col-sm-';
+        const size = 12 / this.exercise.sets[0].reps.length;
+        returnClass += size.toString();
+        classes.push(returnClass);
+        return classes;
+    }
+
+    getFrozenExerciseSetRepCellClass() {
+        const classes = this.getExerciseSetRepCellClass();
+        classes.push('nonActiveRep');
+        return classes;
+    }
+
+
     getCellSizeFromExerciseSet() {
         return (12 / this.exercise.sets.length);
     }
 
     startWorkout() {
+        this.IsFrozen = false;
         this.resetCompletedReps();
         this.startTimedRep();
     }
