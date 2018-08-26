@@ -2,6 +2,7 @@ import { WeightUnit } from '../enums';
 import { JsonProperty } from 'json-typescript-mapper';
 
 export class Rep {
+
     @JsonProperty('weight')
     weight: number;
 

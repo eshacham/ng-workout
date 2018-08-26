@@ -100,10 +100,6 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         this.emitExerciseActionEvent(ExerciseAction.Run);
     }
 
-    // unfreezeAllOtherExercises() {
-    //     this.emitExerciseActionEvent(ExerciseAction.Unfreeze);
-    // }
-
     deleteExercise() {
         this.emitExerciseActionEvent(ExerciseAction.Delete);
     }
@@ -138,7 +134,6 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
             if (!this.IsRunning && !this.IsFrozen) {
                 console.log(`Display Exercise ${this.exercise.sets[0].name} and freezing`);
                 this.IsFrozen = true;
-                // this.unfreezeAllOtherExercises();
             } else {
                console.log(`Collapse Exercise ${this.exercise.sets[0].name} and unfreezing`);
                 this.IsFrozen = false;

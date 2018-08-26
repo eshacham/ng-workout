@@ -26,23 +26,19 @@ export class WorkoutComponent implements OnInit {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
             case ExerciseAction.Completed:
-                console.log('receieved workout completed event: ', event.exerciseIndex);
+                console.log('receieved completed event: ', event.exerciseIndex);
                 // this.handleExersiceSetComletion(event.exerciseIndex);
                 break;
             case ExerciseAction.Delete:
-                console.log('receieved workout delete event: ', event.exercise);
+                console.log('receieved delete event: ', event.exercise);
                 // this.deleteExercise(event.exercise, event.workoutDayName);
                 break;
             case ExerciseAction.Edit:
-                console.log('receieved workout edit event: ', event.exercise);
+                console.log('receieved edit event: ', event.exercise);
                 break;
             case ExerciseAction.Run:
-                console.log('receieved workout run event: ', event.workoutDayName);
+                console.log('receieved run event: ', event.workoutDayName);
                 this.publishWorkoutEvent(DisplayMode.Workout, event.workoutDayName);
-                break;
-            case ExerciseAction.Unfreeze:
-                console.log('receieved workout unfreeze event: ', event.workoutDayName);
-                // this.publishWorkoutEvent(DisplayMode.Workout, event.workoutDayName);
                 break;
         }
     }
