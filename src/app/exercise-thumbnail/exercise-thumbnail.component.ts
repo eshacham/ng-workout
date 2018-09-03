@@ -48,6 +48,11 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
     set IsRunning (val: boolean) {
         this._isRunning = val;
     }
+    private _isEditing = false;
+    get IsEditing(): boolean { return this._isEditing; }
+    set IsEditing (val: boolean) {
+        this._isEditing = val;
+    }
 
     private _displayMode: DisplayMode = DisplayMode.Display;
     get DisplayMode(): DisplayMode {
@@ -93,6 +98,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
       }
 
     editExercise() {
+        this.IsEditing = !this.IsEditing;
         this.emitExerciseActionEvent(ExerciseAction.Edit);
     }
 

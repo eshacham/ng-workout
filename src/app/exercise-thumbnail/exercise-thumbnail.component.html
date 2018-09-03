@@ -103,9 +103,8 @@
             </div>
         </div>
     </div>
-    <div *ngSwitchDefault>
-        <button *ngIf="isEditMode"
-                class="btn btn-warning pull-right margin-half_top margin_right" 
+    <div *ngSwitchCase="displayMode.Edit">    
+        <button class="btn btn-warning pull-right margin-half_top margin_right" 
                 (click)="deleteExercise()">
             Delete
         </button>
@@ -120,8 +119,66 @@
                 <div (click)="editExercise()">            
                     <h3>{{exerciseSet.name}}</h3>            
                     {{exerciseDetails(exerciseSet)}}
-                </div>
-            </div>          
+                </div>                
+            </div>
+            <div *ngIf="IsEditing" > 
+                <div class="row margin-20">                   
+                    <div *ngFor="let rep of exerciseSet.reps"  
+                        class="rep"
+                        [ngClass]="getFrozenExerciseSetRepCellClass()">                                                
+                        <div *ngIf='rep.weight'>
+                            <input 
+                                [value]="rep.weight"
+                                (input)="rep.weight=$event.target.value" />
+                            <small>{{' ' + weightUnit[rep.weightUnit]}}</small>
+                        </div>
+                        <div *ngIf='rep.times'>
+                            <input 
+                                [value]="rep.times"
+                                (input)="rep.times=$event.target.value" />
+                            <small>{{' Times'}}</small>                                                        
+                        </div>                            
+                        <div *ngIf='rep.seconds'>
+                            <input 
+                                [value]="rep.seconds"
+                                (input)="rep.seconds=$event.target.value" />
+                            <small>{{' Seconds'}}</small>                        
+                        </div> 
+                    </div>
+                </div>                                
+                <div class="row margin-20">
+                    <div class="col-sm-6 form-group">                  
+                        <label for="restBetweenRepsId">Rest Between Reps</label>
+                        <input id="restBetweenRepsId" class="form-control"
+                            [value]="exerciseSet.restBetweenReps"
+                            (input)="exerciseSet.restBetweenReps=$event.target.value" />
+                        <small>{{' Seconds'}}</small> 
+                    </div> 
+                    <div class="col-sm-6 form-group" >          
+                        <label for="restAfterExerciseId">Rest After Exercise</label>
+                        <input id="restAfterExerciseId" class="form-control"
+                            [value]="exerciseSet.restAfterExercise"
+                            (input)="exerciseSet.restAfterExercise=$event.target.value" />
+                        <small>{{' Seconds'}}</small> 
+                    </div>                                   
+                </div>                                               
+            </div>      
         </div> 
+    </div>
+    <div *ngSwitchDefault> 
+        <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"
+            class="container-fluid thumb" 
+            [ngClass]="getTopBottomMarginClass(exerciseSet)" > 
+            <div class="row">
+                <div class="col-sm-2 imageWrap">
+                    <img src={{exerciseSet.imageUrl}} 
+                        class="img-sml" />                    
+                </div>            
+                <div>            
+                    <h3>{{exerciseSet.name}}</h3>            
+                    {{exerciseDetails(exerciseSet)}}
+                </div>                
+            </div>
+        </div>
     </div>
 </div>

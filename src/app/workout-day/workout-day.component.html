@@ -4,7 +4,8 @@
             <div *ngSwitchCase="displayMode.Edit">
                 <div >
                     <input class="col-sm-6 edit-workout-name"
-                           [value]="workoutDay.name" (input)="workoutDay.name = $event.target.value" />  
+                           [value]="workoutDay.name" 
+                           (input)="workoutDay.name = $event.target.value" />  
                     <div class="col-sm-4 pull-right">             
                         <button class="btn btn-success pull-right"
                             (click)="saveChanges()">
