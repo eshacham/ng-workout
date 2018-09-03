@@ -63,25 +63,25 @@ export class WorkoutDayComponent implements OnInit, OnDestroy {
         const exerciseAction: ExerciseAction = event.action;
         switch (exerciseAction) {
             case ExerciseAction.Completed:
-                console.log('receieved completed event: ', event.exerciseIndex);
+                console.log('workout-day: receieved completed event: ', event.exerciseIndex);
                 this.handleExersiceSetComletion(event.exerciseIndex);
                 break;
             case ExerciseAction.Delete:
-                console.log('receieved delete event: ', event.exercise);
+                console.log('workout-day: receieved delete event: ', event.exercise);
                 this.deleteExercise(event.exercise, event.workoutDayName);
                 break;
             case ExerciseAction.Edit:
-                console.log('receieved edit event: ', event.exercise);
+                console.log('workout-day: receieved edit event: ', event.exercise);
                 break;
             case ExerciseAction.Run:
-                console.log('receieved run event: ', event.exerciseIndex);
+                console.log('workout-day: receieved run event: ', event.exerciseIndex);
                 this.startExercise(event.exerciseIndex);
                 break;
         }
     }
 
     deleteExercise(set: Exercise, day: string) {
-        this.workoutService.deleteExercise(set, day);
+        this.workoutService.deleteExercise(set, this.workoutDay);
     }
 
     setEditMode() {

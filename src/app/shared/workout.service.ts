@@ -3,6 +3,7 @@ import { WeightType, GripType, GripWidth, RepetitionSpeed, WeightUnit } from '..
 import { Workout } from './model/Workout';
 import { Exercise } from './model/Exercise';
 import { deserialize } from 'json-typescript-mapper';
+import { WorkoutDay } from './model/WorkoutDay';
 
 
 @Injectable()
@@ -16,11 +17,7 @@ export class WorkoutService {
         const convWorkout: Workout = deserialize(Workout, _workout);
         return convWorkout.days[0].exercises[0];
     }
-    deleteExercise(exercise: Exercise, dayName: string) {
-        const convWorkout: Workout = deserialize(Workout, _workout);
-        const day = convWorkout.days.find((d) => {
-            return d.name === dayName;
-        });
+    deleteExercise(exercise: Exercise, day: WorkoutDay) {
         if (day) {
             const exercises: Exercise[] = day.exercises;
             const index = exercises.findIndex((e) => {
@@ -31,7 +28,6 @@ export class WorkoutService {
             }
         }
     }
-
 }
 
  const _workout: object = {
