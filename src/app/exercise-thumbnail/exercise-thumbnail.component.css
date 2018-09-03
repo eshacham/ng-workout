@@ -48,9 +48,6 @@
     padding-top: 3px;
 }
 
-.margin-bottom {
-    margin-bottom: 20px;
-}
 .margin-top {
     margin-top: 20px;
 }
@@ -60,6 +57,9 @@
 .margin-20 {
      margin: 20px;
  }
+.margin_right {
+    margin-right: 15px;
+}
 
 .fadeOutAndIn {
     -webkit-animation: fadeinout 4s linear infinite;

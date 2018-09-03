@@ -43,7 +43,7 @@
             </div>               
         </div>
         <div [hidden]="!IsRunning">
-            <div class="row margin-bottom">                    
+            <div class="row" >                    
                 <div *ngFor="let exerciseSet of exercise.sets"                   
                     [ngClass]="getRunningExerciseSetCellClass()" >
                     <div (click)="editExercise()">            
@@ -54,7 +54,7 @@
                     </div>                   
                 </div>
             </div>
-            <div class='margin-bottom'>
+            <div>
                 <div *ngFor="let exerciseSet of exercise.sets" >
                     <div class='row'>
                         <div *ngFor="let rep of exerciseSet.reps; let i = index"  
@@ -105,18 +105,18 @@
         </div>
     </div>
     <div *ngSwitchDefault>
+        <button class="btn btn-warning pull-right margin-half_top margin_right" 
+            (click)="deleteExercise()"
+            *ngIf="isEditMode">
+            Delete
+        </button>
         <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"
             class="container-fluid thumb" 
             [ngClass]="getTopBottomMarginClass(exerciseSet)" > 
             <div class="row">
                 <div class="col-sm-2 imageWrap">
                     <img src={{exerciseSet.imageUrl}} 
-                        class="img-sml" />
-                    <button class="btn btn-warning floatDelete" 
-                        (click)="deleteExercise()"
-                        *ngIf="isEditMode">
-                        Delete
-                    </button>
+                        class="img-sml" />                    
                 </div>            
                 <div (click)="editExercise()">            
                     <h3>{{exerciseSet.name}}</h3>            
