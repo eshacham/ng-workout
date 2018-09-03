@@ -10,9 +10,8 @@
                             class="img-sml" />
                     </div>            
                     <div class=col-sm-10>                                    
-                        <button class="btn btn-warning pull-right margin-20" 
-                            (click)="runExercise()"
-                            *ngIf="!isEditMode">
+                        <button *ngIf="!isEditMode" class="btn btn-warning pull-right margin-20" 
+                            (click)="runExercise()">
                             Start
                         </button>                                                 
                          <h3>{{exerciseSet.name}}</h3>
@@ -105,9 +104,9 @@
         </div>
     </div>
     <div *ngSwitchDefault>
-        <button class="btn btn-warning pull-right margin-half_top margin_right" 
-            (click)="deleteExercise()"
-            *ngIf="isEditMode">
+        <button *ngIf="isEditMode"
+                class="btn btn-warning pull-right margin-half_top margin_right" 
+                (click)="deleteExercise()">
             Delete
         </button>
         <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"

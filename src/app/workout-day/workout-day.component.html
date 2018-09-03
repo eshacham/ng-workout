@@ -1,13 +1,6 @@
 <div class="container-fluid">    
     <div class="row">                
-        <div [ngSwitch]="DisplayMode">
-            <div *ngSwitchCase="displayMode.Display">                                                
-                <button class="btn btn-primary pull-right margin-20"
-                    (click)="setEditMode()">
-                    Edit
-                </button>
-                <h2 class="text-center">{{workoutDay.name}}</h2>
-            </div>
+        <div [ngSwitch]="DisplayMode">            
             <div *ngSwitchCase="displayMode.Edit">
                 <div >
                     <input class="col-sm-6 edit-workout-name"
@@ -23,7 +16,17 @@
                         </button>
                     </div> 
                 </div>
-            </div>                        
+            </div>  
+            <div *ngSwitchCase="displayMode.Display">
+                <button class="btn btn-primary pull-right margin-20"
+                    (click)="setEditMode()">
+                    Edit
+                </button>
+                <h2 class="text-center">{{workoutDay.name}}</h2>
+            </div> 
+            <div *ngSwitchCase="displayMode.Workout">
+                <h2 class="text-center">{{workoutDay.name}}</h2>
+            </div>                     
             <div *ngSwitchDefault></div>
         </div>
     </div> 
