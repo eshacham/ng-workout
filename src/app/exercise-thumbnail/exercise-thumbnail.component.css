@@ -32,10 +32,13 @@
     height: 100px;    
     margin: 2px 0px 2px 0px ;
 }
+.rep-edit {
+    margin: 2px 0px 2px 0px ;
+}
 
 .nonActiveRep {
-    background: rgb(15, 31, 31);
-    color: whitesmoke;
+    background: #17183b;    
+    /* color: whitesmoke; */
 }
 
 .activeRep {

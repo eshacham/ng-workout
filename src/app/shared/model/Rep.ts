@@ -6,19 +6,39 @@ export class Rep {
     @JsonProperty('weight')
     weight: number;
 
+    get HasWeight() {
+        return this.weight || this.weight === 0;
+    }
+    set HasWeight(value) {
+        this.weight = value ? 0 : null;
+    }
+
     @JsonProperty('weightUnit')
     weightUnit: WeightUnit;
 
     @JsonProperty('times')
     times: number;
 
+    get HasTimes() {
+        return this.times || this.times === 0;
+    }
+    set HasTimes(value) {
+        this.times = value ? 0 : null;
+    }
+
     @JsonProperty('seconds')
     seconds: number;
 
-    constructor () {
-        this.weight = undefined;
-        this.weightUnit = undefined;
-        this.times = undefined;
-        this.seconds = undefined;
+    get HasSeconds() {
+        return this.seconds || this.seconds === 0;
+    }
+    set HasSeconds(value) {
+        this.seconds = value ? 0 : null;
+    }
+    constructor (weight: number, weightUnit: WeightUnit, times: number, seconds: number ) {
+        this.weight = weight;
+        this.weightUnit = weightUnit;
+        this.times = times;
+        this.seconds = seconds;
     }
 }
