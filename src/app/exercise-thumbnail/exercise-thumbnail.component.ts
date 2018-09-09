@@ -23,6 +23,9 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
 
     @Output() eventEmitter = new EventEmitter<ExerciseActionEvent>();
 
+    MAXREPS = 4;
+    MINREPS = 1;
+
     activeRepIndex = 0;
     get isPrevRepAvailable(): boolean {
         return this.activeRepIndex > 0 ||
@@ -308,8 +311,35 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         }
     }
 
-    isRepCompleted (i) {
-        return this.completedReps.includes(i);
+    isRepCompleted (index) {
+        return this.completedReps.includes(index);
+    }
+
+    addRep() {
+        if (!this.isMaxReps) {
+            this.exercise.sets.forEach(set => {
+                const newRep: Rep = new Rep(
+                    set.reps[0].weight,
+                    set.reps[0].weightUnit,
+                    set.reps[0].times,
+                    set.reps[0].seconds);
+                set.reps.push(newRep);
+            });
+        }
+    }
+
+    deleteRep() {
+        if (!this.isMinReps) {
+            this.exercise.sets.forEach(set => set.reps.pop());
+        }
+    }
+
+    get isMaxReps(): boolean {
+        return this.exercise.sets[0].reps.length === this.MAXREPS;
+    }
+
+    get isMinReps(): boolean {
+        return this.exercise.sets[0].reps.length === this.MINREPS;
     }
 }
 

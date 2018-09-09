@@ -123,62 +123,74 @@
             </div>
             <div *ngIf="IsEditing" > 
                 <div class="row margin-20">                   
-                    <div *ngFor="let rep of exerciseSet.reps"  
-                        class="rep-edit"
-                        [ngClass]="getFrozenExerciseSetRepCellClass()">
-                        <div class="form-group">
-                            <label><input type="checkbox" class="form-control"
-                                [checked]="rep.HasWeight" 
-                                (change)="rep.HasWeight=!rep.HasWeight"/>Weight</label>
-                        </div>
-                        <div class="form-group" *ngIf="rep.HasWeight">
-                            <input type="number" class="form-control"
-                                [value]="rep.weight"
-                                (input)="rep.weight=$event.target.value" />                            
-                            <small>{{' ' + weightUnit[rep.weightUnit]}}</small>
-                        </div>
-                        <div class="form-group">
-                            <label><input type="checkbox" class="form-control"
-                                [checked]="rep.HasTimes" 
-                                (change)="rep.HasTimes=!rep.HasTimes"/>Times</label>
-                        </div>
-                        <div class="form-group" *ngIf="rep.HasTimes">
-                            <input type="number" class="form-control"
-                                [value]="rep.times"
-                                (input)="rep.times=$event.target.value" />
-                            <small>{{' Times'}}</small>                                                        
-                        </div>
-                        <div class="form-group">
-                            <label><input type="checkbox" class="form-control"
-                                [checked]="rep.HasSeconds" 
-                                (change)="rep.HasSeconds=!rep.HasSeconds"/>Seconds</label>
-                        </div>  
-                        <div class="form-group" *ngIf="rep.HasSeconds">
-                            <input type="number" class="form-control"
-                                [value]="rep.seconds"
-                                (input)="rep.seconds=$event.target.value" />
-                            <small>{{' Seconds'}}</small>                        
-                        </div> 
-                    </div>
-                </div>                                
-                <div class="row margin-20">
+                    <div *ngFor="let rep of exerciseSet.reps">  
+                        <div class="rep-edit" [ngClass]="getFrozenExerciseSetRepCellClass()">
+                            <div class="form-group">
+                                <label><input type="checkbox" class="form-control"
+                                    [checked]="rep.HasWeight" 
+                                    (change)="rep.HasWeight=!rep.HasWeight"/>Weight</label>
+                            </div>
+                            <div class="form-group" *ngIf="rep.HasWeight">
+                                <input type="number" class="form-control"
+                                    [value]="rep.weight"
+                                    (input)="rep.weight=$event.target.value" />                            
+                                <small>{{' ' + weightUnit[rep.weightUnit]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox" class="form-control"
+                                    [checked]="rep.HasTimes" 
+                                    (change)="rep.HasTimes=!rep.HasTimes"/>Times</label>
+                            </div>
+                            <div class="form-group" *ngIf="rep.HasTimes">
+                                <input type="number" class="form-control"
+                                    [value]="rep.times"
+                                    (input)="rep.times=$event.target.value" />
+                                <small>{{' Times'}}</small>                                                        
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox" class="form-control"
+                                    [checked]="rep.HasSeconds" 
+                                    (change)="rep.HasSeconds=!rep.HasSeconds"/>Seconds</label>
+                            </div>  
+                            <div class="form-group" *ngIf="rep.HasSeconds">
+                                <input type="number" class="form-control"
+                                    [value]="rep.seconds"
+                                    (input)="rep.seconds=$event.target.value" />
+                                <small>{{' Seconds'}}</small>                        
+                            </div>                               
+                        </div>                                        
+                    </div>                                       
+                </div>                                                                                           
+            </div>      
+        </div> 
+        <div *ngIf="IsEditing" > 
+            <div class="row margin-20">
+                <span *ngIf="!isMaxReps"
+                    class='glyphicon glyphicon-plus btn btn-info pull-right margin-half_top margin_right' 
+                    (click)="addRep()">
+                </span>
+                <span *ngIf="!isMinReps"
+                    class='glyphicon glyphicon-minus btn btn-info pull-right margin-half_top margin_right' 
+                    (click)="deleteRep()">
+                </span>  
+            </div>
+            <div class="row margin-20">
                     <div class="col-sm-6 form-group">                  
                         <label for="restBetweenRepsId">Rest Between Reps</label>
                         <input id="restBetweenRepsId" class="form-control"
-                            [value]="exerciseSet.restBetweenReps"
+                            [value]="exercise.sets[0].restBetweenReps"
                             (input)="exerciseSet.restBetweenReps=$event.target.value" />
                         <small>{{' Seconds'}}</small> 
                     </div> 
                     <div class="col-sm-6 form-group" >          
                         <label for="restAfterExerciseId">Rest After Exercise</label>
                         <input id="restAfterExerciseId" class="form-control"
-                            [value]="exerciseSet.restAfterExercise"
+                            [value]="exercise.sets[0].restAfterExercise"
                             (input)="exerciseSet.restAfterExercise=$event.target.value" />
                         <small>{{' Seconds'}}</small> 
                     </div>                                   
-                </div>                                               
-            </div>      
-        </div> 
+                </div> 
+        </div>
     </div>
     <div *ngSwitchDefault> 
         <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets"
