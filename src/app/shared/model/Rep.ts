@@ -35,10 +35,11 @@ export class Rep {
     set HasSeconds(value) {
         this.seconds = value ? 0 : null;
     }
-    constructor (weight: number, weightUnit: WeightUnit, times: number, seconds: number ) {
-        this.weight = weight;
-        this.weightUnit = weightUnit;
-        this.times = times;
-        this.seconds = seconds;
+
+    constructor () {
+        this.weight = undefined;
+        this.weightUnit = undefined;
+        this.times = undefined;
+        this.seconds = undefined;
     }
 }
