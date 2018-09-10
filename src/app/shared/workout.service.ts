@@ -30,7 +30,7 @@ export class WorkoutService {
     }
 }
 
- const _workout: object = {
+const _workout: object = {
     'name': 'ABC + Full Body Option 1 *',
     'days': [
         {
@@ -42,7 +42,7 @@ export class WorkoutService {
                     'sets': [
                         {
                             'name': 'Bench Press, Wide Grip',
-                            'imageUrl': 'assets/images/CrossPressWideGrip.jpeg',
+                            'imageUrl': 'assets/images/BenchPressWideGrip.jpeg',
                             'grip': {
                                 'type': GripType.Overhand,
                                 'width': GripWidth.Wide,
@@ -384,7 +384,7 @@ export class WorkoutService {
                                 type: GripType.Neutral,
                                 width: GripWidth.Normal,
                             },
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             weightType: WeightType.Dumbbell,
                             'isFavorite': false,
                             'reps': [
@@ -418,7 +418,7 @@ export class WorkoutService {
                             grip: {
                                 type: GripType.Underhand,
                             },
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             'isFavorite': false,
                             'reps': [
                                 {
@@ -456,7 +456,7 @@ export class WorkoutService {
                             grip: {
                                 type: GripType.Neutral,
                             },
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             weightType: WeightType.Dumbbell,
                             'isFavorite': false,
                             'reps': [
@@ -490,7 +490,7 @@ export class WorkoutService {
                             grip: {
                                 type: GripType.Overhand,
                             },
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             weightType: WeightType.Dumbbell,
                             'isFavorite': false,
                             'reps': [
@@ -521,7 +521,7 @@ export class WorkoutService {
                         {
                             'name': 'Dumbbell Tricpes Extensions, Seated',
                             'imageUrl': 'assets/images/DumbbellTricepsExtensionSeated.png',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             weightType: WeightType.Dumbbell,
                             'isFavorite': false,
                             'reps': [
@@ -552,7 +552,7 @@ export class WorkoutService {
                         {
                             'name': 'Inclined Pushup, Narrow Grip',
                             'imageUrl': 'assets/images/InclinePushupNarrowGrip.jpg',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             grip: {
                                 width: GripWidth.Narrow,
                             },
@@ -582,7 +582,7 @@ export class WorkoutService {
                             grip: {
                                 type: GripType.Overhand,
                             },
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             'isFavorite': false,
                             'reps': [
                                 {
@@ -612,7 +612,7 @@ export class WorkoutService {
                         {
                             'name': 'Situps',
                             'imageUrl': 'assets/images/Situps.png',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             'isFavorite': false,
                             'reps': [
                                 {
@@ -636,7 +636,7 @@ export class WorkoutService {
                         {
                             'name': 'Situps with Weight Above Head',
                             'imageUrl': 'assets/images/SitupsWithWeightAboveHead.png',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             'isFavorite': false,
                             'reps': [
                                 {
@@ -666,7 +666,7 @@ export class WorkoutService {
                         {
                             'name': 'Russian Twist',
                             'imageUrl': 'assets/images/RussianTwist.png',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             'isFavorite': false,
                             'reps': [
                                 {
@@ -922,7 +922,7 @@ export class WorkoutService {
                     ]
                 },
                 {
-                'id': 8,
+                    'id': 8,
                     'sets': [
                         {
                             'name': 'Decline Situps',
@@ -1008,7 +1008,7 @@ export class WorkoutService {
                         {
                             'name': 'Walking Lunge with Side Weights',
                             'imageUrl': 'assets/images/WalkingLungeWithSideWeights.png',
-                            'repetition':  RepetitionSpeed.OneOne,
+                            'repetition': RepetitionSpeed.OneOne,
                             weightType: WeightType.Dumbbell,
                             'isFavorite': false,
                             'reps': [
