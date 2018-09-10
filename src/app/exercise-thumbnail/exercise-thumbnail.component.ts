@@ -150,21 +150,6 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         }
     }
 
-    exerciseDetails(exerciseSet: ExerciseSet): string {
-        const details = [];
-
-        if (exerciseSet.theGrip && exerciseSet.theGrip.typeOfGrip) {
-            details.push(exerciseSet.theGrip.typeOfGrip);
-        }
-        if (exerciseSet.theGrip && exerciseSet.theGrip.width) {
-            details.push(exerciseSet.theGrip.width);
-        }
-        if (exerciseSet.typeOfWeight) {
-            details.push(exerciseSet.typeOfWeight);
-        }
-        return details.join(' | ');
-    }
-
     isFirstInSet(exerciseSet: ExerciseSet): boolean {
         return this.hasSet && this.exercise.sets[0] === exerciseSet;
     }
