@@ -169,6 +169,10 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         return this.hasSet && this.exercise.sets[0] === exerciseSet;
     }
 
+    isFirstSet(exerciseSet: ExerciseSet): boolean {
+        return !this.hasSet || this.isFirstInSet(exerciseSet);
+    }
+
     getTopBottomMarginClass(exerciseSet: ExerciseSet) {
         if (this.isFirstInSet(exerciseSet)) {
             return ['noBottomMargin'];
