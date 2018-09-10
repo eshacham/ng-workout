@@ -36,7 +36,7 @@ export class ExerciseSet {
         this.imageUrl = undefined;
         this.theGrip = undefined;
         this.repSpeed = undefined;
-        this.typeOfWeight = undefined;
+        this.typeOfWeight = WeightType.NoWeight;
         this.isFavorite = undefined;
         this.restBetweenReps = undefined;
         this.restAfterExercise = undefined;

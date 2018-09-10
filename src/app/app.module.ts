@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav/navbar.component' ;
 import { AppMainComponent } from './app-main.component';
 import { WorkoutComponent } from './workout/workout.component';
@@ -13,7 +13,7 @@ import { AudioService } from './shared/audio.service';
 
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule
   ],
   declarations: [
     NavBarComponent,

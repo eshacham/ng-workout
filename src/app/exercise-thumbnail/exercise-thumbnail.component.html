@@ -13,7 +13,10 @@
                             Start
                         </button>
                         <h3>{{exerciseSet.name}}</h3>
-                        <app-exercise-variation [exerciseSet]="exerciseSet"></app-exercise-variation>                        
+                        <app-exercise-variation 
+                            #variationComponent                             
+                            [exerciseSet]="exerciseSet" >
+                        </app-exercise-variation>                        
                     </div>
                 </div>
                 <div class="row margin-20" *ngIf='IsFrozen'>
@@ -89,18 +92,27 @@
         </div>
     </div>
     <div *ngSwitchCase="displayMode.Edit">
-        <button class="btn btn-warning pull-right margin_top margin_right" (click)="deleteExercise()">
+        <button class="btn btn-warning pull-right margin_top margin_right" 
+        (click)="deleteExercise()">
             Delete
         </button>
-        <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets" class="container-fluid thumb" [ngClass]="getTopBottomMarginClass(exerciseSet)">
+        <div id='exercise-thumb' *ngFor="let exerciseSet of exercise.sets" 
+            class="container-fluid thumb" [ngClass]="getTopBottomMarginClass(exerciseSet)">
             <div class="row">
                 <div class="col-sm-2 imageWrap">
                     <img src={{exerciseSet.imageUrl}} class="img-sml" />
-                </div>
-                <div (click)="toggleEditExercise()">
-                    <h3>{{exerciseSet.name}}</h3>
-                    {{exerciseDetails(exerciseSet)}}
-                </div>
+                </div>  
+                <h3>{{exerciseSet.name}}</h3>                 
+                <div >
+                    <button class='btn btn-info glyphicon margin-20' 
+                        [ngClass]="{'glyphicon-arrow-up': IsEditing, 'glyphicon-arrow-down': !IsEditing}"
+                        (click)="toggleEditExercise()">
+                    </button>
+                    <app-exercise-variation style="display:inline-block"
+                        [exerciseSet]="exerciseSet"
+                        [isEditing]="IsEditing">
+                    </app-exercise-variation>
+                </div>  
             </div>
             <div *ngIf="IsEditing">
                 <div class="row margin-20">

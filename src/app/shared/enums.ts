@@ -9,12 +9,14 @@ export enum WeightType {
 export enum GripType {
     Underhand = 'Underhand',
     Overhand = 'Overhand',
-    Neutral = 'Neutral'
+    Neutral = 'Neutral',
+    NoGrip = ''
 }
 export enum GripWidth {
     Narrow = 'Narrow',
     Normal = 'Normal',
-    Wide = 'Wide'
+    Wide = 'Wide',
+    NoGrip = ''
 }
 export enum RepetitionSpeed {
     OneOne = '1:1',

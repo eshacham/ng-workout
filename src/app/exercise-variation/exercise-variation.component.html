@@ -1,1 +1,34 @@
-<h5>{{exerciseDetails}}</h5>
+<div *ngIf="!InEditMode">
+    <h5>{{exerciseDetails}}</h5>
+</div>
+<div *ngIf="InEditMode">
+    <div class="row">
+        <div class="col-sm-3" *ngIf="exerciseSet.theGrip">
+            <label class="margin_right margin_left">Grip Type</label>
+            <select [(ngModel)]="exerciseSet.theGrip.typeOfGrip"> 
+                <option *ngFor="let gripType of gripTypes"
+                    value={{gripType}}>
+                    {{gripType}}
+                </option>
+            </select>            
+        </div>
+        <div class="col-sm-3" *ngIf="exerciseSet.theGrip">
+            <label class="margin_right margin_left">Grip Width</label>
+            <select [(ngModel)]="exerciseSet.theGrip.width"> 
+                <option *ngFor="let gripWidth of gripWidths"
+                    value={{gripWidth}}>
+                    {{gripWidth}}
+                </option>
+            </select>            
+        </div>
+        <div class="col-sm-3" *ngIf="exerciseSet.typeOfWeight">
+            <label class="margin_right margin_left">Weight Type</label>
+            <select [(ngModel)]="exerciseSet.typeOfWeight"> 
+                <option *ngFor="let weightType of weightTypes"
+                    value={{weightType}}>
+                    {{weightType}}
+                </option>
+            </select>            
+        </div>
+    </div>
+</div>
