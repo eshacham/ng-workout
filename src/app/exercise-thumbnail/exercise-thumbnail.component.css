@@ -37,8 +37,7 @@
 }
 
 .nonActiveRep {
-    background: #17183b;    
-    /* color: whitesmoke; */
+    background: #17183b;        
 }
 
 .activeRep {
@@ -51,10 +50,7 @@
     padding-top: 3px;
 }
 
-.margin-top {
-    margin-top: 20px;
-}
-.margin-half_top {
+.margin_top {
     margin-top: 10px;
 }
 .margin-20 {
