@@ -100,7 +100,7 @@ export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
         this.workoutDayComponentPublisher.unsubscribe();
       }
 
-    editExercise() {
+    toggleEditExercise() {
         this.IsEditing = !this.IsEditing;
         this.emitExerciseActionEvent(ExerciseAction.Edit);
     }
