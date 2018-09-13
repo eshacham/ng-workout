@@ -9,11 +9,11 @@ import { ExerciseSwitchModeEvent } from '../../shared/model/ExerciseSwitchModeEv
 import { ExerciseActionEvent } from '../../shared/model/ExerciseActionEvent';
 
 @Component({
-    selector: 'app-exercise-thumbnail',
-    templateUrl: './exercise-thumbnail.component.html',
-    styleUrls: ['./exercise-thumbnail.component.css']
+    selector: 'app-exercise',
+    templateUrl: './exercise.component.html',
+    styleUrls: ['./exercise.component.css']
 })
-export class ExerciseThumbnailComponent implements OnInit, OnDestroy {
+export class ExerciseComponent implements OnInit, OnDestroy {
     constructor (private audioService: AudioService) {}
 
     @Input() workoutDayName: string;

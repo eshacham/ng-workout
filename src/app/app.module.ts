@@ -5,7 +5,7 @@ import { NavBarComponent } from './components/nav/navbar.component' ;
 import { AppMainComponent } from './components/app-main.component';
 import { WorkoutComponent } from './components/workout/workout.component';
 import { WorkoutDayComponent } from './components/workout-day/workout-day.component';
-import { ExerciseThumbnailComponent } from './components/exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseComponent } from './components/exercise/exercise.component';
 import { ExerciseVariationComponent } from './components/exercise-variation/exercise-variation.component';
 import { WorkoutService } from './shared/workout.service' ;
 import { ToastrService } from './shared/toastr.service';
@@ -20,7 +20,7 @@ import { AudioService } from './shared/audio.service';
     AppMainComponent,
     WorkoutComponent,
     WorkoutDayComponent,
-    ExerciseThumbnailComponent,
+    ExerciseComponent,
     ExerciseVariationComponent
   ],
   providers: [WorkoutService, ToastrService, AudioService],

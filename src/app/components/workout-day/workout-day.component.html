@@ -32,15 +32,15 @@
         </div>
     </div> 
     <div class="row">
-        <app-exercise-thumbnail 
+        <app-exercise 
             *ngFor="let exercise of workoutDay.exercises; let i = index" 
             [workoutDayName]=workoutDay.name
             [exercise]=exercise
             [exerciseIndex]="i+1"
             [workoutDayComponentPublisher]="componentPublisher"
-            #thumbnailComponent (click)="thumbnailComponent.exerciseSelected()"
+            #exerciseComponent (click)="exerciseComponent.exerciseSelected()"
             (eventEmitter)="handleExerciseActionEvent($event)">
-        </app-exercise-thumbnail>        
+        </app-exercise>        
     </div> 
     <div class="row" [ngSwitch]="DisplayMode">
         <div *ngSwitchCase="displayMode.Display">
