@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { SimpleChange } from '@angular/core/src/change_detection/change_detection_util';
-import { ExerciseSet } from '../shared/model/ExerciseSet';
-import { GripType, GripWidth, WeightType } from '../shared/enums';
+import { ExerciseSet } from '../../shared/model/ExerciseSet';
+import { GripType, GripWidth, WeightType } from '../../shared/enums';
 
 @Component({
     selector: 'app-exercise-variation',

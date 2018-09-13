@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { WorkoutService } from '../shared/workout.service';
-import { ToastrService } from '../shared/toastr.service';
-import { WorkoutDay } from '../shared/model/WorkoutDay';
-import { Exercise } from '../shared/model/Exercise';
-import { DisplayMode, ExerciseAction  } from '../shared/enums';
-import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
-import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
+import { WorkoutService } from '../../shared/workout.service';
+import { ToastrService } from '../../shared/toastr.service';
+import { WorkoutDay } from '../../shared/model/WorkoutDay';
+import { Exercise } from '../../shared/model/Exercise';
+import { DisplayMode, ExerciseAction  } from '../../shared/enums';
+import { ExerciseSwitchModeEvent } from '../../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseActionEvent } from '../../shared/model/ExerciseActionEvent';
 
 @Component({
     selector: 'app-workout-day',

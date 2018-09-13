@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { AudioService } from '../shared/audio.service';
-import { WeightUnit, DisplayMode, ExerciseAction } from '../shared/enums';
-import { Exercise } from '../shared/model/Exercise';
-import { ExerciseSet } from '../shared/model/ExerciseSet';
-import { Rep } from '../shared/model/Rep';
-import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
-import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
+import { AudioService } from '../../shared/audio.service';
+import { WeightUnit, DisplayMode, ExerciseAction } from '../../shared/enums';
+import { Exercise } from '../../shared/model/Exercise';
+import { ExerciseSet } from '../../shared/model/ExerciseSet';
+import { Rep } from '../../shared/model/Rep';
+import { ExerciseSwitchModeEvent } from '../../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseActionEvent } from '../../shared/model/ExerciseActionEvent';
 
 @Component({
     selector: 'app-exercise-thumbnail',

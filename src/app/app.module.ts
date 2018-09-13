@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NavBarComponent } from './nav/navbar.component' ;
-import { AppMainComponent } from './app-main.component';
-import { WorkoutComponent } from './workout/workout.component';
-import { WorkoutDayComponent } from './workout-day/workout-day.component';
-import { ExerciseThumbnailComponent } from './exercise-thumbnail/exercise-thumbnail.component';
-import { ExerciseVariationComponent } from './exercise-variation/exercise-variation.component';
+import { NavBarComponent } from './components/nav/navbar.component' ;
+import { AppMainComponent } from './components/app-main.component';
+import { WorkoutComponent } from './components/workout/workout.component';
+import { WorkoutDayComponent } from './components/workout-day/workout-day.component';
+import { ExerciseThumbnailComponent } from './components/exercise-thumbnail/exercise-thumbnail.component';
+import { ExerciseVariationComponent } from './components/exercise-variation/exercise-variation.component';
 import { WorkoutService } from './shared/workout.service' ;
 import { ToastrService } from './shared/toastr.service';
 import { AudioService } from './shared/audio.service';

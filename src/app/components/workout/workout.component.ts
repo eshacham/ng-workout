@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkoutService } from '../shared/workout.service';
-import { Workout } from '../shared/model/Workout';
-import { ExerciseActionEvent } from '../shared/model/ExerciseActionEvent';
-import { ExerciseAction, DisplayMode } from '../shared/enums';
+import { WorkoutService } from '../../shared/workout.service';
+import { Workout } from '../../shared/model/Workout';
+import { ExerciseActionEvent } from '../../shared/model/ExerciseActionEvent';
+import { ExerciseAction, DisplayMode } from '../../shared/enums';
 import { Subject } from 'rxjs/Subject';
-import { ExerciseSwitchModeEvent } from '../shared/model/ExerciseSwitchModeEvent';
+import { ExerciseSwitchModeEvent } from '../../shared/model/ExerciseSwitchModeEvent';
 
 @Component({
     selector: 'app-workout',

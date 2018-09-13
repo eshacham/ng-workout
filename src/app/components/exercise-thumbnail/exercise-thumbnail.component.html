@@ -51,7 +51,8 @@
             <div>
                 <div *ngFor="let exerciseSet of exercise.sets">
                     <div class='row'>
-                        <div *ngFor="let rep of exerciseSet.reps; let i = index" class="rep" [ngClass]="getRunningExerciseSetRepCellClass(i)">
+                        <div *ngFor="let rep of exerciseSet.reps; let i = index" 
+                            class="rep" [ngClass]="getRunningExerciseSetRepCellClass(i)">
                             <div class='row' *ngIf='rep.weight'>
                                 <h4 class='text-center'>{{rep.weight}}<small>{{' ' + weightUnit[rep.weightUnit]}}</small></h4>
                             </div>
