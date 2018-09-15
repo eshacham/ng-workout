@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'
+import { appRoutes } from './routes';
 import { NavBarComponent } from './components/nav/navbar.component' ;
 import { AppMainComponent } from './components/app-main.component';
 import { WorkoutComponent } from './components/workout/workout.component';
@@ -13,7 +15,9 @@ import { AudioService } from './shared/audio.service';
 
 @NgModule({
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   declarations: [
     NavBarComponent,
