@@ -1,4 +1,5 @@
 # NgWorkout
+This repo is a proof of concept for a desktop browser, using angular 2.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
